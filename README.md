@@ -13,5 +13,3 @@ JasonHowDoesOneAppleDev?
 - [ ] Write function to populate an array of course objects with all the courses so students can select theirs
 
 - [ ] Use silk and uvm SQL unless better options are found
-
-- [ ] 
