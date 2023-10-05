@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E42776842ACF1CA500265C6E /* UVM_StudyPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */; };
+		E42776862ACF1CA500265C6E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776852ACF1CA500265C6E /* ContentView.swift */; };
+		E42776882ACF1CA600265C6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42776872ACF1CA600265C6E /* Assets.xcassets */; };
+		E427768B2ACF1CA600265C6E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E427768A2ACF1CA600265C6E /* Preview Assets.xcassets */; };
+		E42776952ACF1CA600265C6E /* UVM_StudyPalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776942ACF1CA600265C6E /* UVM_StudyPalTests.swift */; };
+		E427769F2ACF1CA600265C6E /* UVM_StudyPalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427769E2ACF1CA600265C6E /* UVM_StudyPalUITests.swift */; };
+		E42776A12ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776A02ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E42776912ACF1CA600265C6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E42776782ACF1CA500265C6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E427767F2ACF1CA500265C6E;
+			remoteInfo = "UVM-StudyPal";
+		};
+		E427769B2ACF1CA600265C6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E42776782ACF1CA500265C6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E427767F2ACF1CA500265C6E;
+			remoteInfo = "UVM-StudyPal";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E42776802ACF1CA500265C6E /* UVM-StudyPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UVM-StudyPal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVM_StudyPalApp.swift; sourceTree = "<group>"; };
+		E42776852ACF1CA500265C6E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E42776872ACF1CA600265C6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E427768A2ACF1CA600265C6E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E42776902ACF1CA600265C6E /* UVM-StudyPalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UVM-StudyPalTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E42776942ACF1CA600265C6E /* UVM_StudyPalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVM_StudyPalTests.swift; sourceTree = "<group>"; };
+		E427769A2ACF1CA600265C6E /* UVM-StudyPalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UVM-StudyPalUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E427769E2ACF1CA600265C6E /* UVM_StudyPalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVM_StudyPalUITests.swift; sourceTree = "<group>"; };
+		E42776A02ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVM_StudyPalUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E427767D2ACF1CA500265C6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E427768D2ACF1CA600265C6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E42776972ACF1CA600265C6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E42776772ACF1CA500265C6E = {
+			isa = PBXGroup;
+			children = (
+				E42776822ACF1CA500265C6E /* UVM-StudyPal */,
+				E42776932ACF1CA600265C6E /* UVM-StudyPalTests */,
+				E427769D2ACF1CA600265C6E /* UVM-StudyPalUITests */,
+				E42776812ACF1CA500265C6E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E42776812ACF1CA500265C6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E42776802ACF1CA500265C6E /* UVM-StudyPal.app */,
+				E42776902ACF1CA600265C6E /* UVM-StudyPalTests.xctest */,
+				E427769A2ACF1CA600265C6E /* UVM-StudyPalUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E42776822ACF1CA500265C6E /* UVM-StudyPal */ = {
+			isa = PBXGroup;
+			children = (
+				E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */,
+				E42776852ACF1CA500265C6E /* ContentView.swift */,
+				E42776872ACF1CA600265C6E /* Assets.xcassets */,
+				E42776892ACF1CA600265C6E /* Preview Content */,
+			);
+			path = "UVM-StudyPal";
+			sourceTree = "<group>";
+		};
+		E42776892ACF1CA600265C6E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E427768A2ACF1CA600265C6E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E42776932ACF1CA600265C6E /* UVM-StudyPalTests */ = {
+			isa = PBXGroup;
+			children = (
+				E42776942ACF1CA600265C6E /* UVM_StudyPalTests.swift */,
+			);
+			path = "UVM-StudyPalTests";
+			sourceTree = "<group>";
+		};
+		E427769D2ACF1CA600265C6E /* UVM-StudyPalUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E427769E2ACF1CA600265C6E /* UVM_StudyPalUITests.swift */,
+				E42776A02ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift */,
+			);
+			path = "UVM-StudyPalUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E427767F2ACF1CA500265C6E /* UVM-StudyPal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E42776A42ACF1CA600265C6E /* Build configuration list for PBXNativeTarget "UVM-StudyPal" */;
+			buildPhases = (
+				E427767C2ACF1CA500265C6E /* Sources */,
+				E427767D2ACF1CA500265C6E /* Frameworks */,
+				E427767E2ACF1CA500265C6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UVM-StudyPal";
+			productName = "UVM-StudyPal";
+			productReference = E42776802ACF1CA500265C6E /* UVM-StudyPal.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E427768F2ACF1CA600265C6E /* UVM-StudyPalTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E42776A72ACF1CA600265C6E /* Build configuration list for PBXNativeTarget "UVM-StudyPalTests" */;
+			buildPhases = (
+				E427768C2ACF1CA600265C6E /* Sources */,
+				E427768D2ACF1CA600265C6E /* Frameworks */,
+				E427768E2ACF1CA600265C6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E42776922ACF1CA600265C6E /* PBXTargetDependency */,
+			);
+			name = "UVM-StudyPalTests";
+			productName = "UVM-StudyPalTests";
+			productReference = E42776902ACF1CA600265C6E /* UVM-StudyPalTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E42776992ACF1CA600265C6E /* UVM-StudyPalUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E42776AA2ACF1CA600265C6E /* Build configuration list for PBXNativeTarget "UVM-StudyPalUITests" */;
+			buildPhases = (
+				E42776962ACF1CA600265C6E /* Sources */,
+				E42776972ACF1CA600265C6E /* Frameworks */,
+				E42776982ACF1CA600265C6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E427769C2ACF1CA600265C6E /* PBXTargetDependency */,
+			);
+			name = "UVM-StudyPalUITests";
+			productName = "UVM-StudyPalUITests";
+			productReference = E427769A2ACF1CA600265C6E /* UVM-StudyPalUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E42776782ACF1CA500265C6E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					E427767F2ACF1CA500265C6E = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					E427768F2ACF1CA600265C6E = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = E427767F2ACF1CA500265C6E;
+					};
+					E42776992ACF1CA600265C6E = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = E427767F2ACF1CA500265C6E;
+					};
+				};
+			};
+			buildConfigurationList = E427767B2ACF1CA500265C6E /* Build configuration list for PBXProject "UVM-StudyPal" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E42776772ACF1CA500265C6E;
+			productRefGroup = E42776812ACF1CA500265C6E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E427767F2ACF1CA500265C6E /* UVM-StudyPal */,
+				E427768F2ACF1CA600265C6E /* UVM-StudyPalTests */,
+				E42776992ACF1CA600265C6E /* UVM-StudyPalUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E427767E2ACF1CA500265C6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E427768B2ACF1CA600265C6E /* Preview Assets.xcassets in Resources */,
+				E42776882ACF1CA600265C6E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E427768E2ACF1CA600265C6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E42776982ACF1CA600265C6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E427767C2ACF1CA500265C6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E42776862ACF1CA500265C6E /* ContentView.swift in Sources */,
+				E42776842ACF1CA500265C6E /* UVM_StudyPalApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E427768C2ACF1CA600265C6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E42776952ACF1CA600265C6E /* UVM_StudyPalTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E42776962ACF1CA600265C6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E427769F2ACF1CA600265C6E /* UVM_StudyPalUITests.swift in Sources */,
+				E42776A12ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E42776922ACF1CA600265C6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E427767F2ACF1CA500265C6E /* UVM-StudyPal */;
+			targetProxy = E42776912ACF1CA600265C6E /* PBXContainerItemProxy */;
+		};
+		E427769C2ACF1CA600265C6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E427767F2ACF1CA500265C6E /* UVM-StudyPal */;
+			targetProxy = E427769B2ACF1CA600265C6E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E42776A22ACF1CA600265C6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E42776A32ACF1CA600265C6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E42776A52ACF1CA600265C6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UVM-StudyPal/Preview Content\"";
+				DEVELOPMENT_TEAM = 6WH36XK6QP;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "StudyPal.UVM-StudyPal";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E42776A62ACF1CA600265C6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UVM-StudyPal/Preview Content\"";
+				DEVELOPMENT_TEAM = 6WH36XK6QP;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "StudyPal.UVM-StudyPal";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E42776A82ACF1CA600265C6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6WH36XK6QP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "StudyPal.UVM-StudyPalTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UVM-StudyPal.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UVM-StudyPal";
+			};
+			name = Debug;
+		};
+		E42776A92ACF1CA600265C6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6WH36XK6QP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "StudyPal.UVM-StudyPalTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UVM-StudyPal.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UVM-StudyPal";
+			};
+			name = Release;
+		};
+		E42776AB2ACF1CA600265C6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6WH36XK6QP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "StudyPal.UVM-StudyPalUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "UVM-StudyPal";
+			};
+			name = Debug;
+		};
+		E42776AC2ACF1CA600265C6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6WH36XK6QP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "StudyPal.UVM-StudyPalUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "UVM-StudyPal";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E427767B2ACF1CA500265C6E /* Build configuration list for PBXProject "UVM-StudyPal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E42776A22ACF1CA600265C6E /* Debug */,
+				E42776A32ACF1CA600265C6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E42776A42ACF1CA600265C6E /* Build configuration list for PBXNativeTarget "UVM-StudyPal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E42776A52ACF1CA600265C6E /* Debug */,
+				E42776A62ACF1CA600265C6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E42776A72ACF1CA600265C6E /* Build configuration list for PBXNativeTarget "UVM-StudyPalTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E42776A82ACF1CA600265C6E /* Debug */,
+				E42776A92ACF1CA600265C6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E42776AA2ACF1CA600265C6E /* Build configuration list for PBXNativeTarget "UVM-StudyPalUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E42776AB2ACF1CA600265C6E /* Debug */,
+				E42776AC2ACF1CA600265C6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E42776782ACF1CA500265C6E /* Project object */;
+}
