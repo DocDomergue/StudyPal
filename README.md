@@ -1,15 +1,14 @@
 # StudyPal
 JasonHowDoesOneAppleDev?
 
+## Schedule
+- [X] First Deliverable Oct. 7th - Just a PDF
+
+- [ ] Second Deliverable Oct. 21st - Something that vaguely runs as an app
+
+- [ ] Third Deliverable Sometime in Nov. - Things are hopefully getting there by now
+
+- [ ] Final Deliverable Dec. 2nd - What's done is done
+
 ### To-Do Listsssss
-- [ ] Hash out ideas more, currently have:
-
-- [ ] Calendar is the central data structure
-
-- [ ] Create a parent class that has all the info calendar needs and split that into course, event, timeblock subclasses
-
-- [ ] Scrape enrollment data from serval.uvm.edu
-
-- [ ] Write function to populate an array of course objects with all the courses so students can select theirs
-
-- [ ] Use silk and uvm SQL unless better options are found
+- [X] Hash out ideas more.
