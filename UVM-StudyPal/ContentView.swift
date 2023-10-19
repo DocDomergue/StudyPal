@@ -9,16 +9,62 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView() {
+            CalendarPage()
+                .tabItem() {
+                    Image(systemName: "calendar")
+                }
+            ToDoPage()
+                .tabItem() {
+                    Image(systemName: "list.bullet")
+                }
+            TimerPage()
+                .tabItem() {
+                    Image(systemName: "stopwatch")
+                }
+            StatsPage()
+                .tabItem() {
+                    Image(systemName: "chart.pie")
+                }
         }
-        .padding()
     }
 }
 
-#Preview {
-    ContentView()
+
+struct CalendarPage: View {
+    var body: some View {
+        Text("Calendar")
+    }
 }
+
+struct ToDoPage: View {
+    var body: some View {
+        Text("To-Do's")
+    }
+}
+
+struct TimerPage: View {
+    var body: some View {
+        Text("Timer")
+    }
+}
+
+struct StatsPage: View {
+    var body: some View {
+        Text("Statistics")
+    }
+}
+
+struct CourseListPage: View {
+    var body: some View {
+        Text("Course List")
+    }
+}
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
