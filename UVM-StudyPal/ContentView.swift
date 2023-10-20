@@ -33,7 +33,21 @@ struct ContentView: View {
 
 struct CalendarPage: View {
     var body: some View {
-        Text("Calendar")
+        NavigationStack() {
+            VStack() {
+                Text("Calendar")
+                NavigationLink("To Course List Page") {
+                    CourseListPage().navigationTitle("All Courses")
+                }
+            }
+        }
+        
+    }
+}
+
+struct CourseListPage: View {
+    var body: some View {
+        Text("Course List")
     }
 }
 
@@ -55,11 +69,6 @@ struct StatsPage: View {
     }
 }
 
-struct CourseListPage: View {
-    var body: some View {
-        Text("Course List")
-    }
-}
 
 
 struct ContentView_Previews: PreviewProvider {
