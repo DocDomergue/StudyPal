@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E4042CD02AE4878200DD3EC2 /* CalendarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */; };
+		E4042CD12AE4878300DD3EC2 /* CalendarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */; };
 		E42776842ACF1CA500265C6E /* UVM_StudyPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */; };
 		E42776862ACF1CA500265C6E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776852ACF1CA500265C6E /* ContentView.swift */; };
 		E42776882ACF1CA600265C6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42776872ACF1CA600265C6E /* Assets.xcassets */; };
@@ -287,6 +289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E42776952ACF1CA600265C6E /* UVM_StudyPalTests.swift in Sources */,
+				E4042CD02AE4878200DD3EC2 /* CalendarItems.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E427769F2ACF1CA600265C6E /* UVM_StudyPalUITests.swift in Sources */,
+				E4042CD12AE4878300DD3EC2 /* CalendarItems.swift in Sources */,
 				E42776A12ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

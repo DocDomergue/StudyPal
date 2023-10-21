@@ -18,12 +18,12 @@ class CourseItems: CalendarItems {
     // Constructor
     init(name: String, subject: String, number: String, instructor: String, building: String,
          room: String, startTime: String, endTime: String) {
-        super.init(name: <#T##String#>, startTime: <#T##String#>, endTime: <#T##String#>)
         self.subject = subject
         self.number = Int(number).unsafelyUnwrapped
         self.instructor = instructor
         self.building = building
         self.room = Int(room).unsafelyUnwrapped
+        super.init(name: name, startTime: startTime, endTime: endTime)
     }
     
     // Getter for subject

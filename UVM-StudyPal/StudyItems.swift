@@ -13,8 +13,8 @@ class StudyItems: CalendarItems {
     
     // Constructor
     init(name: String, course: CourseItems, startTime: String, endTime: String) {
-        super.init(name: <#T##String#>, startTime: <#T##String#>, endTime: <#T##String#>)
         self.course = course
+        super.init(name: name, startTime: startTime, endTime: endTime)
     }
     
     // Getter for course

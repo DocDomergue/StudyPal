@@ -13,8 +13,8 @@ class CustomItems: CalendarItems {
     
     // Constructor
     init(name: String, description: String, startTime: String, endTime: String) {
-        super.init(name: <#T##String#>, startTime: <#T##String#>, endTime: <#T##String#>)
         self.description = description
+        super.init(name: name, startTime: startTime, endTime: endTime)
     }
     
     // Getter for subject

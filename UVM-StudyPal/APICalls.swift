@@ -17,7 +17,7 @@ struct queryReturn: Codable {
 }
 
 // Example function
-func APICall(query: String) -> Int {
+func APICall(query: String) {
     
     // base API URL
     let baseURL = "https://one.ehinchli.w3.uvm.edu/api/courses/search/"
@@ -60,7 +60,5 @@ func APICall(query: String) -> Int {
         
         // Start the URLSession task
         task.resume()
-        
-        return 0
     }
 }
