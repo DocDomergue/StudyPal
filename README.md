@@ -2,7 +2,7 @@
 Hi Jason!
 
 ### Whats been done so far
-* App compiles with a working UI that has a few secondary buttons and allows you to click between the 4 main tabs. Fire it up and take a look!
+* App compiles with a working UI that has a few secondary buttons and allows you to click between the 4 main tabs. Fire it up and take a look! You should arrive on a screen with a "Log In" button once the app is fully started up.
 * Serverside API currently handles the scrapping of the UVM Schedule of Courses. Server is run on swift, and the API can by used over HTTP requests with a query. Returns JSON file of what matches the query. Try it out:
 https://one.ehinchli.w3.uvm.edu/api/courses/search/?query=mobile
 * A basic example of how Swift will call the API has been built, but it features no processing yet.
