@@ -14,6 +14,11 @@
 		E42776952ACF1CA600265C6E /* UVM_StudyPalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776942ACF1CA600265C6E /* UVM_StudyPalTests.swift */; };
 		E427769F2ACF1CA600265C6E /* UVM_StudyPalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427769E2ACF1CA600265C6E /* UVM_StudyPalUITests.swift */; };
 		E42776A12ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776A02ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift */; };
+		E49FB7972AE45D2A00BDC017 /* CalendarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */; };
+		E49FB7992AE45D3A00BDC017 /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7982AE45D3A00BDC017 /* APICalls.swift */; };
+		E49FB79B2AE46A9500BDC017 /* CourseItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB79A2AE46A9500BDC017 /* CourseItems.swift */; };
+		E49FB79D2AE46AA500BDC017 /* StudyItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB79C2AE46AA500BDC017 /* StudyItems.swift */; };
+		E49FB79F2AE46AB500BDC017 /* CustomItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB79E2AE46AB500BDC017 /* CustomItems.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,11 @@
 		E427769A2ACF1CA600265C6E /* UVM-StudyPalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UVM-StudyPalUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E427769E2ACF1CA600265C6E /* UVM_StudyPalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVM_StudyPalUITests.swift; sourceTree = "<group>"; };
 		E42776A02ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVM_StudyPalUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarItems.swift; sourceTree = "<group>"; };
+		E49FB7982AE45D3A00BDC017 /* APICalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
+		E49FB79A2AE46A9500BDC017 /* CourseItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItems.swift; sourceTree = "<group>"; };
+		E49FB79C2AE46AA500BDC017 /* StudyItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyItems.swift; sourceTree = "<group>"; };
+		E49FB79E2AE46AB500BDC017 /* CustomItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItems.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +106,11 @@
 			children = (
 				E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */,
 				E42776852ACF1CA500265C6E /* ContentView.swift */,
+				E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */,
+				E49FB79A2AE46A9500BDC017 /* CourseItems.swift */,
+				E49FB79C2AE46AA500BDC017 /* StudyItems.swift */,
+				E49FB79E2AE46AB500BDC017 /* CustomItems.swift */,
+				E49FB7982AE45D3A00BDC017 /* APICalls.swift */,
 				E42776872ACF1CA600265C6E /* Assets.xcassets */,
 				E42776892ACF1CA600265C6E /* Preview Content */,
 			);
@@ -257,7 +272,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E49FB79B2AE46A9500BDC017 /* CourseItems.swift in Sources */,
 				E42776862ACF1CA500265C6E /* ContentView.swift in Sources */,
+				E49FB79D2AE46AA500BDC017 /* StudyItems.swift in Sources */,
+				E49FB7972AE45D2A00BDC017 /* CalendarItems.swift in Sources */,
+				E49FB7992AE45D3A00BDC017 /* APICalls.swift in Sources */,
+				E49FB79F2AE46AB500BDC017 /* CustomItems.swift in Sources */,
 				E42776842ACF1CA500265C6E /* UVM_StudyPalApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
