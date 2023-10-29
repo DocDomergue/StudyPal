@@ -9,56 +9,71 @@
 // Currently, this only works in the sense that it reaches out to the API and can print its returned JSON file.
 
 import Foundation
+import Combine
 
-// Define a struct to match the JSON response structure
-struct queryReturn: Codable {
-    // This will need properties to match the JSON structure
-    var dumpItAsAString = "oops"
+struct APIResponse: Decodable {
+    let results: [Course]
 }
 
-// Example function
-func APICall(query: String) {
-    
-    // base API URL
-    let baseURL = "https://one.ehinchli.w3.uvm.edu/api/courses/search/"
-    
-    // query
-    var defaultQuery = "Mobile"
-    
-    if (query != "") { defaultQuery = query }
-    
-    // Construct the full API URL
-    if let encodedQuery = defaultQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-       let url = URL(string: baseURL + encodedQuery) {
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+struct Course: Decodable {
+    let subj: String
+    let course_number: String
+    let title: String
+    let section: String
+    let instructor: String
+    let start_time: String?  // nullable fields
+    let end_time: String?
+    let days: String
+    let bldg: String
+    let room: String
+    let credits: String
+    let xlistings: String
+    let lec_lab: String
+    let coll_code: String
+    let max_enrollment: Int
+    let current_enrollment: Int
+    let email: String
+    let comp_numb: Int
+    let id: Int
+}
+
+func APICall(query: String) -> Future<[Course], Error> {
+    return Future<[Course], Error> { promise in
+        let baseURL = "https://one.ehinchli.w3.uvm.edu/api/courses/search/?query="
         
-        // Create a URLSession task to make the request
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                print("Error: \(error)")
-                exit(-1) // These should be handled more nicely later on
-            }
-            
-            guard let data = data else {
-                print("No data received.")
-                exit(-1) // These should be handled more nicely later on
-            }
-            
-            do {
-                // Decode the JSON response into an array of Course structs
-                let courses = try JSONDecoder().decode([queryReturn].self, from: data)
-                
-                // Process the courses data as needed
-                for course in courses {
-                    print(course)
-                }
-            } catch let jsonError {
-                print("JSON decoding error: \(jsonError)")
-            }
+        var defaultQuery = "Mobile"
+        
+        if !query.isEmpty {
+            defaultQuery = query
         }
         
-        // Start the URLSession task
-        task.resume()
+        // Construct the full API URL
+        if let encodedQuery = defaultQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+           let url = URL(string: baseURL + encodedQuery) {
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            
+            // Create a URLSession task to make the request
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    promise(.failure(error))
+                    return
+                }
+                
+                guard let data = data else {
+                    promise(.failure(NSError(domain: "", code: -1, userInfo: nil)))
+                    return
+                }
+                
+                do {
+                    let apiResponse = try JSONDecoder().decode(APIResponse.self, from: data)
+                    promise(.success(apiResponse.results))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+            task.resume()
+        }
     }
 }
