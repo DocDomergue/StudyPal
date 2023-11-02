@@ -11,13 +11,13 @@ https://one.ehinchli.w3.uvm.edu/api/courses/search/?query=mobile
 (UVM-StudyPal/CalendarItems.swift, CourseItems.swift, StudyItems.swift, CustomItems.swift)
 
 ### To-Do Lists till next Deliverable
-- [ ] Process JSON file returned by API calls, turn it into data struct
+- [X] Process JSON file returned by API calls, turn it into data struct
 
-- [ ] Create serverside account/login system
+- [ ] Create serverside account/login system - Evan
 
-- [ ] Further implement the UI, getting at least the calendar tab working
+- [ ] Further implement the UI, getting at least the calendar tab working - Zach
 
-- [ ] Implement the other 3 tabs 
+- [ ] Implement the other 3 tabs - Kevin
 
 ## Submission Schedule
 - [X] First Deliverable Oct. 7th - PDF
