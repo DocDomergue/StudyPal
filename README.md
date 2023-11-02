@@ -19,6 +19,11 @@ https://one.ehinchli.w3.uvm.edu/api/courses/search/?query=mobile
 
 - [ ] Implement the other 3 tabs - Kevin
 
+###### Stretch Goals (to the next deliverable)
+- [ ] UI Color Scheme
+
+- [ ] Notifications
+
 ## Submission Schedule
 - [X] First Deliverable Oct. 7th - PDF
 
