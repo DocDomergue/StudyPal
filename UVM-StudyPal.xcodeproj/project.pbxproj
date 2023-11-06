@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2066B1072AEFF74A00599861 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2066B1062AEFF74A00599861 /* TimerViewModel.swift */; };
+		332BF01E2AF94E6E004A4B29 /* ECWeekView in Frameworks */ = {isa = PBXBuildFile; productRef = 332BF01D2AF94E6E004A4B29 /* ECWeekView */; };
 		E4042CD02AE4878200DD3EC2 /* CalendarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */; };
 		E4042CD12AE4878300DD3EC2 /* CalendarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */; };
 		E42776842ACF1CA500265C6E /* UVM_StudyPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */; };
@@ -41,6 +42,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		33A5A6782AF94AB600F1E8A1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2066B1062AEFF74A00599861 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		E42776802ACF1CA500265C6E /* UVM-StudyPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UVM-StudyPal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				332BF01E2AF94E6E004A4B29 /* ECWeekView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +100,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		332BF01F2AF94FD9004A4B29 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E42776772ACF1CA500265C6E = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +114,7 @@
 				E42776932ACF1CA600265C6E /* UVM-StudyPalTests */,
 				E427769D2ACF1CA600265C6E /* UVM-StudyPalUITests */,
 				E42776812ACF1CA500265C6E /* Products */,
+				332BF01F2AF94FD9004A4B29 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,12 +180,16 @@
 				E427767C2ACF1CA500265C6E /* Sources */,
 				E427767D2ACF1CA500265C6E /* Frameworks */,
 				E427767E2ACF1CA500265C6E /* Resources */,
+				33A5A6782AF94AB600F1E8A1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "UVM-StudyPal";
+			packageProductDependencies = (
+				332BF01D2AF94E6E004A4B29 /* ECWeekView */,
+			);
 			productName = "UVM-StudyPal";
 			productReference = E42776802ACF1CA500265C6E /* UVM-StudyPal.app */;
 			productType = "com.apple.product-type.application";
@@ -235,6 +262,9 @@
 				Base,
 			);
 			mainGroup = E42776772ACF1CA500265C6E;
+			packageReferences = (
+				332BF01C2AF94E6E004A4B29 /* XCRemoteSwiftPackageReference "swift-week-view" */,
+			);
 			productRefGroup = E42776812ACF1CA500265C6E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -453,6 +483,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "$(PRODUCT_NAME) needs access to your calendar to establish an in-app course calendar";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -483,6 +514,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "$(PRODUCT_NAME) needs access to your calendar to establish an in-app course calendar";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -618,6 +650,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		332BF01C2AF94E6E004A4B29 /* XCRemoteSwiftPackageReference "swift-week-view" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EvanCooper9/swift-week-view";
+			requirement = {
+				branch = swiftui;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		332BF01D2AF94E6E004A4B29 /* ECWeekView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 332BF01C2AF94E6E004A4B29 /* XCRemoteSwiftPackageReference "swift-week-view" */;
+			productName = ECWeekView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E42776782ACF1CA500265C6E /* Project object */;
 }
