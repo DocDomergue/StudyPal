@@ -5,7 +5,6 @@
 
 import SwiftUI
 import Combine
-import ECWeekView
 
 struct ContentView: View {
     @State var loggedIn: Bool = false
@@ -74,7 +73,7 @@ struct LoginPage: View {
 
 struct CalendarPage: View {
     var body: some View {
-        ECWeekView()
+        WeekView()
         /*
         NavigationStack() {
             VStack() {
