@@ -8,22 +8,24 @@
 import SwiftUI
 
 struct DayTimeGrid: View {
+    @EnvironmentObject var manager: WVManager
     let daysOfWeek = ["Sunday", "Monday", "Tuesday",
                       "Wednesday", "Thursday", "Friday", "Saturday"]
     var body: some View {
         LazyVStack(pinnedViews: [.sectionHeaders]) {
             Section(header:
-                        // Week day names
-                    HStack(spacing: 75) {
+                // Week day names
+                    HStack(spacing: manager.DAY_WIDTH * 0.15) {
                     ForEach(0..<7) { day in
                         Text(daysOfWeek[day])
+                            .frame(width: manager.DAY_WIDTH * 0.85)
                     }
                 }
-                .padding([.trailing, .leading], 100)
-                .padding(.bottom, 20))
-            {
+                .padding([.trailing, .leading], manager.SIDE_PADDING)
+                .padding(.bottom, 20)
+            ) {
                 // Verticle times
-                VStack(spacing: 30) {
+                VStack(spacing: manager.HOUR_HEIGHT) {
                     ForEach(0..<25) { hour in
                         HourMark(hour: hour)
                     }
