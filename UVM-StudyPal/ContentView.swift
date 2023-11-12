@@ -73,17 +73,15 @@ struct LoginPage: View {
 
 struct CalendarPage: View {
     var body: some View {
-        WeekView()
-        /*
         NavigationStack() {
-            VStack() {
-                Text("Calendar")
+            WeekView()
+        } .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
                 NavigationLink("To Course List Page") {
                     CourseListPage().navigationTitle("All Courses")
                 }
             }
         }
-         */
     }
 }
 
