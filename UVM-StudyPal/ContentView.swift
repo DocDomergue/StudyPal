@@ -20,27 +20,39 @@ struct ContentView: View {
 }
 
 struct MainPageView: View {
+    @State var openTab = 0
     @Binding var loggedIn: Bool
     var body: some View {
         NavigationStack() {
-            TabView() {
+            TabView(selection: $openTab) {
                 CalendarPage()
                     .tabItem() {
                         Image(systemName: "calendar")
                     }
+                    .tag(0)
                 ToDoPage()
                     .tabItem() {
                         Image(systemName: "list.bullet")
                     }
+                    .tag(1)
                 TimerPage()
                     .tabItem() {
                         Image(systemName: "stopwatch")
                     }
+                    .tag(2)
                 StatsPage()
                     .tabItem() {
                         Image(systemName: "chart.pie")
                     }
+                    .tag(3)
             } .toolbar {
+                if openTab == 0 {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        NavigationLink("To Course List Page") {
+                            CourseListPage().navigationTitle("All Courses")
+                        }
+                    }
+                }
                 /* This is temporary. I'm thinking something more like a modal popping up when the user presses the user icon. Entirely new page might be tedius.*/
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
@@ -73,15 +85,7 @@ struct LoginPage: View {
 
 struct CalendarPage: View {
     var body: some View {
-        NavigationStack() {
-            WeekView()
-        } .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                NavigationLink("To Course List Page") {
-                    CourseListPage().navigationTitle("All Courses")
-                }
-            }
-        }
+        WeekView()
     }
 }
 
