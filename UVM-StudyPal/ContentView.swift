@@ -222,6 +222,9 @@ struct TimerPage: View {
                     Button("Reset") {
                         viewModel.resetTimer()
                     }
+                    Button("Advance") {
+                        viewModel.advanceTimer()
+                    }
                 }
                 
             case .paused:

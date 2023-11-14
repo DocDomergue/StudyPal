@@ -113,6 +113,7 @@
 		3306BBCF2AFD573F005FEEC1 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				E49D91802B03DFD200D971E3 /* CalendarClasses */,
 				3306BBD02AFD5757005FEEC1 /* WeekView.swift */,
 				33C920FB2AFD5F9D00FEF91C /* DayTimeGrid.swift */,
 				33C920FD2AFD62CA00FEF91C /* Blocks.swift */,
@@ -156,10 +157,6 @@
 				3306BBCF2AFD573F005FEEC1 /* Calendar */,
 				E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */,
 				E42776852ACF1CA500265C6E /* ContentView.swift */,
-				E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */,
-				E49FB79A2AE46A9500BDC017 /* CourseItems.swift */,
-				E49FB79C2AE46AA500BDC017 /* StudyItems.swift */,
-				E49FB79E2AE46AB500BDC017 /* CustomItems.swift */,
 				2066B1062AEFF74A00599861 /* TimerViewModel.swift */,
 				E49FB7982AE45D3A00BDC017 /* APICalls.swift */,
 				E42776872ACF1CA600265C6E /* Assets.xcassets */,
@@ -192,6 +189,17 @@
 				E42776A02ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift */,
 			);
 			path = "UVM-StudyPalUITests";
+			sourceTree = "<group>";
+		};
+		E49D91802B03DFD200D971E3 /* CalendarClasses */ = {
+			isa = PBXGroup;
+			children = (
+				E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */,
+				E49FB79A2AE46A9500BDC017 /* CourseItems.swift */,
+				E49FB79C2AE46AA500BDC017 /* StudyItems.swift */,
+				E49FB79E2AE46AB500BDC017 /* CustomItems.swift */,
+			);
+			path = CalendarClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
