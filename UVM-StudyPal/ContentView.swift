@@ -178,8 +178,69 @@ struct CourseListPage: View {
 
 
 struct ToDoPage: View {
+    struct TaskItem: Identifiable {
+        let id = UUID()
+        var name: String
+        var isCompleted: Bool = false
+    }
+
+    @State private var tasks: [TaskItem] = []
+    @State private var newTask: String = ""
+
     var body: some View {
-        Text("To-Do's")
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(tasks) { task in
+                        HStack {
+                            Button(action: {
+                                toggleTaskCompletion(task)
+                            }) {
+                                Image(systemName: task.isCompleted ? "checkmark.square" : "square")
+                                    .imageScale(.large)
+                                    .foregroundColor(task.isCompleted ? .blue : .gray)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            
+                            Text(task.name)
+                                .strikethrough(task.isCompleted)
+                                .foregroundColor(task.isCompleted ? .gray : .primary)
+                        }
+                    }
+                    .onDelete(perform: deleteTask)
+                }
+
+                HStack {
+                    TextField("Type here", text: $newTask, onCommit: addTaskOnCommit)
+                    Button(action: addTask) {
+                        Text("Add Task")
+                    }
+                }
+                .padding()
+            }
+            .navigationTitle("To-Do List")
+        }
+    }
+    
+    func addTaskOnCommit() {
+        addTask()
+    }
+
+    func addTask() {
+        if !newTask.isEmpty {
+            tasks.append(TaskItem(name: newTask))
+            newTask = ""
+        }
+    }
+
+    func deleteTask(at offsets: IndexSet) {
+        tasks.remove(atOffsets: offsets)
+    }
+
+    func toggleTaskCompletion(_ task: TaskItem) {
+        if let index = tasks.firstIndex(where: { $0.id == task.id }) {
+            tasks[index].isCompleted.toggle()
+        }
     }
 }
 
