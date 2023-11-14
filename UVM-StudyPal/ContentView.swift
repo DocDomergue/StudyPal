@@ -336,7 +336,7 @@ struct StatsPage: View {
                 .font(.headline)
                 .padding()
 
-            Divider() // Add a divider labeled "Global Stats"
+            Divider()
 
             Text("Global Stats")
                 .font(.title)
