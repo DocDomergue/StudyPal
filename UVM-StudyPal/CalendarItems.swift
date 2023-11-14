@@ -17,6 +17,8 @@ class CalendarItems {
     var startTime: String // Start time
     var endTime: String // End time
     
+    // TODO: Start and end times should be DateComponent. Convert in constructor
+    
     // Constructor
     init(name: String, startTime: String, endTime: String) {
         self.name = name
