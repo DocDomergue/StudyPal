@@ -306,8 +306,53 @@ struct TimerPage: View {
 
 
 struct StatsPage: View {
+    @State private var semesterCompletion: Double = 64.5
+    @State private var studyTimeInMinutes: Int = 334
+    @State private var averageStudyTime: Int = 154
+
     var body: some View {
-        Text("Statistics")
+        VStack {
+            Text("Statistics")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding()
+            
+            Divider()
+
+            Text("Semester Completion")
+                .font(.title)
+                .padding()
+            
+            Text("\(semesterCompletion, specifier: "%.1f")%")
+
+            ProgressView(value: semesterCompletion, total: 100)
+                .padding()
+
+            Text("Time Spent Studying")
+                .font(.title)
+                .padding()
+
+            Text("\(studyTimeInMinutes) minutes")
+                .font(.headline)
+                .padding()
+
+            Divider() // Add a divider labeled "Global Stats"
+
+            Text("Global Stats")
+                .font(.title)
+                .padding()
+
+            Text("Average Time Spent Studying")
+                .font(.title2)
+                .padding()
+
+            Text("\(averageStudyTime) minutes")
+                .font(.headline)
+                .padding()
+
+            Spacer()
+        }
+            .navigationTitle("Statistics")
     }
 }
 
