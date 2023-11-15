@@ -45,6 +45,10 @@ class TimerViewModel: ObservableObject {
         userActionState = .running
     }
     
+    func advanceTimer() {
+        self.timerFinished()
+    }
+    
     func pauseTimer() {
         timer?.invalidate()
         userActionState = .paused
