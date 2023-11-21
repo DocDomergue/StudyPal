@@ -6,24 +6,43 @@
 import SwiftUI
 import Combine
 
-struct ContentView: View {
-    @State var loggedIn: Bool = false
-    var body: some View {
-        /* This is temporary.It doesn't work with the preview and a navStack would probably be better anyway. */
-        if !loggedIn {
-            LoginPage(loggedIn: $loggedIn)
+class AuthViewModel: ObservableObject {
+    @Published var loggedIn: Bool = false
+    
+    func logIn() {
+        self.loggedIn = true
+    }
+    
+    func logOut() {
+        WebView.clearCookies {
+            DispatchQueue.main.async {
+                self.loggedIn = false
+            }
         }
-        else {
-            MainPageView(loggedIn: $loggedIn)
+    }
+}
+
+
+struct ContentView: View {
+    @StateObject var viewModel = AuthViewModel()
+    
+    var body: some View {
+        NavigationView {
+            if !viewModel.loggedIn {
+                LoginView(viewModel: viewModel)
+            } else {
+                MainPageView(viewModel: viewModel)
+            }
         }
     }
 }
 
 struct MainPageView: View {
     @State var openTab = 0
-    @Binding var loggedIn: Bool
+    @ObservedObject var viewModel: AuthViewModel
+    
     var body: some View {
-        NavigationStack() {
+        NavigationStack {
             TabView(selection: $openTab) {
                 CalendarPage()
                     .tabItem() {
@@ -56,10 +75,10 @@ struct MainPageView: View {
                 /* This is temporary. I'm thinking something more like a modal popping up when the user presses the user icon. Entirely new page might be tedius.*/
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
-                        Button(role: .destructive, action: {loggedIn = false}) {
+                        Button(role: .destructive, action: { viewModel.logOut() }) {
                             Label("Log Out", systemImage: "rectangle.portrait.and.arrow.right")
                         }
-                        Button(action: {print("furute functionality")}) {
+                        Button(action: { print("future functionality") }) {
                             Label("Future Functionality", systemImage: "globe")
                         }
                     } label: {
@@ -73,15 +92,32 @@ struct MainPageView: View {
 
 
 
-struct LoginPage: View {
-    @Binding var loggedIn: Bool
+struct LoginView: View {
+    @State private var shouldShowWebView = true
+    @ObservedObject var viewModel: AuthViewModel
+    
     var body: some View {
-        VStack() {
-            Text("Log In Now")
-            Button("Log In", action: {loggedIn = true})
+        Group {
+            if shouldShowWebView {
+                WebView(url: URL(string: "https://one.ehinchli.w3.uvm.edu")!) { _ in
+                    viewModel.logIn()
+                }
+            } else {
+                MainPageView(viewModel: viewModel)
+            }
         }
     }
 }
+
+struct CalendarPageView: View {
+    var username: String
+    
+    var body: some View {
+        // Your CalendarPage content here
+        Text("Welcome, \(username)! This is your calendar.")
+    }
+}
+
 
 struct CalendarPage: View {
     var body: some View {
@@ -95,8 +131,8 @@ struct CourseListPage: View {
     @State private var courses: [Course] = []
     @State private var cancellables = Set<AnyCancellable>()
     @State private var selectedCourses: [Course] = []
-
-
+    
+    
     var body: some View {
         VStack(){
             TextField("Search Courses", text: $queryString)
@@ -105,8 +141,8 @@ struct CourseListPage: View {
                 .autocapitalization(.none)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .onChange(of: queryString) { newValue in
-                                   searchCourses()
-                               }
+                    searchCourses()
+                }
             
             List(courses, id: \.id) { course in
                 HStack {
@@ -136,44 +172,42 @@ struct CourseListPage: View {
             }
         }
     }
-
+    
     func searchCourses() {
         if queryString.isEmpty {
             self.courses = []
             return
         }
-
+        
         if queryString.count == 1 {
             return
         }
-
-        APICall(query: queryString)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
+        
+        NetworkManager.shared.fetchCourses(query: queryString) { courses, error in
+            DispatchQueue.main.async {
+                if let courses = courses {
+                    self.courses = courses
+                } else if let error = error {
                     print("Error fetching courses: \(error)")
                 }
-            }, receiveValue: { courses in
-                self.courses = courses
-            })
-            .store(in: &cancellables)
+            }
+        }
     }
+    
     func courseIsSelected(course: Course) -> Bool {
-           return selectedCourses.contains(where: { $0.id == course.id })
-       }
-
-       func toggleCourseSelection(course: Course) {
-           if let index = selectedCourses.firstIndex(where: { $0.id == course.id }) {
-               selectedCourses.remove(at: index)
-               print("Removed Course: \(course.title) (\(course.subj) \(course.course_number))")
-           } else {
-               selectedCourses.append(course)
-               print("Added Course: \(course.title) (\(course.subj) \(course.course_number))")
-           }
-       }
-
+        return selectedCourses.contains(where: { $0.id == course.id })
+    }
+    
+    func toggleCourseSelection(course: Course) {
+        if let index = selectedCourses.firstIndex(where: { $0.id == course.id }) {
+            selectedCourses.remove(at: index)
+            print("Removed Course: \(course.title) (\(course.subj) \(course.course_number))")
+        } else {
+            selectedCourses.append(course)
+            print("Added Course: \(course.title) (\(course.subj) \(course.course_number))")
+        }
+    }
+    
 }
 
 
@@ -183,10 +217,10 @@ struct ToDoPage: View {
         var name: String
         var isCompleted: Bool = false
     }
-
+    
     @State private var tasks: [TaskItem] = []
     @State private var newTask: String = ""
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -209,7 +243,7 @@ struct ToDoPage: View {
                     }
                     .onDelete(perform: deleteTask)
                 }
-
+                
                 HStack {
                     TextField("Type here", text: $newTask, onCommit: addTaskOnCommit)
                     Button(action: addTask) {
@@ -225,18 +259,18 @@ struct ToDoPage: View {
     func addTaskOnCommit() {
         addTask()
     }
-
+    
     func addTask() {
         if !newTask.isEmpty {
             tasks.append(TaskItem(name: newTask))
             newTask = ""
         }
     }
-
+    
     func deleteTask(at offsets: IndexSet) {
         tasks.remove(atOffsets: offsets)
     }
-
+    
     func toggleTaskCompletion(_ task: TaskItem) {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
             tasks[index].isCompleted.toggle()
@@ -246,7 +280,7 @@ struct ToDoPage: View {
 
 struct TimerPage: View {
     @StateObject var viewModel = TimerViewModel()
-
+    
     var body: some View {
         VStack(spacing: 20) {
             Text(viewModel.currentState == .work ? "Work" : (viewModel.currentState == .shortBreak ? "Short Break" : "Long Break"))
@@ -309,7 +343,7 @@ struct StatsPage: View {
     @State private var semesterCompletion: Double = 64.5
     @State private var studyTimeInMinutes: Int = 334
     @State private var averageStudyTime: Int = 154
-
+    
     var body: some View {
         VStack {
             Text("Statistics")
@@ -318,41 +352,41 @@ struct StatsPage: View {
                 .padding()
             
             Divider()
-
+            
             Text("Semester Completion")
                 .font(.title)
                 .padding()
             
             Text("\(semesterCompletion, specifier: "%.1f")%")
-
+            
             ProgressView(value: semesterCompletion, total: 100)
                 .padding()
-
+            
             Text("Time Spent Studying")
                 .font(.title)
                 .padding()
-
+            
             Text("\(studyTimeInMinutes) minutes")
                 .font(.headline)
                 .padding()
-
+            
             Divider()
-
+            
             Text("Global Stats")
                 .font(.title)
                 .padding()
-
+            
             Text("Average Time Spent Studying")
                 .font(.title2)
                 .padding()
-
+            
             Text("\(averageStudyTime) minutes")
                 .font(.headline)
                 .padding()
-
+            
             Spacer()
         }
-            .navigationTitle("Statistics")
+        .navigationTitle("Statistics")
     }
 }
 
@@ -360,8 +394,12 @@ struct StatsPage: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        //ContentView()
-        MainPageView(loggedIn: .constant(true))
+        // Previewing ContentView
+        ContentView(viewModel: AuthViewModel())
+        
+        // Or, if you want to specifically preview MainPageView with a logged-in state
+        //        MainPageView(viewModel: AuthViewModel())
     }
 }
+
 

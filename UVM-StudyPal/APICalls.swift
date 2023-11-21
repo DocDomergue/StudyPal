@@ -37,9 +37,9 @@ struct Course: Decodable {
     let id: Int
 }
 
-func APICall(query: String) -> Future<[Course], Error> {
+func SearchAPICall(query: String) -> Future<[Course], Error> {
     return Future<[Course], Error> { promise in
-        let baseURL = "https://one.ehinchli.w3.uvm.edu/api/courses/search/?query="
+        let baseURL = "https://one.ehinchli.w3.uvm.edu/api/search/?query="
         
         var defaultQuery = "Mobile"
         
@@ -76,4 +76,51 @@ func APICall(query: String) -> Future<[Course], Error> {
             task.resume()
         }
     }
+}
+
+
+
+struct CourseResponse: Decodable {
+    let results: [Course]
+}
+
+class NetworkManager {
+    static let shared = NetworkManager()
+    private let baseURL = "https://one.ehinchli.w3.uvm.edu/api"
+
+    private init() {}
+
+    func request(endpoint: String, completion: @escaping (Data?, Error?) -> Void) {
+        guard let url = URL(string: "\(baseURL)\(endpoint)") else {
+            completion(nil, NSError(domain: "", code: -1, userInfo: nil))
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, error)
+        }
+        task.resume()
+    }
+
+    // Fetch courses data and decode JSON response
+    func fetchCourses(query: String, completion: @escaping ([Course]?, Error?) -> Void) {
+        guard let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            completion(nil, NSError(domain: "", code: -1, userInfo: nil))
+            return
+        }
+        request(endpoint: "/search/?query=\(encodedQuery)") { data, error in
+            guard let data = data, error == nil else {
+                completion(nil, error)
+                return
+            }
+
+            do {
+                let decodedData = try JSONDecoder().decode(CourseResponse.self, from: data)
+                completion(decodedData.results, nil)
+            } catch {
+                completion(nil, error)
+            }
+        }
+    }
+
 }
