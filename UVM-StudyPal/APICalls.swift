@@ -11,10 +11,6 @@
 import Foundation
 import Combine
 
-struct APIResponse: Decodable {
-    let results: [Course]
-}
-
 struct Course: Decodable {
     let subj: String
     let course_number: String
@@ -37,71 +33,69 @@ struct Course: Decodable {
     let id: Int
 }
 
-func SearchAPICall(query: String) -> Future<[Course], Error> {
-    return Future<[Course], Error> { promise in
-        let baseURL = "https://one.ehinchli.w3.uvm.edu/api/search/?query="
-        
-        var defaultQuery = "Mobile"
-        
-        if !query.isEmpty {
-            defaultQuery = query
-        }
-        
-        // Construct the full API URL
-        if let encodedQuery = defaultQuery.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-           let url = URL(string: baseURL + encodedQuery) {
-            
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            
-            // Create a URLSession task to make the request
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let error = error {
-                    promise(.failure(error))
-                    return
-                }
-                
-                guard let data = data else {
-                    promise(.failure(NSError(domain: "", code: -1, userInfo: nil)))
-                    return
-                }
-                
-                do {
-                    let apiResponse = try JSONDecoder().decode(APIResponse.self, from: data)
-                    promise(.success(apiResponse.results))
-                } catch {
-                    promise(.failure(error))
-                }
-            }
-            task.resume()
-        }
-    }
-}
-
-
 
 struct CourseResponse: Decodable {
     let results: [Course]
 }
 
+import Foundation
+
 class NetworkManager {
     static let shared = NetworkManager()
     private let baseURL = "https://one.ehinchli.w3.uvm.edu/api"
 
+    // Properties to store CSRF token and Session ID
+    private var csrfToken: String?
+    private var sessionId: String?
+
     private init() {}
 
+    // Update CSRF token and session ID
+    func updateAuthCookies(csrfToken: String?, sessionId: String?) {
+            self.csrfToken = csrfToken
+            self.sessionId = sessionId
+        }
+
+    // Generic request function with authentication cookies
     func request(endpoint: String, completion: @escaping (Data?, Error?) -> Void) {
         guard let url = URL(string: "\(baseURL)\(endpoint)") else {
             completion(nil, NSError(domain: "", code: -1, userInfo: nil))
             return
         }
 
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        var request = URLRequest(url: url)
+        
+        if let csrfToken = self.csrfToken, let sessionId = self.sessionId {
+                    request.addValue("csrftoken=\(csrfToken); sessionid=\(sessionId)", forHTTPHeaderField: "Cookie")
+                }
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("API Request Error: \(error)")
+            }
             completion(data, error)
         }
         task.resume()
     }
 
+    // Method to add a course
+    func addCourse(courseId: Int, completion: @escaping (Bool, Error?) -> Void) {
+        request(endpoint: "/add_course?course_id=\(courseId)") { data, error in
+            DispatchQueue.main.async {
+                completion(error == nil, error)
+            }
+        }
+    }
+
+    // Method to remove a course
+    func removeCourse(courseId: Int, completion: @escaping (Bool, Error?) -> Void) {
+        request(endpoint: "/remove_course?course_id=\(courseId)") { data, error in
+            DispatchQueue.main.async {
+                completion(error == nil, error)
+            }
+        }
+    }
+    
     // Fetch courses data and decode JSON response
     func fetchCourses(query: String, completion: @escaping ([Course]?, Error?) -> Void) {
         guard let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
@@ -113,7 +107,7 @@ class NetworkManager {
                 completion(nil, error)
                 return
             }
-
+            
             do {
                 let decodedData = try JSONDecoder().decode(CourseResponse.self, from: data)
                 completion(decodedData.results, nil)
@@ -122,5 +116,6 @@ class NetworkManager {
             }
         }
     }
-
+    
 }
+

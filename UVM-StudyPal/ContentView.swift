@@ -199,14 +199,35 @@ struct CourseListPage: View {
     }
     
     func toggleCourseSelection(course: Course) {
-        if let index = selectedCourses.firstIndex(where: { $0.id == course.id }) {
-            selectedCourses.remove(at: index)
-            print("Removed Course: \(course.title) (\(course.subj) \(course.course_number))")
-        } else {
-            selectedCourses.append(course)
-            print("Added Course: \(course.title) (\(course.subj) \(course.course_number))")
+            if courseIsSelected(course: course) {
+                removeCourse(course: course)
+            } else {
+                addCourse(course: course)
+            }
         }
-    }
+
+        func addCourse(course: Course) {
+            NetworkManager.shared.addCourse(courseId: course.id) { success, error in
+                if success {
+                    self.selectedCourses.append(course)
+                    print("Added Course: \(course.title) (\(course.subj) \(course.course_number))")
+                } else if let error = error {
+                    print("Error adding course: \(error)")
+                }
+            }
+        }
+
+        func removeCourse(course: Course) {
+            NetworkManager.shared.removeCourse(courseId: course.id) { success, error in
+                if success {
+                    self.selectedCourses.removeAll { $0.id == course.id }
+                    print("Removed Course: \(course.title) (\(course.subj) \(course.course_number))")
+                } else if let error = error {
+                    print("Error removing course: \(error)")
+                }
+            }
+        }
+
     
 }
 
@@ -398,7 +419,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(viewModel: AuthViewModel())
         
         // Or, if you want to specifically preview MainPageView with a logged-in state
-        //        MainPageView(viewModel: AuthViewModel())
+        //        MainPageVieehinchw(viewModel: AuthViewModel())
     }
 }
 
