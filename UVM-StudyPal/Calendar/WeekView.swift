@@ -32,3 +32,9 @@ class WVManager: ObservableObject {
     // TODO: @Published var visibleWeek:
     
 }
+
+struct WeekView_Previews: PreviewProvider {
+    static var previews: some View {
+        WeekView()
+    }
+}

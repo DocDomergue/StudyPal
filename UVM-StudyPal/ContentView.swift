@@ -405,7 +405,7 @@ struct StatsPage: View {
                 .font(.headline)
                 .padding()
             
-            Spacer()
+            //Spacer()
         }
         .navigationTitle("Statistics")
     }
