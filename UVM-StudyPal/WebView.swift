@@ -1,29 +1,30 @@
 import SwiftUI
 import WebKit
 
+// Represents a WebView component in SwiftUI
 struct WebView: UIViewRepresentable {
     let url: URL
     var onLoginSuccess: ((String) -> Void)?
     
+    // Creates the WKWebView instance
     func makeUIView(context: Context) -> WKWebView {
-
-        
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
-
         return webView
     }
     
- 
+    // Updates the WebView when SwiftUI state changes
     func updateUIView(_ webView: WKWebView, context: Context) {
         let request = URLRequest(url: url)
         webView.load(request)
     }
     
+    // Creates a Coordinator for handling WebView events
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
     
+    // Coordinator class for WebView
     class Coordinator: NSObject, WKNavigationDelegate {
         var parent: WebView
 
@@ -31,9 +32,11 @@ struct WebView: UIViewRepresentable {
             self.parent = parent
         }
         
+        // Handles WebView navigation completion
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            webView.evaluateJavaScript("document.body.innerText") { (result, error) in
-                if let bodyText = result as? String, bodyText.contains("Logged in as") {
+            webView.evaluateJavaScript("document.body.innerText") { result, error in
+                guard let bodyText = result as? String else { return }
+                if bodyText.contains("Logged in as") {
                     let username = bodyText.replacingOccurrences(of: "Logged in as ", with: "")
                     self.parent.onLoginSuccess?(username)
                     self.parent.retrieveCookies()
@@ -42,26 +45,24 @@ struct WebView: UIViewRepresentable {
         }
     }
 
-    // Clear cookies when logging out
+    // Clears WebView cookies
     static func clearCookies(completion: @escaping () -> Void) {
         let dataStore = WKWebsiteDataStore.default()
         let websiteDataTypes = WKWebsiteDataStore.allWebsiteDataTypes()
-        let date = Date(timeIntervalSince1970: 0)
-        dataStore.removeData(ofTypes: websiteDataTypes, modifiedSince: date, completionHandler: completion)
+        dataStore.removeData(ofTypes: websiteDataTypes, modifiedSince: Date(timeIntervalSince1970: 0), completionHandler: completion)
     }
 
-    func retrieveCookies() {
-            WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
-                // Process cookies and pass to NetworkManager
-                processAndStoreCookies(cookies)
-            }
+    // Retrieves cookies from the WebView
+    private func retrieveCookies() {
+        WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
+            processAndStoreCookies(cookies)
         }
+    }
 
+    // Processes cookies and updates NetworkManager
     private func processAndStoreCookies(_ cookies: [HTTPCookie]) {
-            let csrfToken = cookies.first(where: { $0.name == "csrftoken" })?.value
-            let sessionId = cookies.first(where: { $0.name == "sessionid" })?.value
-
-            // Pass the cookies to NetworkManager
-            NetworkManager.shared.updateAuthCookies(csrfToken: csrfToken, sessionId: sessionId)
-        }
+        let csrfToken = cookies.first { $0.name == "csrftoken" }?.value
+        let sessionId = cookies.first { $0.name == "sessionid" }?.value
+        NetworkManager.shared.updateAuthCookies(csrfToken: csrfToken, sessionId: sessionId)
+    }
 }
