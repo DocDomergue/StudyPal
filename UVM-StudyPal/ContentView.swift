@@ -312,10 +312,10 @@ struct StatsPage: View {
 
     var body: some View {
         VStack {
-            Text("Statistics")
+            /*Text("Statistics")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .padding()
+                .padding()*/
             
             Divider()
 
@@ -350,7 +350,7 @@ struct StatsPage: View {
                 .font(.headline)
                 .padding()
 
-            Spacer()
+            //Spacer()
         }
             .navigationTitle("Statistics")
     }

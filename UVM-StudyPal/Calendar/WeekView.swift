@@ -9,12 +9,14 @@ import SwiftUI
 
 struct WeekView: View {
     var body: some View {
-        ScrollView([.horizontal, .vertical]) {
-            ZStack {
-                DayTimeGrid()
-                Blocks()
-                //WeekPicker()
+        ZStack {
+            ScrollView([.horizontal, .vertical]) {
+                ZStack {
+                    DayTimeGrid()
+                    Blocks()
+                }
             }
+            WeekPicker()
         }
         .environmentObject(WVManager())
     }
