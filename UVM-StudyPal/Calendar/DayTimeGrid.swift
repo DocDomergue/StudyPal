@@ -10,22 +10,32 @@ import SwiftUI
 let timeTextHeight: CGFloat = 10
 
 struct DayTimeGrid: View {
-    @EnvironmentObject var manager: WVManager
+    @EnvironmentObject var manager: CalendarManager
     let daysOfWeek = ["Sunday", "Monday", "Tuesday",
                       "Wednesday", "Thursday", "Friday", "Saturday"]
     
     var body: some View {
         LazyVStack(pinnedViews: [.sectionHeaders]) {
             Section(header:
-                // Week day names
-                HStack(spacing: manager.DAY_WIDTH * 0.15) {
-                    ForEach(0..<7) { day in
-                        Text(daysOfWeek[day])
-                            .frame(width: manager.DAY_WIDTH * 0.85)
+                VStack { // Bogus vstack to make header happy (conditional)
+                    if (manager.isDayView) {
+                        // Day of week chosen in the manager
+                        Text(daysOfWeek[manager.dayOfWeek - 1])
+                            .padding([.trailing, .leading], manager.SIDE_PADDING)
+                            .padding(.bottom, 20)
+                    }
+                    else {
+                        // Week day names
+                        HStack(spacing: manager.getDayWidth() * 0.15) {
+                            ForEach(0..<7) { day in
+                                Text(daysOfWeek[day])
+                                    .frame(width: manager.getDayWidth() * 0.85)
+                            }
+                        }
+                        .padding([.trailing, .leading], manager.SIDE_PADDING)
+                        .padding(.bottom, 20)
                     }
                 }
-                .padding([.trailing, .leading], manager.SIDE_PADDING)
-                .padding(.bottom, 20)
             ) {
                 // Verticle times
                 VStack(spacing: manager.HOUR_HEIGHT - timeTextHeight) {
@@ -39,7 +49,7 @@ struct DayTimeGrid: View {
 }
 
 struct HourMark: View {
-    @EnvironmentObject var manager: WVManager
+    @EnvironmentObject var manager: CalendarManager
     var hour: Int
     var body: some View {
         HStack {
@@ -48,7 +58,9 @@ struct HourMark: View {
             VStack {
                 Divider()
             }
-            Text(hourToTwelveHour(hour))
+            if !manager.isDayView {
+                Text(hourToTwelveHour(hour))
+            }
         }
         .padding(.horizontal, 5)
         .frame(height: timeTextHeight)
@@ -66,4 +78,11 @@ func hourToTwelveHour(_ hour: Int) -> String {
         return "12 pm"
     }
     return "\(hour % 12) \(hour >= 12 ? "pm" : "am")"
+}
+
+struct DayTimeView_Previews: PreviewProvider {
+    static var previews: some View {
+        DayTimeGrid()
+            .environmentObject(CalendarManager())
+    }
 }

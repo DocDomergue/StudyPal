@@ -120,10 +120,38 @@ struct CalendarPageView: View {
 
 
 struct CalendarPage: View {
+    @State var isDayView: Bool = false
+    
     var body: some View {
-        WeekView()
+        VStack {
+            
+            Spacer()
+            
+            HStack {
+                Toggle("Day View", isOn: $isDayView)
+                WeekPicker()
+                /*
+                if isDayView {
+                    DayPicker()
+                }
+                 */
+            }
+            .frame(maxHeight: 50)
+            .padding(.bottom)
+            
+            if isDayView {
+                DayView()
+            }
+            else {
+                WeekView()
+            }
+            
+            Spacer()
+        }.environmentObject(CalendarManager())
     }
+        
 }
+
 
 
 struct CourseListPage: View {
@@ -416,10 +444,10 @@ struct StatsPage: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         // Previewing ContentView
-        ContentView(viewModel: AuthViewModel())
+        //ContentView(viewModel: AuthViewModel())
         
         // Or, if you want to specifically preview MainPageView with a logged-in state
-        //        MainPageVieehinchw(viewModel: AuthViewModel())
+        MainPageView(viewModel: AuthViewModel())
     }
 }
 

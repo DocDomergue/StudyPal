@@ -15,6 +15,8 @@
 		33C920FC2AFD5F9D00FEF91C /* DayTimeGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C920FB2AFD5F9D00FEF91C /* DayTimeGrid.swift */; };
 		33C920FE2AFD62CA00FEF91C /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C920FD2AFD62CA00FEF91C /* Blocks.swift */; };
 		33C921002AFD70BB00FEF91C /* WeekPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C920FF2AFD70BB00FEF91C /* WeekPicker.swift */; };
+		33FCC8FD2B0EBD9B0058E1FC /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FCC8FC2B0EBD9B0058E1FC /* CalendarManager.swift */; };
+		33FCC8FF2B0EBF6E0058E1FC /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FCC8FE2B0EBF6E0058E1FC /* DayView.swift */; };
 		E4042CD02AE4878200DD3EC2 /* CalendarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */; };
 		E4042CD12AE4878300DD3EC2 /* CalendarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */; };
 		E42776842ACF1CA500265C6E /* UVM_StudyPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */; };
@@ -70,6 +72,8 @@
 		33C920FB2AFD5F9D00FEF91C /* DayTimeGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTimeGrid.swift; sourceTree = "<group>"; };
 		33C920FD2AFD62CA00FEF91C /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
 		33C920FF2AFD70BB00FEF91C /* WeekPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekPicker.swift; sourceTree = "<group>"; };
+		33FCC8FC2B0EBD9B0058E1FC /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
+		33FCC8FE2B0EBF6E0058E1FC /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		E42776802ACF1CA500265C6E /* UVM-StudyPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UVM-StudyPal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVM_StudyPalApp.swift; sourceTree = "<group>"; };
 		E42776852ACF1CA500265C6E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -117,10 +121,12 @@
 			children = (
 				E49D91802B03DFD200D971E3 /* CalendarClasses */,
 				3306BBD02AFD5757005FEEC1 /* WeekView.swift */,
+				33FCC8FE2B0EBF6E0058E1FC /* DayView.swift */,
 				33C920FB2AFD5F9D00FEF91C /* DayTimeGrid.swift */,
 				33C920FD2AFD62CA00FEF91C /* Blocks.swift */,
 				33C920FF2AFD70BB00FEF91C /* WeekPicker.swift */,
 				3339BBBA2AFD808000FAD38A /* CalendarBlock.swift */,
+				33FCC8FC2B0EBD9B0058E1FC /* CalendarManager.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 				E49FB79D2AE46AA500BDC017 /* StudyItems.swift in Sources */,
 				E49FB7972AE45D2A00BDC017 /* CalendarItems.swift in Sources */,
 				33C920FE2AFD62CA00FEF91C /* Blocks.swift in Sources */,
+				33FCC8FD2B0EBD9B0058E1FC /* CalendarManager.swift in Sources */,
 				2066B1072AEFF74A00599861 /* TimerViewModel.swift in Sources */,
 				209007FE2B0D404E0050FE70 /* WebView.swift in Sources */,
 				33C921002AFD70BB00FEF91C /* WeekPicker.swift in Sources */,
@@ -353,6 +360,7 @@
 				E49FB79F2AE46AB500BDC017 /* CustomItems.swift in Sources */,
 				33C920FA2AFD585900FEF91C /* User.swift in Sources */,
 				33C920FC2AFD5F9D00FEF91C /* DayTimeGrid.swift in Sources */,
+				33FCC8FF2B0EBF6E0058E1FC /* DayView.swift in Sources */,
 				E42776842ACF1CA500265C6E /* UVM_StudyPalApp.swift in Sources */,
 				3339BBBB2AFD808000FAD38A /* CalendarBlock.swift in Sources */,
 			);

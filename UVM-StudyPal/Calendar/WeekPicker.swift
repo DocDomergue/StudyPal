@@ -15,24 +15,20 @@ struct WeekPicker: View {
     init() {
         self.selectedDates = getCurrentWeek()
         self.weekDescription = describeWeek(getCurrentWeek())
-        // TODO: ADJUST WVMANAGER
+        // TODO: ADJUST CALENDARMANAGER
     }
     
     var body: some View {
-        GeometryReader { viewGeometry in
-            Button(action: {showPicker = true}) {
-                Text(weekDescription)
-                    // TODO: Better sizing
-                    .frame(width: 200, height: 50)
-                    .background(
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill()
-                            .foregroundColor(Color.gray)
-                            .opacity(0.9)
-                    )
-            }
-            // TODO: How do you position better?
-            .position(x: viewGeometry.size.width - 120, y: viewGeometry.size.height - 50)
+        Button(action: {showPicker = true}) {
+            Text(weekDescription)
+                // TODO: Better sizing
+                .frame(width: 200, height: 50)
+                .background(
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill()
+                        .foregroundColor(Color.gray)
+                        .opacity(0.9)
+                )
         }
         .sheet(isPresented: $showPicker) {
             WeekPickerSheet(selectedDates: $selectedDates, weekDescription: $weekDescription)
@@ -57,7 +53,7 @@ struct WeekPickerSheet: View {
                         self.selectedDates = getWeek(of: newDate)
                         // Change the description
                         weekDescription = describeWeek(self.selectedDates)
-                        // TODO: ADJUST WVMANAGER
+                        // TODO: ADJUST CALENDARMANAGER
                     }
                     // Else, don't let it change
                     else {

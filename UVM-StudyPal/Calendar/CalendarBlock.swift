@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalendarBlock: View {
-    @EnvironmentObject var manager: WVManager
+    @EnvironmentObject var manager: CalendarManager
     
     var desc: String
     var day: String
@@ -23,7 +23,7 @@ struct CalendarBlock: View {
         VStack {
             Text(desc)
         }
-        .frame(width: manager.DAY_WIDTH, height: getHeight())
+        .frame(width: manager.getDayWidth(), height: getHeight())
         .background(
             RoundedRectangle(cornerRadius: 5)
                 .fill()
@@ -74,7 +74,7 @@ struct CalendarBlock: View {
         if let dayNum = dayOptions.firstIndex(of: day) {
             // 35? Why?
             // Magic number should be width of side times + padding
-            x = 35 + (Int(manager.DAY_WIDTH) * (dayNum + 1))
+            x = 35 + (Int(manager.getDayWidth()) * (dayNum + 1))
         }
         
         // Value of y is determined by start and end time
