@@ -11,8 +11,6 @@ let timeTextHeight: CGFloat = 10
 
 struct DayTimeGrid: View {
     @EnvironmentObject var manager: CalendarManager
-    let daysOfWeek = ["Sunday", "Monday", "Tuesday",
-                      "Wednesday", "Thursday", "Friday", "Saturday"]
     
     var body: some View {
         LazyVStack(pinnedViews: [.sectionHeaders]) {
@@ -20,7 +18,7 @@ struct DayTimeGrid: View {
                 VStack { // Bogus vstack to make header happy (conditional)
                     if (manager.isDayView) {
                         // Day of week chosen in the manager
-                        Text(daysOfWeek[manager.dayOfWeek - 1])
+                        Text(manager.DAYS_OF_WEEK[manager.dayOfWeek - 1])
                             .padding([.trailing, .leading], manager.SIDE_PADDING)
                             .padding(.bottom, 20)
                     }
@@ -28,7 +26,7 @@ struct DayTimeGrid: View {
                         // Week day names
                         HStack(spacing: manager.getDayWidth() * 0.15) {
                             ForEach(0..<7) { day in
-                                Text(daysOfWeek[day])
+                                Text(manager.DAYS_OF_WEEK[day])
                                     .frame(width: manager.getDayWidth() * 0.85)
                             }
                         }

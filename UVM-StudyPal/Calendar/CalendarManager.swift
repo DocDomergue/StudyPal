@@ -19,6 +19,8 @@ class CalendarManager: ObservableObject {
     // Week/Day defined Constants
     @Published var HOUR_HEIGHT: CGFloat = 50
     @Published var SIDE_PADDING: CGFloat = 100
+    @Published var DAYS_OF_WEEK = ["Sunday", "Monday", "Tuesday",
+                      "Wednesday", "Thursday", "Friday", "Saturday"]
     
     func setToWeekView() {
         isDayView = false
@@ -43,6 +45,24 @@ class CalendarManager: ObservableObject {
             return
         }
         dayOfWeek = day
+    }
+    
+    func getDayOfWeekByName(_ day: String) -> Int {
+        if let idx = DAYS_OF_WEEK.firstIndex(of: day) {
+            return idx + 1
+        }
+        // Hopefully should never reach here
+        return 1
+    }
+    
+    func setDayOfWeekByName(_ day: String) {
+        guard DAYS_OF_WEEK.contains(day) else {
+            dayOfWeek = 1
+            return
+        }
+        if let idx = DAYS_OF_WEEK.firstIndex(of: day) {
+            dayOfWeek = idx + 1
+        }
     }
     
 }

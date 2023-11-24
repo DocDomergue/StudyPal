@@ -67,7 +67,7 @@ struct MainPageView: View {
             } .toolbar {
                 if openTab == 0 {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        NavigationLink("To Course List Page") {
+                        NavigationLink("Course List") {
                             CourseListPage().navigationTitle("All Courses")
                         }
                     }
@@ -120,36 +120,10 @@ struct CalendarPageView: View {
 
 
 struct CalendarPage: View {
-    @State var isDayView: Bool = false
-    
     var body: some View {
-        VStack {
-            
-            Spacer()
-            
-            HStack {
-                Toggle("Day View", isOn: $isDayView)
-                WeekPicker()
-                /*
-                if isDayView {
-                    DayPicker()
-                }
-                 */
-            }
-            .frame(maxHeight: 50)
-            .padding(.bottom)
-            
-            if isDayView {
-                DayView()
-            }
-            else {
-                WeekView()
-            }
-            
-            Spacer()
-        }.environmentObject(CalendarManager())
+        CalendarView()
+            .environmentObject(CalendarManager())
     }
-        
 }
 
 

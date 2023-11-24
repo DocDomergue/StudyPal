@@ -10,11 +10,13 @@
 		2066B1072AEFF74A00599861 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2066B1062AEFF74A00599861 /* TimerViewModel.swift */; };
 		209007FE2B0D404E0050FE70 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209007FD2B0D404E0050FE70 /* WebView.swift */; };
 		3306BBD12AFD5757005FEEC1 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3306BBD02AFD5757005FEEC1 /* WeekView.swift */; };
+		33229BBA2B10433000431FEF /* DayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33229BB92B10433000431FEF /* DayPicker.swift */; };
 		3339BBBB2AFD808000FAD38A /* CalendarBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3339BBBA2AFD808000FAD38A /* CalendarBlock.swift */; };
 		33C920FA2AFD585900FEF91C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C920F92AFD585900FEF91C /* User.swift */; };
 		33C920FC2AFD5F9D00FEF91C /* DayTimeGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C920FB2AFD5F9D00FEF91C /* DayTimeGrid.swift */; };
 		33C920FE2AFD62CA00FEF91C /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C920FD2AFD62CA00FEF91C /* Blocks.swift */; };
 		33C921002AFD70BB00FEF91C /* WeekPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C920FF2AFD70BB00FEF91C /* WeekPicker.swift */; };
+		33D772622B0FA97B00FA61CD /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D772612B0FA97B00FA61CD /* CalendarView.swift */; };
 		33FCC8FD2B0EBD9B0058E1FC /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FCC8FC2B0EBD9B0058E1FC /* CalendarManager.swift */; };
 		33FCC8FF2B0EBF6E0058E1FC /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FCC8FE2B0EBF6E0058E1FC /* DayView.swift */; };
 		E4042CD02AE4878200DD3EC2 /* CalendarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */; };
@@ -67,11 +69,13 @@
 		2066B1062AEFF74A00599861 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		209007FD2B0D404E0050FE70 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		3306BBD02AFD5757005FEEC1 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
+		33229BB92B10433000431FEF /* DayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPicker.swift; sourceTree = "<group>"; };
 		3339BBBA2AFD808000FAD38A /* CalendarBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarBlock.swift; sourceTree = "<group>"; };
 		33C920F92AFD585900FEF91C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		33C920FB2AFD5F9D00FEF91C /* DayTimeGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTimeGrid.swift; sourceTree = "<group>"; };
 		33C920FD2AFD62CA00FEF91C /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
 		33C920FF2AFD70BB00FEF91C /* WeekPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekPicker.swift; sourceTree = "<group>"; };
+		33D772612B0FA97B00FA61CD /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		33FCC8FC2B0EBD9B0058E1FC /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		33FCC8FE2B0EBF6E0058E1FC /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		E42776802ACF1CA500265C6E /* UVM-StudyPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UVM-StudyPal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +131,8 @@
 				33C920FF2AFD70BB00FEF91C /* WeekPicker.swift */,
 				3339BBBA2AFD808000FAD38A /* CalendarBlock.swift */,
 				33FCC8FC2B0EBD9B0058E1FC /* CalendarManager.swift */,
+				33D772612B0FA97B00FA61CD /* CalendarView.swift */,
+				33229BB92B10433000431FEF /* DayPicker.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 				E49FB79D2AE46AA500BDC017 /* StudyItems.swift in Sources */,
 				E49FB7972AE45D2A00BDC017 /* CalendarItems.swift in Sources */,
 				33C920FE2AFD62CA00FEF91C /* Blocks.swift in Sources */,
+				33229BBA2B10433000431FEF /* DayPicker.swift in Sources */,
 				33FCC8FD2B0EBD9B0058E1FC /* CalendarManager.swift in Sources */,
 				2066B1072AEFF74A00599861 /* TimerViewModel.swift in Sources */,
 				209007FE2B0D404E0050FE70 /* WebView.swift in Sources */,
@@ -360,6 +367,7 @@
 				E49FB79F2AE46AB500BDC017 /* CustomItems.swift in Sources */,
 				33C920FA2AFD585900FEF91C /* User.swift in Sources */,
 				33C920FC2AFD5F9D00FEF91C /* DayTimeGrid.swift in Sources */,
+				33D772622B0FA97B00FA61CD /* CalendarView.swift in Sources */,
 				33FCC8FF2B0EBF6E0058E1FC /* DayView.swift in Sources */,
 				E42776842ACF1CA500265C6E /* UVM_StudyPalApp.swift in Sources */,
 				3339BBBB2AFD808000FAD38A /* CalendarBlock.swift in Sources */,
