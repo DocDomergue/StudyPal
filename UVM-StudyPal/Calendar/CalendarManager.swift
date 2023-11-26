@@ -11,16 +11,19 @@ import SwiftUI
  
  */
 class CalendarManager: ObservableObject {
-    // ViewModel: handles the content of the calendar
-    // TODO: @Published var visibleWeek:
-    @Published var isDayView: Bool = false
+    @Published var visibleWeek: Set<DateComponents> = [] // ViewModel: handles the content of the calendar
     @Published var dayOfWeek: Int = 1 // 1-7 (Days of week, used only when isDayView)
+    @Published var isDayView: Bool = false
     
     // Week/Day defined Constants
     @Published var HOUR_HEIGHT: CGFloat = 50
     @Published var SIDE_PADDING: CGFloat = 100
     @Published var DAYS_OF_WEEK = ["Sunday", "Monday", "Tuesday",
                       "Wednesday", "Thursday", "Friday", "Saturday"]
+    
+    init() {
+        self.setToCurrentWeek()
+    }
     
     func setToWeekView() {
         isDayView = false
@@ -38,6 +41,119 @@ class CalendarManager: ObservableObject {
             return 115
         }
     }
+    
+    /* ******************************** */
+    /** --------------- Week Controls ---------------------- */
+    /* ******************************** */
+    
+    func getWeek(of date: DateComponents) -> Set<DateComponents> {
+        // Get date in Date format to get weekday
+        if let dateFromComp = date.date {
+            let weekday = Calendar.current.component(.weekday, from: dateFromComp)
+            // Use the weekday to build the week from the original DateComponent
+            var week: Set<DateComponents> = []
+            let start = -(weekday-1)
+            for dayDif in start...start+6 {
+                // Calculate the new date to add
+                if let newDate = Calendar.current.date(byAdding: DateComponents(day: dayDif), to: dateFromComp) {
+                    // Convert it to DateComponents and add it
+                    let dateComponents = Calendar.current.dateComponents([.calendar, .era, .year, .month, .day], from: newDate)
+                    week.insert(dateComponents)
+                }
+            }
+            return week
+        }
+        return []
+    }
+    
+    func setWeek(_ week: Set<DateComponents>) {
+        self.visibleWeek = week
+    }
+    
+    func setToCurrentWeek() {
+        let today = Calendar.current.dateComponents([.calendar, .era, .year, .month, .day], from: Date())
+        self.setWeek(self.getWeek(of: today))
+    }
+    
+    func weekDecrease() {
+        // Decrease each day by a week
+        let lastWeek: Set<DateComponents> = Set(visibleWeek.map {
+            if let date = $0.date {
+                // Decrease the date by a week
+                if let newDate = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: date) {
+                    return Calendar.current.dateComponents([.calendar, .era, .year, .month, .day], from: newDate)
+                }
+            }
+            print("Something went wrong in weekDecrease")
+            return DateComponents()
+        })
+        // Set the new week
+        visibleWeek = lastWeek
+    }
+    
+    func weekIncrease() {
+        // Decrease each day by a week
+        let lastWeek: Set<DateComponents> = Set(visibleWeek.map {
+            if let date = $0.date {
+                // Decrease the date by a week
+                if let newDate = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: date) {
+                    return Calendar.current.dateComponents([.calendar, .era, .year, .month, .day], from: newDate)
+                }
+            }
+            print("Something went wrong in weekIncrease")
+            return DateComponents()
+        })
+        // Set the new week
+        visibleWeek = lastWeek
+    }
+    
+    func describeWeek() -> String {
+        let weekDates = self.visibleWeek.compactMap {
+            if let date = $0.date {
+                return date
+            }
+            else {
+                return nil
+            }
+        }
+        // Get the earliest and latest days, and create the string
+        var description = ""
+        if let earliest = weekDates.min() {
+            let e = Calendar.current.dateComponents([.year, .month, .day], from: earliest)
+            if let month = e.month {
+                description += "\(month)"
+            }
+            description += "/"
+            if let day = e.day {
+                description += "\(day)"
+            }
+            description += "/"
+            if let year = e.year {
+                description += "\(year)"
+            }
+        }
+        description += " - "
+        if let latest = weekDates.max() {
+            let l = Calendar.current.dateComponents([.year, .month, .day], from: latest)
+            if let month = l.month {
+                description += "\(month)"
+            }
+            description += "/"
+            if let day = l.day {
+                description += "\(day)"
+            }
+            description += "/"
+            if let year = l.year {
+                description += "\(year)"
+            }
+        }
+        return description
+    }
+    
+    /* ******************************** */
+    /** ------------ Day of Week Controls ---------------- */
+    /* ******************************** */
+
     
     func setDayOfWeek(_ day: Int) {
         guard day >= 1 && day <= 7 else {
