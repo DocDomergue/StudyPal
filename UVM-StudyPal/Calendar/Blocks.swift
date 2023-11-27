@@ -25,6 +25,11 @@ struct Blocks: View {
                       endTime: DateComponents(hour: 15, minute: 30),
                       color: Color.blue)
         CalendarBlock(desc: "Test",
+                      day: "R",
+                      startTime: DateComponents(hour: 13, minute: 40),
+                      endTime: DateComponents(hour: 15, minute: 28),
+                      color: Color.blue)
+        CalendarBlock(desc: "Test",
                       day: "F",
                       startTime: DateComponents(hour: 15, minute: 15),
                       endTime: DateComponents(hour: 17, minute: 0),

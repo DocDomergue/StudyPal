@@ -8,6 +8,7 @@
 import SwiftUI
 
 let timeTextHeight: CGFloat = 10
+let headerColor = Color(red: 0.8, green: 0.8, blue: 0.8)
 
 struct DayTimeGrid: View {
     @EnvironmentObject var manager: CalendarManager
@@ -16,11 +17,11 @@ struct DayTimeGrid: View {
         LazyVStack(pinnedViews: [.sectionHeaders]) {
             Section(header:
                 VStack { // Bogus vstack to make header happy (conditional)
-                    if (manager.isDayView) {
+                    if manager.isDayView {
                         // Day of week chosen in the manager
                         Text(manager.DAYS_OF_WEEK[manager.dayOfWeek - 1])
                             .padding([.trailing, .leading], manager.SIDE_PADDING)
-                            .padding(.bottom, 20)
+                            .padding(.vertical, 15)
                     }
                     else {
                         // Week day names
@@ -31,15 +32,28 @@ struct DayTimeGrid: View {
                             }
                         }
                         .padding([.trailing, .leading], manager.SIDE_PADDING)
-                        .padding(.bottom, 20)
+                        .padding(.vertical, 15)
                     }
                 }
+                .frame(minWidth: 500)
+                .background {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(headerColor)
+                }
             ) {
-                // Verticle times
-                VStack(spacing: manager.HOUR_HEIGHT - timeTextHeight) {
-                    ForEach(0..<25) { hour in
-                        HourMark(hour: hour)
+                ZStack {
+                    // Vertical day highlights
+                    if !manager.isDayView {
+                        DayHighlight()
                     }
+                    // Horizontal times
+                    VStack(spacing: manager.HOUR_HEIGHT - timeTextHeight) {
+                        ForEach(0..<25) { hour in
+                            HourMark(hour: hour)
+                        }
+                    }
+                    // Show calendar blocks
+                    Blocks()
                 }
             }
         }
@@ -62,6 +76,29 @@ struct HourMark: View {
         }
         .padding(.horizontal, 5)
         .frame(height: timeTextHeight)
+    }
+}
+
+
+struct DayHighlight: View {
+    @EnvironmentObject var manager: CalendarManager
+    
+    
+    var body: some View {
+        HStack(spacing: 0) {
+            ForEach(0..<7) { dayNum in
+                    Rectangle()
+                        .fill()
+                        .frame(width: manager.getDayWidth())
+                        .frame(maxHeight: .infinity)
+                        .foregroundColor(Color.gray)
+                        .opacity(dayNum % 2 == 0 ? 0 : 0.1)
+            }
+        }
+    }
+    
+    func offsetHighlight(_ dayNum: Int) -> CGFloat {
+        return CGFloat(35 + (Int(manager.getDayWidth()) * dayNum))
     }
 }
 

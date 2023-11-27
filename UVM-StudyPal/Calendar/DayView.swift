@@ -12,10 +12,7 @@ struct DayView: View {
     
     var body: some View {
         ScrollView(.vertical) {
-            ZStack {
-                DayTimeGrid()
-                Blocks()
-            }
+            DayTimeGrid()
         }
         .onAppear {
             manager.setToDayView()
