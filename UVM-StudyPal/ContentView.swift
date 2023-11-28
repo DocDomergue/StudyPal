@@ -361,10 +361,11 @@ struct TimerPage: View {
 
 
 struct StatsPage: View {
-    @State private var semesterCompletion: Double = 64.5
+    
+    @State private var semesterCompletion: Double = 100 * calculateSemesterPercentage()
     @State private var studyTimeInMinutes: Int = 334
     @State private var averageStudyTime: Int = 154
-    
+
     var body: some View {
         VStack {
             Text("Statistics")
@@ -411,7 +412,45 @@ struct StatsPage: View {
     }
 }
 
+// Sketchy semester % calculator
+func calculateSemesterPercentage() -> Double {
+    
+    let percentage: Double
+    
+    // Get the current date
+    let currentDate = Date()
+    let calendar = Calendar.current
 
+    // Semester Date Ranges
+    let range1Start = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 8, day: 25))!
+    let range1End = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 12, day: 15))!
+
+    let range2Start = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 1, day: 15))!
+    let range2End = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 5, day: 15))!
+
+    if currentDate >= range1Start && currentDate <= range1End {
+        let daysInRange = currentDate.daysBetweenDate(range1Start, andDate: range1End)
+        let daysPassed = currentDate.daysBetweenDate(range1Start, andDate: currentDate)
+        percentage = Double(daysPassed) / Double(daysInRange)
+    } else if currentDate >= range2Start && currentDate <= range2End {
+        let daysInRange = currentDate.daysBetweenDate(range2Start, andDate: range2End)
+        let daysPassed = currentDate.daysBetweenDate(range2Start, andDate: currentDate)
+        percentage = Double(daysPassed) / Double(daysInRange)
+    } else {
+        percentage = 0.0
+    }
+
+    return percentage
+}
+
+// Requires a small function added to the built in Date object
+extension Date {
+    func daysBetweenDate(_ startDate: Date, andDate endDate: Date) -> Int {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: startDate, to: endDate)
+        return components.day ?? 0
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
