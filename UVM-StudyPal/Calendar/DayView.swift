@@ -1,29 +1,29 @@
 //
-//  WeekView.swift
+//  DayView.swift
 //  UVM-StudyPal
 //
-//  Created by Zachary Hayes on 11/9/23.
+//  Created by Zachary Hayes on 11/22/23.
 //
 
 import SwiftUI
 
-struct WeekView: View {
+struct DayView: View {
     @EnvironmentObject var manager: CalendarManager
     
     var body: some View {
-        ScrollView([.horizontal, .vertical]) {
+        ScrollView(.vertical) {
             DayTimeGrid()
         }
         .onAppear {
-            manager.setToWeekView()
+            manager.setToDayView()
         }
     }
-    
+        
 }
 
-struct WeekView_Previews: PreviewProvider {
+struct DayView_Previews: PreviewProvider {
     static var previews: some View {
-        WeekView()
+        DayView()
             .environmentObject(CalendarManager())
     }
 }

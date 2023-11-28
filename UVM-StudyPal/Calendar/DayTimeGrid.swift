@@ -8,30 +8,52 @@
 import SwiftUI
 
 let timeTextHeight: CGFloat = 10
+let headerColor = Color(red: 0.8, green: 0.8, blue: 0.8)
 
 struct DayTimeGrid: View {
-    @EnvironmentObject var manager: WVManager
-    let daysOfWeek = ["Sunday", "Monday", "Tuesday",
-                      "Wednesday", "Thursday", "Friday", "Saturday"]
+    @EnvironmentObject var manager: CalendarManager
     
     var body: some View {
         LazyVStack(pinnedViews: [.sectionHeaders]) {
             Section(header:
-                // Week day names
-                HStack(spacing: manager.DAY_WIDTH * 0.15) {
-                    ForEach(0..<7) { day in
-                        Text(daysOfWeek[day])
-                            .frame(width: manager.DAY_WIDTH * 0.85)
+                VStack { // Bogus vstack to make header happy (conditional)
+                    if manager.isDayView {
+                        // Day of week chosen in the manager
+                        Text(manager.DAYS_OF_WEEK[manager.dayOfWeek - 1])
+                            .padding([.trailing, .leading], manager.SIDE_PADDING)
+                            .padding(.vertical, 15)
+                    }
+                    else {
+                        // Week day names
+                        HStack(spacing: manager.getDayWidth() * 0.15) {
+                            ForEach(0..<7) { day in
+                                Text(manager.DAYS_OF_WEEK[day])
+                                    .frame(width: manager.getDayWidth() * 0.85)
+                            }
+                        }
+                        .padding([.trailing, .leading], manager.SIDE_PADDING)
+                        .padding(.vertical, 15)
                     }
                 }
-                .padding([.trailing, .leading], manager.SIDE_PADDING)
-                .padding(.bottom, 20)
+                .frame(minWidth: 500)
+                .background {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(headerColor)
+                }
             ) {
-                // Verticle times
-                VStack(spacing: manager.HOUR_HEIGHT - timeTextHeight) {
-                    ForEach(0..<25) { hour in
-                        HourMark(hour: hour)
+                ZStack {
+                    // Vertical day highlights
+                    if !manager.isDayView {
+                        DayHighlight()
                     }
+                    // Horizontal times
+                    VStack(spacing: manager.HOUR_HEIGHT - timeTextHeight) {
+                        ForEach(0..<25) { hour in
+                            HourMark(hour: hour)
+                        }
+                    }
+                    // Show calendar blocks
+                    Blocks()
                 }
             }
         }
@@ -39,7 +61,7 @@ struct DayTimeGrid: View {
 }
 
 struct HourMark: View {
-    @EnvironmentObject var manager: WVManager
+    @EnvironmentObject var manager: CalendarManager
     var hour: Int
     var body: some View {
         HStack {
@@ -48,10 +70,35 @@ struct HourMark: View {
             VStack {
                 Divider()
             }
-            Text(hourToTwelveHour(hour))
+            if !manager.isDayView {
+                Text(hourToTwelveHour(hour))
+            }
         }
         .padding(.horizontal, 5)
         .frame(height: timeTextHeight)
+    }
+}
+
+
+struct DayHighlight: View {
+    @EnvironmentObject var manager: CalendarManager
+    
+    
+    var body: some View {
+        HStack(spacing: 0) {
+            ForEach(0..<7) { dayNum in
+                    Rectangle()
+                        .fill()
+                        .frame(width: manager.getDayWidth())
+                        .frame(maxHeight: .infinity)
+                        .foregroundColor(Color.gray)
+                        .opacity(dayNum % 2 == 0 ? 0 : 0.1)
+            }
+        }
+    }
+    
+    func offsetHighlight(_ dayNum: Int) -> CGFloat {
+        return CGFloat(35 + (Int(manager.getDayWidth()) * dayNum))
     }
 }
 
@@ -66,4 +113,11 @@ func hourToTwelveHour(_ hour: Int) -> String {
         return "12 pm"
     }
     return "\(hour % 12) \(hour >= 12 ? "pm" : "am")"
+}
+
+struct DayTimeView_Previews: PreviewProvider {
+    static var previews: some View {
+        DayTimeGrid()
+            .environmentObject(CalendarManager())
+    }
 }

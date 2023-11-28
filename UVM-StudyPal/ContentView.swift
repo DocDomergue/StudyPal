@@ -67,7 +67,7 @@ struct MainPageView: View {
             } .toolbar {
                 if openTab == 0 {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        NavigationLink("To Course List Page") {
+                        NavigationLink("Course List") {
                             CourseListPage().navigationTitle("All Courses")
                         }
                     }
@@ -121,9 +121,11 @@ struct CalendarPageView: View {
 
 struct CalendarPage: View {
     var body: some View {
-        WeekView()
+        CalendarView()
+            .environmentObject(CalendarManager())
     }
 }
+
 
 
 struct CourseListPage: View {
@@ -368,10 +370,10 @@ struct StatsPage: View {
 
     var body: some View {
         VStack {
-            Text("Statistics")
+            /*Text("Statistics")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .padding()
+                .padding()*/
             
             Divider()
             
@@ -406,7 +408,7 @@ struct StatsPage: View {
                 .font(.headline)
                 .padding()
             
-            Spacer()
+            //Spacer()
         }
         .navigationTitle("Statistics")
     }
@@ -455,10 +457,10 @@ extension Date {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         // Previewing ContentView
-        ContentView(viewModel: AuthViewModel())
+        //ContentView(viewModel: AuthViewModel())
         
         // Or, if you want to specifically preview MainPageView with a logged-in state
-        //        MainPageVieehinchw(viewModel: AuthViewModel())
+        MainPageView(viewModel: AuthViewModel())
     }
 }
 
