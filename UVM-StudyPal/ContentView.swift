@@ -1,11 +1,12 @@
 /**
  Main view file for UVM StudyPal. Defines the page flow for the app.
- Includes a preview struture for previewing in XCode.
+ Includes a preview structure for previewing in XCode.
  */
 
 import SwiftUI
 import Combine
 
+// Holds some functions for using the CAS webauth on login
 class AuthViewModel: ObservableObject {
     @Published var loggedIn: Bool = false
     
@@ -22,7 +23,7 @@ class AuthViewModel: ObservableObject {
     }
 }
 
-
+// Overhead to prevent access to the rest of the app before proper authentication
 struct ContentView: View {
     @StateObject var viewModel = AuthViewModel()
     
@@ -37,10 +38,12 @@ struct ContentView: View {
     }
 }
 
+// Main view structure
 struct MainPageView: View {
     @State var openTab = 0
     @ObservedObject var viewModel: AuthViewModel
     
+    // Code for the horizontal navigation buttons at the bottom. One button for each of 4 tabs
     var body: some View {
         NavigationStack {
             TabView(selection: $openTab) {
@@ -64,6 +67,8 @@ struct MainPageView: View {
                         Image(systemName: "chart.pie")
                     }
                     .tag(3)
+                
+                // Also contains the header and other top items of the UI
             } .toolbar {
                 if openTab == 0 {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -91,7 +96,7 @@ struct MainPageView: View {
 }
 
 
-
+// Login window creates a browser view and goes to the webauth portal running through our server
 struct LoginView: View {
     @State private var shouldShowWebView = true
     @ObservedObject var viewModel: AuthViewModel
@@ -109,11 +114,11 @@ struct LoginView: View {
     }
 }
 
+// Structs to hold some calendar specific calls, variables, and functions
 struct CalendarPageView: View {
     var username: String
     
     var body: some View {
-        // Your CalendarPage content here
         Text("Welcome, \(username)! This is your calendar.")
     }
 }
@@ -125,7 +130,6 @@ struct CalendarPage: View {
             .environmentObject(CalendarManager())
     }
 }
-
 
 
 struct CourseListPage: View {
