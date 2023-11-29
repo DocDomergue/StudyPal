@@ -11,17 +11,31 @@ class User: ObservableObject {
     @Published var courses: [CourseItems]
     @Published var study: [StudyItems]
     @Published var custom: [CustomItems]
+    @Published var studyStat: Int
     // TODO: Other info about user
     
     /*
      Create a new user
-    TODO: Implement adding them to the database
+     TODO: Implement adding them to the database
      */
     init() {
         courses = []
         study = []
         custom = []
+        studyStat = 0
     }
     
-    // TODO: Initialize from database
+    // TODO: Initialize from database + DB functions
+    
+    func pullFromDB() {
+        
+    }
+    
+    func pushToDB() {
+        
+    }
+    
+    func iterateStudyStat() {
+        studyStat+=1
+    }
 }
