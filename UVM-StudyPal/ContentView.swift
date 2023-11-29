@@ -259,7 +259,7 @@ struct ToDoPage: View {
                             }) {
                                 Image(systemName: task.isCompleted ? "checkmark.square" : "square")
                                     .imageScale(.large)
-                                    .foregroundColor(task.isCompleted ? .blue : .gray)
+                                    .foregroundColor(task.isCompleted ? .accentColor : .gray)
                             }
                             .buttonStyle(PlainButtonStyle())
                             
@@ -317,13 +317,13 @@ struct TimerPage: View {
                 Circle()
                     .stroke(lineWidth: 15)
                     .opacity(0.3)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color(hue: 0.114, saturation: 1.0, brightness: 1.0))
                 
                 Circle()
                     .trim(from: 0, to: CGFloat(1.0 - Double(viewModel.remainingSeconds) / Double(viewModel.currentState == .work ? viewModel.workDuration : (viewModel.currentState == .shortBreak ? viewModel.shortBreakDuration : viewModel.longBreakDuration))))
                     .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round))
                     .rotationEffect(Angle(degrees: -90))
-                    .foregroundColor(.blue)
+                    .foregroundColor(.accentColor)
                 
                 Text("\(viewModel.remainingSeconds / 60):\(String(format: "%02d", viewModel.remainingSeconds % 60))")
                     .font(.largeTitle)

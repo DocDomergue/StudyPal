@@ -11,6 +11,7 @@ class User: ObservableObject {
     @Published var courses: [CourseItems]
     @Published var study: [StudyItems]
     @Published var custom: [CustomItems]
+    @Published var todo: [String] // Placeholder for now
     @Published var studyStat: Int
     // TODO: Other info about user
     
@@ -22,6 +23,7 @@ class User: ObservableObject {
         courses = []
         study = []
         custom = []
+        todo = []
         studyStat = 0
     }
     
