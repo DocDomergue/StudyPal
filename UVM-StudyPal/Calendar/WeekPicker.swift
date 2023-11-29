@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Code to create the week selecter that sites above the calendar grid
 struct WeekPicker: View {
     @EnvironmentObject var manager: CalendarManager
     @State private var showPicker = false

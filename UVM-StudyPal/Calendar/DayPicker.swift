@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// View structure that shows the days of the week for the user to select
 struct DayPicker: View {
     @EnvironmentObject var manager: CalendarManager
     

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Structure used to show the day view in the body of the parent view
 struct DayView: View {
     @EnvironmentObject var manager: CalendarManager
     

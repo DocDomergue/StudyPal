@@ -123,7 +123,7 @@ struct CalendarPageView: View {
     }
 }
 
-
+// View of the actual calendar grid itself
 struct CalendarPage: View {
     var body: some View {
         CalendarView()
@@ -131,7 +131,7 @@ struct CalendarPage: View {
     }
 }
 
-
+// When the course list is open, this is the display on screen
 struct CourseListPage: View {
     @State private var queryString: String = ""
     @State private var courses: [Course] = []
@@ -179,6 +179,7 @@ struct CourseListPage: View {
         }
     }
     
+    // Function behind the search bar, works with our scraped SOC
     func searchCourses() {
         if queryString.isEmpty {
             self.courses = []
@@ -200,10 +201,12 @@ struct CourseListPage: View {
         }
     }
     
+    // Function to add a course to your profile
     func courseIsSelected(course: Course) -> Bool {
         return selectedCourses.contains(where: { $0.id == course.id })
     }
     
+    // Function that handles the add/added button
     func toggleCourseSelection(course: Course) {
             if courseIsSelected(course: course) {
                 removeCourse(course: course)
@@ -211,33 +214,33 @@ struct CourseListPage: View {
                 addCourse(course: course)
             }
         }
-
-        func addCourse(course: Course) {
-            NetworkManager.shared.addCourse(courseId: course.id) { success, error in
-                if success {
-                    self.selectedCourses.append(course)
-                    print("Added Course: \(course.title) (\(course.subj) \(course.course_number))")
-                } else if let error = error {
-                    print("Error adding course: \(error)")
-                }
+        
+    // Function that actually adds the course to internal structures
+    func addCourse(course: Course) {
+        NetworkManager.shared.addCourse(courseId: course.id) { success, error in
+            if success {
+                self.selectedCourses.append(course)
+                print("Added Course: \(course.title) (\(course.subj) \(course.course_number))")
+            } else if let error = error {
+                print("Error adding course: \(error)")
             }
         }
-
-        func removeCourse(course: Course) {
-            NetworkManager.shared.removeCourse(courseId: course.id) { success, error in
-                if success {
-                    self.selectedCourses.removeAll { $0.id == course.id }
-                    print("Removed Course: \(course.title) (\(course.subj) \(course.course_number))")
-                } else if let error = error {
-                    print("Error removing course: \(error)")
-                }
-            }
-        }
-
+    }
     
+    // Function that actually removes the course from internal structures
+    func removeCourse(course: Course) {
+        NetworkManager.shared.removeCourse(courseId: course.id) { success, error in
+            if success {
+                self.selectedCourses.removeAll { $0.id == course.id }
+                print("Removed Course: \(course.title) (\(course.subj) \(course.course_number))")
+            } else if let error = error {
+                print("Error removing course: \(error)")
+            }
+        }
+    }
 }
 
-
+// View for the To-Do page
 struct ToDoPage: View {
     struct TaskItem: Identifiable {
         let id = UUID()
@@ -283,10 +286,10 @@ struct ToDoPage: View {
         }
     }
     
+    // Some functions to handle the different keystrokes possible to submit a task
     func addTaskOnCommit() {
         addTask()
     }
-    
     func addTask() {
         if !newTask.isEmpty {
             tasks.append(TaskItem(name: newTask))
@@ -294,10 +297,12 @@ struct ToDoPage: View {
         }
     }
     
+    // Function that deletes tasks
     func deleteTask(at offsets: IndexSet) {
         tasks.remove(atOffsets: offsets)
     }
     
+    // Function that updates the text to show a done verses yet to do task
     func toggleTaskCompletion(_ task: TaskItem) {
         if let index = tasks.firstIndex(where: { $0.id == task.id }) {
             tasks[index].isCompleted.toggle()
@@ -305,9 +310,13 @@ struct ToDoPage: View {
     }
 }
 
+// Timer view page, most of its internals are in TimerViewModel.swift for organization
 struct TimerPage: View {
+    
+    // Create a timer object
     @StateObject var viewModel = TimerViewModel()
     
+    // Display code to create the visuals
     var body: some View {
         VStack(spacing: 20) {
             Text(viewModel.currentState == .work ? "Work" : (viewModel.currentState == .shortBreak ? "Short Break" : "Long Break"))
@@ -330,6 +339,7 @@ struct TimerPage: View {
             }
             .frame(width: 200, height: 200)
             
+            // Switch that uses the buttons to control the state of our timer
             switch viewModel.userActionState {
             case .notStarted:
                 Button("Start") {
@@ -364,20 +374,20 @@ struct TimerPage: View {
     }
 }
 
-
-
+// Stats page that is used to gamify being a good student.
 struct StatsPage: View {
     
+    // Variables that are shown on the page
     @State private var semesterCompletion: Double = 100 * calculateSemesterPercentage()
     @State private var studyTimeInMinutes: Int = 334
     @State private var averageStudyTime: Int = 154
 
     var body: some View {
         VStack {
-            /*Text("Statistics")
+            Text("Statistics")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .padding()*/
+                .padding()
             
             Divider()
             
@@ -411,14 +421,12 @@ struct StatsPage: View {
             Text("\(averageStudyTime) minutes")
                 .font(.headline)
                 .padding()
-            
-            //Spacer()
         }
         .navigationTitle("Statistics")
     }
 }
 
-// Sketchy semester % calculator
+// Approximated semester % calculator
 func calculateSemesterPercentage() -> Double {
     
     let percentage: Double
@@ -427,7 +435,7 @@ func calculateSemesterPercentage() -> Double {
     let currentDate = Date()
     let calendar = Calendar.current
 
-    // Semester Date Ranges
+    // Semester Date Ranges Approximated
     let range1Start = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 8, day: 25))!
     let range1End = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 12, day: 15))!
 
@@ -443,13 +451,13 @@ func calculateSemesterPercentage() -> Double {
         let daysPassed = currentDate.daysBetweenDate(range2Start, andDate: currentDate)
         percentage = Double(daysPassed) / Double(daysInRange)
     } else {
-        percentage = 0.0
+        percentage = 100.0
     }
 
     return percentage
 }
 
-// Requires a small function added to the built in Date object
+// Tiemr requires a small function added to the built in Date object
 extension Date {
     func daysBetweenDate(_ startDate: Date, andDate endDate: Date) -> Int {
         let calendar = Calendar.current

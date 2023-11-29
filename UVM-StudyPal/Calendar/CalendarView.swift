@@ -18,6 +18,7 @@ import SwiftUI
  - TODO: Interaction with data (manager.visibleWeek / manager.dayOfWeek)
  */
 
+// View structure that puts all the individual calendar elements together
 struct CalendarView: View {
     @EnvironmentObject var manager: CalendarManager
     

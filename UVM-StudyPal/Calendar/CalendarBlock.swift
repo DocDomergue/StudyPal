@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Higher level calendar block code
 struct CalendarBlock: View {
     @EnvironmentObject var manager: CalendarManager
     

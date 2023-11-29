@@ -7,9 +7,7 @@
 
 import SwiftUI
 
-/**
- 
- */
+// Code and class controlling how the program knows what date and week is in view on the screen for the calendar page
 class CalendarManager: ObservableObject {
     @Published var visibleWeek: Set<DateComponents> = [] // ViewModel: handles the content of the calendar
     @Published var dayOfWeek: Int = 1 // 1-7 (Days of week, used only when isDayView)

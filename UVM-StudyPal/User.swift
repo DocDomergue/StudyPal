@@ -29,14 +29,17 @@ class User: ObservableObject {
     
     // TODO: Initialize from database + DB functions
     
+    // Updates local structures with info from DB
     func pullFromDB() {
         
     }
     
+    // Updates DB with info from local structures
     func pushToDB() {
         
     }
     
+    // Callable function to increment the study minute counter when needed
     func iterateStudyStat() {
         studyStat+=1
     }

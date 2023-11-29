@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Structures used to create the course blocks
 struct Blocks: View {
     var body: some View {
         // Delegates what blocks are shown based on the viewmodel

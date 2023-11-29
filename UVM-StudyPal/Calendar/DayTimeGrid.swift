@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// Code used for determining locations/sizes and drawing the grids
+
 let timeTextHeight: CGFloat = 10
 let headerColor = Color(hue: 0.131, saturation: 0.982, brightness: 0.822).opacity(0.4)
 
