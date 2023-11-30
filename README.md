@@ -2,16 +2,14 @@
 Hi Jason!
 
 ### To-Do Lists till next Deliverable
-- [X] Process JSON file returned by API calls, turn it into data struct
+- [X] Get JSON User Profile Working - Evan
 
-- [X] Integrate serverside account/login system - Evan
+- [ ] Plug the calendar tab into JSON user profile - Zach
 
-- [ ] Further implement the calendar tab - Zach
-
-- [X] Implement the other 3 tabs - Kevin
+- [ ] Plug in the other tabs into JSON user profile
 
 ###### Stretch Goals (to the next deliverable)
-- [ ] UI Color Scheme
+- [ ] Polish
 
 - [ ] Notifications
 
@@ -22,4 +20,4 @@ Hi Jason!
 
 - [X] Third Deliverable Sometime in Nov. - Something that is mostly functional
 
-- [ ] Final Deliverable Dec. 2nd - Final touches and polish
+- [ ] Final Deliverable Dec. 4nd - Final touches and polish
