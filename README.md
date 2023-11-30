@@ -1,14 +1,27 @@
 # StudyPal
-JasonHowDoesOneAppleDev?
+Hi Jason!
 
-## Schedule
-- [X] First Deliverable Oct. 7th - Just a PDF
+### To-Do Lists till next Deliverable
+- [ ] Get JSON User Profile Working - Evan
 
-- [ ] Second Deliverable Oct. 21st - Something that vaguely runs as an app
+- [ ] Plug the calendar tab into JSON user profile - Zach
 
-- [ ] Third Deliverable Sometime in Nov. - Things are hopefully getting there by now
+- [ ] Finish graphic calendar items - Zach
 
-- [ ] Final Deliverable Dec. 2nd - What's done is done
+- [ ] Plug in the other tabs into JSON user profile - Kevin
 
-### To-Do Listsssss
-- [X] Hash out ideas more.
+- [ ] Create user input calendar event menu - Kevin
+
+###### Stretch Goals (to the next deliverable)
+- [ ] Polish
+
+- [ ] Notifications
+
+## Submission Schedule
+- [X] First Deliverable Oct. 7th - PDF
+
+- [X] Second Deliverable Oct. 21st - Something that vaguely runs as an app
+
+- [X] Third Deliverable Sometime in Nov. - Something that is mostly functional
+
+- [ ] Final Deliverable Dec. 4nd - Final touches and polish

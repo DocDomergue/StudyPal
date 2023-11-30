@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2066B1072AEFF74A00599861 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2066B1062AEFF74A00599861 /* TimerViewModel.swift */; };
+		209007FE2B0D404E0050FE70 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209007FD2B0D404E0050FE70 /* WebView.swift */; };
+		3306BBD12AFD5757005FEEC1 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3306BBD02AFD5757005FEEC1 /* WeekView.swift */; };
+		33229BBA2B10433000431FEF /* DayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33229BB92B10433000431FEF /* DayPicker.swift */; };
+		3339BBBB2AFD808000FAD38A /* CalendarBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3339BBBA2AFD808000FAD38A /* CalendarBlock.swift */; };
+		33C920FA2AFD585900FEF91C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C920F92AFD585900FEF91C /* User.swift */; };
+		33C920FC2AFD5F9D00FEF91C /* DayTimeGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C920FB2AFD5F9D00FEF91C /* DayTimeGrid.swift */; };
+		33C920FE2AFD62CA00FEF91C /* Blocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C920FD2AFD62CA00FEF91C /* Blocks.swift */; };
+		33C921002AFD70BB00FEF91C /* WeekPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C920FF2AFD70BB00FEF91C /* WeekPicker.swift */; };
+		33D772622B0FA97B00FA61CD /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D772612B0FA97B00FA61CD /* CalendarView.swift */; };
+		33FCC8FD2B0EBD9B0058E1FC /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FCC8FC2B0EBD9B0058E1FC /* CalendarManager.swift */; };
+		33FCC8FF2B0EBF6E0058E1FC /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FCC8FE2B0EBF6E0058E1FC /* DayView.swift */; };
+		E4042CD02AE4878200DD3EC2 /* CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItem.swift */; };
+		E4042CD12AE4878300DD3EC2 /* CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItem.swift */; };
 		E42776842ACF1CA500265C6E /* UVM_StudyPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */; };
 		E42776862ACF1CA500265C6E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776852ACF1CA500265C6E /* ContentView.swift */; };
 		E42776882ACF1CA600265C6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42776872ACF1CA600265C6E /* Assets.xcassets */; };
@@ -14,6 +28,11 @@
 		E42776952ACF1CA600265C6E /* UVM_StudyPalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776942ACF1CA600265C6E /* UVM_StudyPalTests.swift */; };
 		E427769F2ACF1CA600265C6E /* UVM_StudyPalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427769E2ACF1CA600265C6E /* UVM_StudyPalUITests.swift */; };
 		E42776A12ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776A02ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift */; };
+		E49FB7972AE45D2A00BDC017 /* CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItem.swift */; };
+		E49FB7992AE45D3A00BDC017 /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7982AE45D3A00BDC017 /* APICalls.swift */; };
+		E49FB79B2AE46A9500BDC017 /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB79A2AE46A9500BDC017 /* CourseItem.swift */; };
+		E49FB79D2AE46AA500BDC017 /* StudyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB79C2AE46AA500BDC017 /* StudyItem.swift */; };
+		E49FB79F2AE46AB500BDC017 /* CustomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB79E2AE46AB500BDC017 /* CustomItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +52,32 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		33A5A6782AF94AB600F1E8A1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		2066B1062AEFF74A00599861 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		209007FD2B0D404E0050FE70 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		3306BBD02AFD5757005FEEC1 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
+		33229BB92B10433000431FEF /* DayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPicker.swift; sourceTree = "<group>"; };
+		3339BBBA2AFD808000FAD38A /* CalendarBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarBlock.swift; sourceTree = "<group>"; };
+		33C920F92AFD585900FEF91C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		33C920FB2AFD5F9D00FEF91C /* DayTimeGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTimeGrid.swift; sourceTree = "<group>"; };
+		33C920FD2AFD62CA00FEF91C /* Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blocks.swift; sourceTree = "<group>"; };
+		33C920FF2AFD70BB00FEF91C /* WeekPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekPicker.swift; sourceTree = "<group>"; };
+		33D772612B0FA97B00FA61CD /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		33FCC8FC2B0EBD9B0058E1FC /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
+		33FCC8FE2B0EBF6E0058E1FC /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		E42776802ACF1CA500265C6E /* UVM-StudyPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UVM-StudyPal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVM_StudyPalApp.swift; sourceTree = "<group>"; };
 		E42776852ACF1CA500265C6E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +88,11 @@
 		E427769A2ACF1CA600265C6E /* UVM-StudyPalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UVM-StudyPalUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E427769E2ACF1CA600265C6E /* UVM_StudyPalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVM_StudyPalUITests.swift; sourceTree = "<group>"; };
 		E42776A02ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVM_StudyPalUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E49FB7962AE45D2A00BDC017 /* CalendarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarItem.swift; sourceTree = "<group>"; };
+		E49FB7982AE45D3A00BDC017 /* APICalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
+		E49FB79A2AE46A9500BDC017 /* CourseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
+		E49FB79C2AE46AA500BDC017 /* StudyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyItem.swift; sourceTree = "<group>"; };
+		E49FB79E2AE46AB500BDC017 /* CustomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +120,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3306BBCF2AFD573F005FEEC1 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				E49D91802B03DFD200D971E3 /* CalendarClasses */,
+				3306BBD02AFD5757005FEEC1 /* WeekView.swift */,
+				33FCC8FE2B0EBF6E0058E1FC /* DayView.swift */,
+				33C920FB2AFD5F9D00FEF91C /* DayTimeGrid.swift */,
+				33C920FD2AFD62CA00FEF91C /* Blocks.swift */,
+				33C920FF2AFD70BB00FEF91C /* WeekPicker.swift */,
+				3339BBBA2AFD808000FAD38A /* CalendarBlock.swift */,
+				33FCC8FC2B0EBD9B0058E1FC /* CalendarManager.swift */,
+				33D772612B0FA97B00FA61CD /* CalendarView.swift */,
+				33229BB92B10433000431FEF /* DayPicker.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		332BF01F2AF94FD9004A4B29 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E42776772ACF1CA500265C6E = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +151,7 @@
 				E42776932ACF1CA600265C6E /* UVM-StudyPalTests */,
 				E427769D2ACF1CA600265C6E /* UVM-StudyPalUITests */,
 				E42776812ACF1CA500265C6E /* Products */,
+				332BF01F2AF94FD9004A4B29 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,10 +168,15 @@
 		E42776822ACF1CA500265C6E /* UVM-StudyPal */ = {
 			isa = PBXGroup;
 			children = (
+				3306BBCF2AFD573F005FEEC1 /* Calendar */,
 				E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */,
 				E42776852ACF1CA500265C6E /* ContentView.swift */,
+				2066B1062AEFF74A00599861 /* TimerViewModel.swift */,
+				E49FB7982AE45D3A00BDC017 /* APICalls.swift */,
 				E42776872ACF1CA600265C6E /* Assets.xcassets */,
 				E42776892ACF1CA600265C6E /* Preview Content */,
+				33C920F92AFD585900FEF91C /* User.swift */,
+				209007FD2B0D404E0050FE70 /* WebView.swift */,
 			);
 			path = "UVM-StudyPal";
 			sourceTree = "<group>";
@@ -127,6 +206,17 @@
 			path = "UVM-StudyPalUITests";
 			sourceTree = "<group>";
 		};
+		E49D91802B03DFD200D971E3 /* CalendarClasses */ = {
+			isa = PBXGroup;
+			children = (
+				E49FB7962AE45D2A00BDC017 /* CalendarItem.swift */,
+				E49FB79A2AE46A9500BDC017 /* CourseItem.swift */,
+				E49FB79C2AE46AA500BDC017 /* StudyItem.swift */,
+				E49FB79E2AE46AB500BDC017 /* CustomItem.swift */,
+			);
+			path = CalendarClasses;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,12 +227,15 @@
 				E427767C2ACF1CA500265C6E /* Sources */,
 				E427767D2ACF1CA500265C6E /* Frameworks */,
 				E427767E2ACF1CA500265C6E /* Resources */,
+				33A5A6782AF94AB600F1E8A1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "UVM-StudyPal";
+			packageProductDependencies = (
+			);
 			productName = "UVM-StudyPal";
 			productReference = E42776802ACF1CA500265C6E /* UVM-StudyPal.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +308,8 @@
 				Base,
 			);
 			mainGroup = E42776772ACF1CA500265C6E;
+			packageReferences = (
+			);
 			productRefGroup = E42776812ACF1CA500265C6E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,8 +352,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E49FB79B2AE46A9500BDC017 /* CourseItem.swift in Sources */,
 				E42776862ACF1CA500265C6E /* ContentView.swift in Sources */,
+				E49FB79D2AE46AA500BDC017 /* StudyItem.swift in Sources */,
+				E49FB7972AE45D2A00BDC017 /* CalendarItem.swift in Sources */,
+				33C920FE2AFD62CA00FEF91C /* Blocks.swift in Sources */,
+				33229BBA2B10433000431FEF /* DayPicker.swift in Sources */,
+				33FCC8FD2B0EBD9B0058E1FC /* CalendarManager.swift in Sources */,
+				2066B1072AEFF74A00599861 /* TimerViewModel.swift in Sources */,
+				209007FE2B0D404E0050FE70 /* WebView.swift in Sources */,
+				33C921002AFD70BB00FEF91C /* WeekPicker.swift in Sources */,
+				E49FB7992AE45D3A00BDC017 /* APICalls.swift in Sources */,
+				3306BBD12AFD5757005FEEC1 /* WeekView.swift in Sources */,
+				E49FB79F2AE46AB500BDC017 /* CustomItem.swift in Sources */,
+				33C920FA2AFD585900FEF91C /* User.swift in Sources */,
+				33C920FC2AFD5F9D00FEF91C /* DayTimeGrid.swift in Sources */,
+				33D772622B0FA97B00FA61CD /* CalendarView.swift in Sources */,
+				33FCC8FF2B0EBF6E0058E1FC /* DayView.swift in Sources */,
 				E42776842ACF1CA500265C6E /* UVM_StudyPalApp.swift in Sources */,
+				3339BBBB2AFD808000FAD38A /* CalendarBlock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E42776952ACF1CA600265C6E /* UVM_StudyPalTests.swift in Sources */,
+				E4042CD02AE4878200DD3EC2 /* CalendarItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E427769F2ACF1CA600265C6E /* UVM_StudyPalUITests.swift in Sources */,
+				E4042CD12AE4878300DD3EC2 /* CalendarItem.swift in Sources */,
 				E42776A12ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,14 +536,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"UVM-StudyPal/Preview Content\"";
-				DEVELOPMENT_TEAM = 6WH36XK6QP;
+				DEVELOPMENT_TEAM = R69NCMAKKG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "$(PRODUCT_NAME) needs access to your calendar to establish an in-app course calendar";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -439,7 +555,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -451,14 +567,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"UVM-StudyPal/Preview Content\"";
-				DEVELOPMENT_TEAM = 6WH36XK6QP;
+				DEVELOPMENT_TEAM = R69NCMAKKG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "$(PRODUCT_NAME) needs access to your calendar to establish an in-app course calendar";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -468,7 +586,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
