@@ -13,8 +13,9 @@ import SwiftUI
 // Parent class for everything displayed on the calendar.
 // From the heighest view, these 3 bits of information will be all thats needed to create a tile
 // Different more detail views will exist for each subtype of event
-class CalendarItem {
+class CalendarItem: Identifiable {
     
+    var id: UUID
     var name: String // Name displayed on tile
     var startTime: DateComponents // Start time
     var endTime: DateComponents // End time
@@ -23,8 +24,10 @@ class CalendarItem {
     
     // Constructor
     init(name: String, startTime: DateComponents, endTime: DateComponents) {
+        self.id = UUID()
         self.name = name
         // TODO: Construct DateComponents from string
+        // That the DateComponents include calendar = Calendar(identifier: .gregorian) is really important
         self.startTime = startTime
         self.endTime = endTime
     }
@@ -73,8 +76,6 @@ class CalendarItem {
      TODO: Better handling for multiple days?
      */
     func getDayOfWeek() -> Int {
-        // Ensure that the startTime has a calendar to convert with
-        startTime.calendar = Calendar(identifier: .gregorian)
         // Convert the calendar to get the weekday (Int)
         if let dateFromComp = startTime.date {
             return Calendar.current.component(.weekday, from: dateFromComp)

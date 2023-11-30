@@ -32,6 +32,7 @@ struct ContentView: View {
                 LoginView(viewModel: viewModel)
             } else {
                 MainPageView(viewModel: viewModel)
+                    .environmentObject(User())
             }
         }
     }
