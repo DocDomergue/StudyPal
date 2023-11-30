@@ -2,7 +2,7 @@
 Hi Jason!
 
 ### To-Do Lists till next Deliverable
-- [X] Get JSON User Profile Working - Evan
+- [ ] Get JSON User Profile Working - Evan
 
 - [ ] Plug the calendar tab into JSON user profile - Zach
 
