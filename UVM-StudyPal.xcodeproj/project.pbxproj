@@ -19,8 +19,8 @@
 		33D772622B0FA97B00FA61CD /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D772612B0FA97B00FA61CD /* CalendarView.swift */; };
 		33FCC8FD2B0EBD9B0058E1FC /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FCC8FC2B0EBD9B0058E1FC /* CalendarManager.swift */; };
 		33FCC8FF2B0EBF6E0058E1FC /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FCC8FE2B0EBF6E0058E1FC /* DayView.swift */; };
-		E4042CD02AE4878200DD3EC2 /* CalendarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */; };
-		E4042CD12AE4878300DD3EC2 /* CalendarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */; };
+		E4042CD02AE4878200DD3EC2 /* CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItem.swift */; };
+		E4042CD12AE4878300DD3EC2 /* CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItem.swift */; };
 		E42776842ACF1CA500265C6E /* UVM_StudyPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776832ACF1CA500265C6E /* UVM_StudyPalApp.swift */; };
 		E42776862ACF1CA500265C6E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776852ACF1CA500265C6E /* ContentView.swift */; };
 		E42776882ACF1CA600265C6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E42776872ACF1CA600265C6E /* Assets.xcassets */; };
@@ -28,11 +28,11 @@
 		E42776952ACF1CA600265C6E /* UVM_StudyPalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776942ACF1CA600265C6E /* UVM_StudyPalTests.swift */; };
 		E427769F2ACF1CA600265C6E /* UVM_StudyPalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427769E2ACF1CA600265C6E /* UVM_StudyPalUITests.swift */; };
 		E42776A12ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42776A02ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift */; };
-		E49FB7972AE45D2A00BDC017 /* CalendarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */; };
+		E49FB7972AE45D2A00BDC017 /* CalendarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7962AE45D2A00BDC017 /* CalendarItem.swift */; };
 		E49FB7992AE45D3A00BDC017 /* APICalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB7982AE45D3A00BDC017 /* APICalls.swift */; };
-		E49FB79B2AE46A9500BDC017 /* CourseItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB79A2AE46A9500BDC017 /* CourseItems.swift */; };
-		E49FB79D2AE46AA500BDC017 /* StudyItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB79C2AE46AA500BDC017 /* StudyItems.swift */; };
-		E49FB79F2AE46AB500BDC017 /* CustomItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB79E2AE46AB500BDC017 /* CustomItems.swift */; };
+		E49FB79B2AE46A9500BDC017 /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB79A2AE46A9500BDC017 /* CourseItem.swift */; };
+		E49FB79D2AE46AA500BDC017 /* StudyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB79C2AE46AA500BDC017 /* StudyItem.swift */; };
+		E49FB79F2AE46AB500BDC017 /* CustomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49FB79E2AE46AB500BDC017 /* CustomItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,11 +88,11 @@
 		E427769A2ACF1CA600265C6E /* UVM-StudyPalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UVM-StudyPalUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E427769E2ACF1CA600265C6E /* UVM_StudyPalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVM_StudyPalUITests.swift; sourceTree = "<group>"; };
 		E42776A02ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVM_StudyPalUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarItems.swift; sourceTree = "<group>"; };
+		E49FB7962AE45D2A00BDC017 /* CalendarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarItem.swift; sourceTree = "<group>"; };
 		E49FB7982AE45D3A00BDC017 /* APICalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalls.swift; sourceTree = "<group>"; };
-		E49FB79A2AE46A9500BDC017 /* CourseItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItems.swift; sourceTree = "<group>"; };
-		E49FB79C2AE46AA500BDC017 /* StudyItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyItems.swift; sourceTree = "<group>"; };
-		E49FB79E2AE46AB500BDC017 /* CustomItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItems.swift; sourceTree = "<group>"; };
+		E49FB79A2AE46A9500BDC017 /* CourseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
+		E49FB79C2AE46AA500BDC017 /* StudyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyItem.swift; sourceTree = "<group>"; };
+		E49FB79E2AE46AB500BDC017 /* CustomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,10 +209,10 @@
 		E49D91802B03DFD200D971E3 /* CalendarClasses */ = {
 			isa = PBXGroup;
 			children = (
-				E49FB7962AE45D2A00BDC017 /* CalendarItems.swift */,
-				E49FB79A2AE46A9500BDC017 /* CourseItems.swift */,
-				E49FB79C2AE46AA500BDC017 /* StudyItems.swift */,
-				E49FB79E2AE46AB500BDC017 /* CustomItems.swift */,
+				E49FB7962AE45D2A00BDC017 /* CalendarItem.swift */,
+				E49FB79A2AE46A9500BDC017 /* CourseItem.swift */,
+				E49FB79C2AE46AA500BDC017 /* StudyItem.swift */,
+				E49FB79E2AE46AB500BDC017 /* CustomItem.swift */,
 			);
 			path = CalendarClasses;
 			sourceTree = "<group>";
@@ -352,10 +352,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E49FB79B2AE46A9500BDC017 /* CourseItems.swift in Sources */,
+				E49FB79B2AE46A9500BDC017 /* CourseItem.swift in Sources */,
 				E42776862ACF1CA500265C6E /* ContentView.swift in Sources */,
-				E49FB79D2AE46AA500BDC017 /* StudyItems.swift in Sources */,
-				E49FB7972AE45D2A00BDC017 /* CalendarItems.swift in Sources */,
+				E49FB79D2AE46AA500BDC017 /* StudyItem.swift in Sources */,
+				E49FB7972AE45D2A00BDC017 /* CalendarItem.swift in Sources */,
 				33C920FE2AFD62CA00FEF91C /* Blocks.swift in Sources */,
 				33229BBA2B10433000431FEF /* DayPicker.swift in Sources */,
 				33FCC8FD2B0EBD9B0058E1FC /* CalendarManager.swift in Sources */,
@@ -364,7 +364,7 @@
 				33C921002AFD70BB00FEF91C /* WeekPicker.swift in Sources */,
 				E49FB7992AE45D3A00BDC017 /* APICalls.swift in Sources */,
 				3306BBD12AFD5757005FEEC1 /* WeekView.swift in Sources */,
-				E49FB79F2AE46AB500BDC017 /* CustomItems.swift in Sources */,
+				E49FB79F2AE46AB500BDC017 /* CustomItem.swift in Sources */,
 				33C920FA2AFD585900FEF91C /* User.swift in Sources */,
 				33C920FC2AFD5F9D00FEF91C /* DayTimeGrid.swift in Sources */,
 				33D772622B0FA97B00FA61CD /* CalendarView.swift in Sources */,
@@ -379,7 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E42776952ACF1CA600265C6E /* UVM_StudyPalTests.swift in Sources */,
-				E4042CD02AE4878200DD3EC2 /* CalendarItems.swift in Sources */,
+				E4042CD02AE4878200DD3EC2 /* CalendarItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,7 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E427769F2ACF1CA600265C6E /* UVM_StudyPalUITests.swift in Sources */,
-				E4042CD12AE4878300DD3EC2 /* CalendarItems.swift in Sources */,
+				E4042CD12AE4878300DD3EC2 /* CalendarItem.swift in Sources */,
 				E42776A12ACF1CA600265C6E /* UVM_StudyPalUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

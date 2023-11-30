@@ -11,9 +11,7 @@ import SwiftUI
 
 /*
  Things to do for a working/good looking calendar:
-
- - TODO: Placement of controls (day/week toggle, week picker, ect.)
- - TODO: Stop the overlap of things with days-of-week
+ 
  - TODO: Block stylization
  - TODO: Interaction with data (manager.visibleWeek / manager.dayOfWeek)
  */
@@ -25,13 +23,15 @@ struct CalendarView: View {
         VStack {
             Spacer()
             
-            Toggle("Day", isOn: $manager.isDayView)
-            
-            Spacer()
-            
+            Picker("Calendar Style", selection: $manager.isDayView) {
+                Text("Week").tag(false)
+                Text("Day").tag(true)
+            }
+                .pickerStyle(.segmented)
+            //Toggle("Day", isOn: $manager.isDayView)
             WeekPicker()
-            .frame(maxHeight: 50)
-            .padding()
+                .frame(maxHeight: 50)
+                .padding(.vertical, 5)
             
             if manager.isDayView {
                 DayView()

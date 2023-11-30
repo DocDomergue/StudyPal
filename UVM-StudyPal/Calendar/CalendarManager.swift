@@ -20,6 +20,16 @@ class CalendarManager: ObservableObject {
     @Published var SIDE_PADDING: CGFloat = 100
     @Published var DAYS_OF_WEEK = ["Sunday", "Monday", "Tuesday",
                       "Wednesday", "Thursday", "Friday", "Saturday"]
+    // TODO: What's the true code for Sunday?
+    @Published var DAY_CODES = ["N", "M", "T", "W", "R", "F", "S"]
+    @Published var BLOCK_MIN_MINUTES = 20
+    @Published var BLOCK_FONT_SIZE: CGFloat = 12
+    @Published var BLOCK_COLOR_COURSE = Color.blue
+    @Published var BLOCK_COLOR_COURSE_LIGHT = Color(red: 0.61, green: 0.76, blue: 1.0)
+    @Published var BLOCK_COLOR_STUDY = Color.yellow
+    @Published var BLOCK_COLOR_STUDY_LIGHT = Color(red: 1.0, green: 1.0, blue: 0.61)
+    @Published var BLOCK_COLOR_CUSTOM = Color.green
+    @Published var BLOCK_COLOR_CUSTOM_LIGHT = Color(red: 0.61, green: 1.0, blue: 0.64)
     
     init() {
         self.setToCurrentWeek()

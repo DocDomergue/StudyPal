@@ -5,24 +5,27 @@
 //  Created by Kevin Encarnacao on 10/21/23.
 //
 
+import SwiftUI
+
 // Child class for relevant course info for the calendar.
 // Its properties consist of the items we will be skimming from the UVM Schedule of Courses
-class CourseItems: CalendarItems {
+class CourseItem: CalendarItem {
     
     var subject: String // i.e. CS
     var number: Int // i.e. 3010
     var instructor: String // i.e. Jason Hibbeler
     var building: String // i.e. Votey
-    var room: Int // i.e. 207
+    var room: String // i.e. 207
     
     // Constructor
     init(name: String, subject: String, number: String, instructor: String, building: String,
-         room: String, startTime: String, endTime: String) {
+         room: String, startTime: DateComponents, endTime: DateComponents) {
+        // TODO: Make the arg type for start and end String AFTER proper conversion is done in CalendarItems
         self.subject = subject
         self.number = Int(number).unsafelyUnwrapped
         self.instructor = instructor
         self.building = building
-        self.room = Int(room).unsafelyUnwrapped
+        self.room = room
         super.init(name: name, startTime: startTime, endTime: endTime)
     }
     
@@ -47,7 +50,7 @@ class CourseItems: CalendarItems {
     }
     
     // Getter for room
-    var getRoom: Int {
+    var getRoom: String {
         return room
     }
 }

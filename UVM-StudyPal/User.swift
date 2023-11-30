@@ -8,9 +8,9 @@
 import Foundation
 
 class User: ObservableObject {
-    @Published var courses: [CourseItems]
-    @Published var study: [StudyItems]
-    @Published var custom: [CustomItems]
+    @Published var courses: [CourseItem] // TODO: Course Class
+    @Published var study: [StudyItem]
+    @Published var custom: [CustomItem]
     // TODO: Other info about user
     
     /*
