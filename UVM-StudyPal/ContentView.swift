@@ -419,9 +419,10 @@ struct StatsPage: View {
                 .font(.title2)
                 .padding()
             
-            Text("\(averageStudyTime) minutes")
+            // Views can only have 10 children. This causes an error bc its an 11th.
+            /*Text("\(averageStudyTime) minutes")
                 .font(.headline)
-                .padding()
+                .padding()*/
         }
         .navigationTitle("Statistics")
     }
