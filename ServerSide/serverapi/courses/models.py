@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 class Course(models.Model):
     subj = models.CharField(max_length=50, verbose_name='Subj')
@@ -16,7 +18,7 @@ class Course(models.Model):
     true_max = models.IntegerField(verbose_name='True Max')
     start_time = models.CharField(verbose_name='Start Time', max_length=16, null=True, blank=True)
     end_time = models.CharField(verbose_name='End Time', max_length=16, null=True, blank=True)
-    days = models.CharField(max_length=10, null=True, blank=True,  verbose_name='Days')
+    days = models.CharField(max_length=10, null=True, blank=True, verbose_name='Days')
     credits = models.CharField(max_length=255, verbose_name='Credits')
     bldg = models.CharField(max_length=50, null=True, blank=True, verbose_name='Bldg')
     room = models.CharField(max_length=50, null=True, blank=True, verbose_name='Room')
@@ -29,3 +31,11 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_info = models.JSONField()
+
+    def __str__(self):
+        return self.user.username
