@@ -6,7 +6,11 @@ Hi Jason!
 
 - [ ] Plug the calendar tab into JSON user profile - Zach
 
-- [ ] Plug in the other tabs into JSON user profile
+- [ ] Finish graphic calendar items - Zach
+
+- [ ] Plug in the other tabs into JSON user profile - Kevin
+
+- [ ] Create user input calendar event menu - Kevin
 
 ###### Stretch Goals (to the next deliverable)
 - [ ] Polish
