@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// View structure that shows the days of the week for the user to select
 struct DayPicker: View {
     @EnvironmentObject var manager: CalendarManager
     
@@ -19,7 +20,7 @@ struct DayPicker: View {
         .background(
             RoundedRectangle(cornerRadius: 25)
                 .fill()
-                .foregroundColor(Color.gray)
+                .foregroundColor(Color(hue: 0.13, saturation: 1.0, brightness: 0.878))
                 .opacity(0.5)
         )
 
@@ -39,7 +40,7 @@ struct DayButton: View {
                 .background(
                     RoundedRectangle(cornerRadius: 50)
                     .fill()
-                    .foregroundColor(Color.blue)
+                    .foregroundColor(Color.accentColor)
             )
             
         }

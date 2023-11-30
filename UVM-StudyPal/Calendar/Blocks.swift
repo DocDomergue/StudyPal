@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Structures used to create the course blocks
 struct Blocks: View {
     @EnvironmentObject var manager: CalendarManager
     @EnvironmentObject var user: User

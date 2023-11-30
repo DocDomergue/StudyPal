@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Code to create the week selecter that sites above the calendar grid
 struct WeekPicker: View {
     @EnvironmentObject var manager: CalendarManager
     @State private var showPicker = false
@@ -20,7 +21,7 @@ struct WeekPicker: View {
                     .background(
                         RoundedRectangle(cornerRadius: 5)
                             .fill()
-                            .foregroundColor(Color.gray)
+                            .foregroundColor(Color(hue: 0.131, saturation: 0.982, brightness: 0.822))
                             .opacity(0.3)
                     )
             }
@@ -33,8 +34,8 @@ struct WeekPicker: View {
                     .background(
                         RoundedRectangle(cornerRadius: 5)
                             .fill()
-                            .foregroundColor(Color.gray)
-                            .opacity(0.6)
+                            .foregroundColor(Color(hue: 0.131, saturation: 0.982, brightness: 0.822))
+                            .opacity(0.5)
                     )
             }
             .sheet(isPresented: $showPicker) {
@@ -48,7 +49,7 @@ struct WeekPicker: View {
                     .background(
                         RoundedRectangle(cornerRadius: 5)
                             .fill()
-                            .foregroundColor(Color.gray)
+                            .foregroundColor(Color(hue: 0.131, saturation: 0.982, brightness: 0.822))
                             .opacity(0.3)
                     )
             }

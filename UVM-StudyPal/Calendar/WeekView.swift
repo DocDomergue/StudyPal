@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Structure used to show the week view grid in the body of the parent view
 struct WeekView: View {
     @EnvironmentObject var manager: CalendarManager
     
