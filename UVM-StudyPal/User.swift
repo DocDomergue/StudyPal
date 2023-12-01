@@ -7,12 +7,12 @@
 
 import Foundation
 
-class User: ObservableObject {
-    @Published var courses: [CourseItem] // TODO: Course Class
-    @Published var study: [StudyItem]
-    @Published var custom: [CustomItem]
-    @Published var todo: [String] // Placeholder for now
-    @Published var studyStat: Int
+class User: Codable, ObservableObject {
+    @Published<[CourseItem]> var courses: [CourseItem] // TODO: Course Class
+    @Published<[StudyItem]> var study: [StudyItem]
+    @Published<[CustomItem]> var custom: [CustomItem]
+    @Published<[String]> var todo: [String] // Placeholder for now
+    @Published<Int> var studyStat: Int
     // TODO: Other info about user
     
     /*
@@ -95,6 +95,33 @@ class User: ObservableObject {
             )
         )
         custom.append(exampleCustomItem)
+    }
+    
+    // Codable stuff
+    enum CodingKeys: String, CodingKey {
+        case courses
+        case study
+        case custom
+        case todo
+        case studyStat
+    }
+
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.courses = try container.decode([CourseItem].self, forKey: .courses)
+        self.study = try container.decode([StudyItem].self, forKey: .study)
+        self.custom = try container.decode([CustomItem].self, forKey: .custom)
+        self.todo = try container.decode([String].self, forKey: .todo)
+        self.studyStat = try container.decode(Int.self, forKey: .studyStat)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(courses, forKey: .courses)
+        try container.encode(study, forKey: .study)
+        try container.encode(custom, forKey: .custom)
+        try container.encode(todo, forKey: .todo)
+        try container.encode(studyStat, forKey: .studyStat)
     }
     
     // TODO: Initialize from database

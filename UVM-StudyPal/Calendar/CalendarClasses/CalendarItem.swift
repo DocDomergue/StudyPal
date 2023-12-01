@@ -13,7 +13,7 @@ import SwiftUI
 // Parent class for everything displayed on the calendar.
 // From the heighest view, these 3 bits of information will be all thats needed to create a tile
 // Different more detail views will exist for each subtype of event
-class CalendarItem: Identifiable {
+class CalendarItem: Identifiable, Codable {
     
     var id: UUID
     var name: String // Name displayed on tile
