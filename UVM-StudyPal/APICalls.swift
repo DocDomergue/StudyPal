@@ -56,8 +56,8 @@ class NetworkManager {
     
 
     
-    func fetchUserProfile(userID: Int, completion: @escaping (Result<Data, Error>) -> Void) {
-        guard let url = URL(string: "\(baseURL)/userprofile/\(userID)") else {
+    func fetchUserProfile(completion: @escaping (Result<Data, Error>) -> Void) {
+        guard let url = URL(string: "\(baseURL)/userprofile/") else {
             completion(.failure(NSError(domain: "", code: -1, userInfo: nil)))
             return
         }

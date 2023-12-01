@@ -214,37 +214,27 @@ class User: ObservableObject {
         }
     }
     
+    func pullUserProfile() {
+        NetworkManager.shared.fetchUserProfile { result in
+            switch result {
+            case .success(let data):
+                // Convert the data to a String and print it
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("User Profile JSON: \(jsonString)")
+                } else {
+                    print("Error: Unable to convert data to string")
+                }
+            case .failure(let error):
+                print("Error fetching user profile: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     // Callable function to increment the study minute counter when needed
     func iterateStudyStat() {
         studyStat+=1
     }
 }
 
-
-
-
-
-
-//    func pullFromDB() {
-//        NetworkManager.shared.fetchUserProfile { result in
-//            switch result {
-//            case .success(let data):
-//                // Decode the JSON data into User object
-//                let decoder = JSONDecoder()
-//                if let user = try? decoder.decode(User.self, from: data) {
-//                    DispatchQueue.main.async {
-//                        // Update your user object here
-//                        self.courses = user.courses
-//                        self.study = user.study
-//                        self.custom = user.custom
-//                        self.todo = user.todo
-//                        self.studyStat = user.studyStat
-//                    }
-//                }
-//            case .failure(let error):
-//                print("Error fetching user profile: \(error)")
-//            }
-//        }
-//    }
 
 
