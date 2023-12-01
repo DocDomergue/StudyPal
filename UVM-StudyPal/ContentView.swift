@@ -31,18 +31,26 @@ struct ContentView: View {
         NavigationView {
             if !viewModel.loggedIn {
                 LoginView(viewModel: viewModel)
+                
+                
             } else {
                 MainPageView(viewModel: viewModel)
                     .environmentObject(User())
+                
             }
         }
     }
+    
+    
+    
 }
 
 // Main view structure
 struct MainPageView: View {
     @State var openTab = 0
     @ObservedObject var viewModel: AuthViewModel
+    @EnvironmentObject var user: User
+    
     
     // Code for the horizontal navigation buttons at the bottom. One button for each of 4 tabs
     var body: some View {
@@ -84,8 +92,23 @@ struct MainPageView: View {
                         Button(role: .destructive, action: { viewModel.logOut() }) {
                             Label("Log Out", systemImage: "rectangle.portrait.and.arrow.right")
                         }
-                        Button(action: { print("future functionality") }) {
-                            Label("Future Functionality", systemImage: "globe")
+                        Button("Push User Data") {
+                            user.push { success, error in
+                                if success {
+                                    print("User data pushed successfully")
+                                } else if let error = error {
+                                    print("Error pushing user data: \(error)")
+                                }
+                            }
+                        }
+                        Button("Clear Data") {
+                            user.clearData { success, error in
+                                if success {
+                                    print("User data pushed successfully")
+                                } else if let error = error {
+                                    print("Error pushing user data: \(error)")
+                                }
+                            }
                         }
                     } label: {
                         Image(systemName: "person.crop.circle.fill")
@@ -130,6 +153,8 @@ struct CalendarPage: View {
         CalendarView()
             .environmentObject(CalendarManager())
     }
+    
+    
 }
 
 // When the course list is open, this is the display on screen
@@ -209,35 +234,21 @@ struct CourseListPage: View {
     
     // Function that handles the add/added button
     func toggleCourseSelection(course: Course) {
-            if courseIsSelected(course: course) {
-                removeCourse(course: course)
-            } else {
-                addCourse(course: course)
-            }
+        if courseIsSelected(course: course) {
+            removeCourse(course: course)
+        } else {
+            addCourse(course: course)
         }
-        
+    }
+    
     // Function that actually adds the course to internal structures
     func addCourse(course: Course) {
-        NetworkManager.shared.addCourse(courseId: course.id) { success, error in
-            if success {
-                self.selectedCourses.append(course)
-                print("Added Course: \(course.title) (\(course.subj) \(course.course_number))")
-            } else if let error = error {
-                print("Error adding course: \(error)")
-            }
-        }
+        
     }
     
     // Function that actually removes the course from internal structures
     func removeCourse(course: Course) {
-        NetworkManager.shared.removeCourse(courseId: course.id) { success, error in
-            if success {
-                self.selectedCourses.removeAll { $0.id == course.id }
-                print("Removed Course: \(course.title) (\(course.subj) \(course.course_number))")
-            } else if let error = error {
-                print("Error removing course: \(error)")
-            }
-        }
+        
     }
 }
 
@@ -382,7 +393,7 @@ struct StatsPage: View {
     @State private var semesterCompletion: Double = 100 * calculateSemesterPercentage()
     @State private var studyTimeInMinutes: Int = 334
     @State private var averageStudyTime: Int = 154
-
+    
     var body: some View {
         VStack {
             Text("Statistics")
@@ -421,8 +432,8 @@ struct StatsPage: View {
             
             // Views can only have 10 children. This causes an error bc its an 11th.
             /*Text("\(averageStudyTime) minutes")
-                .font(.headline)
-                .padding()*/
+             .font(.headline)
+             .padding()*/
         }
         .navigationTitle("Statistics")
     }
@@ -436,14 +447,14 @@ func calculateSemesterPercentage() -> Double {
     // Get the current date
     let currentDate = Date()
     let calendar = Calendar.current
-
+    
     // Semester Date Ranges Approximated
     let range1Start = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 8, day: 25))!
     let range1End = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 12, day: 15))!
-
+    
     let range2Start = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 1, day: 15))!
     let range2End = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 5, day: 15))!
-
+    
     if currentDate >= range1Start && currentDate <= range1End {
         let daysInRange = currentDate.daysBetweenDate(range1Start, andDate: range1End)
         let daysPassed = currentDate.daysBetweenDate(range1Start, andDate: currentDate)
@@ -455,7 +466,7 @@ func calculateSemesterPercentage() -> Double {
     } else {
         percentage = 100.0
     }
-
+    
     return percentage
 }
 
@@ -471,10 +482,10 @@ extension Date {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         // Previewing ContentView
-        //ContentView(viewModel: AuthViewModel())
+        ContentView(viewModel: AuthViewModel())
         
         // Or, if you want to specifically preview MainPageView with a logged-in state
-        MainPageView(viewModel: AuthViewModel())
+        //        MainPageView(viewModel: AuthViewModel())
     }
 }
 

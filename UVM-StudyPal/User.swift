@@ -95,6 +95,8 @@ class User: Codable, ObservableObject {
             )
         )
         custom.append(exampleCustomItem)
+        
+        
     }
     
     // Codable stuff
@@ -126,10 +128,11 @@ class User: Codable, ObservableObject {
     
     // TODO: Initialize from database
     
+    
     /**
      Given a timeframe "window," retrieves the course  items that reside within that window.
      - Parameters:
-        - inWeek: The "window" week to select with
+     - inWeek: The "window" week to select with
      */
     func selectCourses(inWeek week: Set<DateComponents>) -> [CourseItem] {
         // TODO: This will need to be changed to accomadate moving to a Course class
@@ -156,7 +159,7 @@ class User: Codable, ObservableObject {
     /**
      Given a timeframe "window," retrieves the study items that reside within that window.
      - Parameters:
-        - inWeek: The "window" week to select with
+     - inWeek: The "window" week to select with
      */
     func selectStudy(inWeek week: Set<DateComponents>) -> [StudyItem] {
         // Filter out the dates that do not match a day in the selected week
@@ -181,7 +184,7 @@ class User: Codable, ObservableObject {
     /**
      Given a timeframe "window," retrieves the custom items that reside within that window.
      - Parameters:
-        - inWeek: The "window" week to select with
+     - inWeek: The "window" week to select with
      */
     func selectCustom(inWeek week: Set<DateComponents>) -> [CustomItem] {
         // Filter out the dates that do not match a day in the selected week
@@ -206,14 +209,34 @@ class User: Codable, ObservableObject {
     
     // TODO: Initialize from database + DB functions
     
-    // Updates local structures with info from DB
-    func pullFromDB() {
-        
+    func push(completion: @escaping (Bool, Error?) -> Void) {
+        do {
+            let jsonData = try JSONEncoder().encode("""
+    {
+        "name": "John Doe",
+        "age": 30,
+        "email": "johndoe@example.com",
+        "address": {
+            "street": "123 Main St",
+            "city": "Anytown",
+            "zip": "12345"
+        },
+        "hobbies": ["reading", "cycling", "hiking"]
+    }
+    """)
+            NetworkManager.shared.updateUserProfile(jsonData: jsonData, completion: completion)
+        } catch {
+            completion(false, error)
+        }
     }
     
-    // Updates DB with info from local structures
-    func pushToDB() {
-        
+    func clearData(completion: @escaping (Bool, Error?) -> Void) {
+        do {
+            let jsonData = try JSONEncoder().encode("{}")
+            NetworkManager.shared.updateUserProfile(jsonData: jsonData, completion: completion)
+        } catch {
+            completion(false, error)
+        }
     }
     
     // Callable function to increment the study minute counter when needed
@@ -221,3 +244,32 @@ class User: Codable, ObservableObject {
         studyStat+=1
     }
 }
+
+
+
+
+
+
+//    func pullFromDB() {
+//        NetworkManager.shared.fetchUserProfile { result in
+//            switch result {
+//            case .success(let data):
+//                // Decode the JSON data into User object
+//                let decoder = JSONDecoder()
+//                if let user = try? decoder.decode(User.self, from: data) {
+//                    DispatchQueue.main.async {
+//                        // Update your user object here
+//                        self.courses = user.courses
+//                        self.study = user.study
+//                        self.custom = user.custom
+//                        self.todo = user.todo
+//                        self.studyStat = user.studyStat
+//                    }
+//                }
+//            case .failure(let error):
+//                print("Error fetching user profile: \(error)")
+//            }
+//        }
+//    }
+
+
