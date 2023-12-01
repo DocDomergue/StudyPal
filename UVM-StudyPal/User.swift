@@ -24,7 +24,7 @@ class User: Codable, ObservableObject {
         study = []
         custom = []
         todo = []
-        studyStat = 0
+        studyStat = 7
     }
     
     // Codable stuff
@@ -135,7 +135,7 @@ class User: Codable, ObservableObject {
         
     }
     
-    // TODO: Initialize from database + DB functions
+    // DB functions
     
     func push(completion: @escaping (Bool, Error?) -> Void) {
         do {
@@ -146,9 +146,27 @@ class User: Codable, ObservableObject {
         }
     }
     
+
+    struct EmptyProfile: Codable {
+        var todo: [String]
+        var study: [String]
+        var custom: [String]
+        var courses: [String]
+        var studyStat: Int
+    }
+
+    let emptyProfile = EmptyProfile(
+        todo: [],
+        study: [],
+        custom: [],
+        courses: [],
+        studyStat: 0
+    )
+    
+    
     func clearData(completion: @escaping (Bool, Error?) -> Void) {
         do {
-            let jsonData = try JSONEncoder().encode("{}")
+            let jsonData = try JSONEncoder().encode(emptyProfile)
             NetworkManager.shared.updateUserProfile(jsonData: jsonData, completion: completion)
         } catch {
             completion(false, error)
