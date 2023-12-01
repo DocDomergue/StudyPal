@@ -53,4 +53,44 @@ class CourseItem: CalendarItem {
     var getRoom: String {
         return room
     }
+
+    // Codable stuff
+    init(name: String, subject: String, number: Int, instructor: String, building: String,
+         room: String, startTime: DateComponents, endTime: DateComponents) {
+        self.subject = subject
+        self.number = number
+        self.instructor = instructor
+        self.building = building
+        self.room = room
+        super.init(name: name, startTime: startTime, endTime: endTime)
+    }
+        
+    enum CodingKeys: String, CodingKey {
+        case subject
+        case number
+        case instructor
+        case building
+        case room
+    }
+        
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.subject = try container.decode(String.self, forKey: .subject)
+        self.number = try container.decode(Int.self, forKey: .number)
+        self.instructor = try container.decode(String.self, forKey: .instructor)
+        self.building = try container.decode(String.self, forKey: .building)
+        self.room = try container.decode(String.self, forKey: .room)
+        try super.init(from: decoder)
+    }
+        
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(subject, forKey: .subject)
+        try container.encode(number, forKey: .number)
+        try container.encode(instructor, forKey: .instructor)
+        try container.encode(building, forKey: .building)
+        try container.encode(room, forKey: .room)
+        try super.encode(to: encoder)
+    }
+
 }
