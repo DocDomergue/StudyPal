@@ -53,7 +53,7 @@ struct WebView: UIViewRepresentable {
     }
 
     // Retrieves cookies from the WebView
-    private func retrieveCookies() {
+     func retrieveCookies() {
         WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
             processAndStoreCookies(cookies)
         }
