@@ -24,4 +24,22 @@ class CustomItem: CalendarItem {
     var getDescription: String {
         return description
     }
+    
+    // Codable stuff
+    enum CodingKeys: String, CodingKey {
+        case description
+    }
+        
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.description = try container.decode(String.self, forKey: .description)
+        try super.init(from: decoder)
+    }
+        
+    override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(description, forKey: .description)
+        try super.encode(to: encoder)
+    }
+
 }
