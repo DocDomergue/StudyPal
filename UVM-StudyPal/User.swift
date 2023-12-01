@@ -25,78 +25,6 @@ class User: Codable, ObservableObject {
         custom = []
         todo = []
         studyStat = 0
-        
-        let exampleCourseItem = CourseItem(
-            name: "Mobile App Developement",
-            subject: "CS",
-            number: "3750",
-            instructor: "Jason Hibbeler",
-            building: "Lafayete",
-            room: "L300",
-            startTime: DateComponents(
-                calendar: Calendar(identifier: .gregorian),
-                year: 2023,
-                month: 11,
-                day: 28,
-                hour: 10,
-                minute: 0
-            ),
-            endTime: DateComponents(
-                calendar: Calendar(identifier: .gregorian),
-                year: 2023,
-                month: 11,
-                day: 28,
-                hour: 10,
-                minute: 10
-            )
-        )
-        courses.append(exampleCourseItem)
-        
-        let exampleStudyItem = StudyItem(
-            name: "Study reminder",
-            course: exampleCourseItem,
-            startTime: DateComponents(
-                calendar: Calendar(identifier: .gregorian),
-                year: 2023,
-                month: 11,
-                day: 29,
-                hour: 19,
-                minute: 35
-            ),
-            endTime: DateComponents(
-                calendar: Calendar(identifier: .gregorian),
-                year: 2023,
-                month: 11,
-                day: 29,
-                hour: 21,
-                minute: 5
-            )
-        )
-        study.append(exampleStudyItem)
-        
-        let exampleCustomItem = CustomItem(
-            name: "Reminder to do a thing",
-            description: "This is a test",
-            startTime: DateComponents(
-                calendar: Calendar(identifier: .gregorian),
-                year: 2023,
-                month: 11,
-                day: 28,
-                hour: 19,
-                minute: 35
-            ),
-            endTime: DateComponents(
-                calendar: Calendar(identifier: .gregorian),
-                year: 2023,
-                month: 11,
-                day: 28,
-                hour: 21,
-                minute: 5
-            )
-        )
-        custom.append(exampleCustomItem)
-        
-        
     }
     
     // Codable stuff
@@ -211,19 +139,7 @@ class User: Codable, ObservableObject {
     
     func push(completion: @escaping (Bool, Error?) -> Void) {
         do {
-            let jsonData = try JSONEncoder().encode("""
-    {
-        "name": "John Doe",
-        "age": 30,
-        "email": "johndoe@example.com",
-        "address": {
-            "street": "123 Main St",
-            "city": "Anytown",
-            "zip": "12345"
-        },
-        "hobbies": ["reading", "cycling", "hiking"]
-    }
-    """)
+            let jsonData = try JSONEncoder().encode(self)
             NetworkManager.shared.updateUserProfile(jsonData: jsonData, completion: completion)
         } catch {
             completion(false, error)
@@ -243,17 +159,27 @@ class User: Codable, ObservableObject {
         NetworkManager.shared.fetchUserProfile { result in
             switch result {
             case .success(let data):
-                // Convert the data to a String and print it
-                if let jsonString = String(data: data, encoding: .utf8) {
-                    print("User Profile JSON: \(jsonString)")
-                } else {
-                    print("Error: Unable to convert data to string")
+                let decoder = JSONDecoder()
+                do {
+                    // Decode the data into a User object
+                    let user = try decoder.decode(User.self, from: data)
+                    
+                    // Update the properties of the current User object with the decoded data
+                    self.courses = user.courses
+                    self.study = user.study
+                    self.custom = user.custom
+                    self.todo = user.todo
+                    self.studyStat = user.studyStat
+                    
+                } catch {
+                    print("Error decoding user profile: \(error.localizedDescription)")
                 }
             case .failure(let error):
                 print("Error fetching user profile: \(error.localizedDescription)")
             }
         }
     }
+
     
     // Callable function to increment the study minute counter when needed
     func iterateStudyStat() {
