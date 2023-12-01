@@ -51,6 +51,19 @@ struct MainPageView: View {
     @ObservedObject var viewModel: AuthViewModel
     @EnvironmentObject var user: User
     
+    func menuChangePull() {
+        user.pullUserProfile()
+    }
+    
+    func menuChangePush() {
+        user.push { success, error in
+            if success {
+                print("User data pushed successfully")
+            } else if let error = error {
+                print("Error pushing user data: \(error)")
+            }
+        }
+    }
     
     // Code for the horizontal navigation buttons at the bottom. One button for each of 4 tabs
     var body: some View {
@@ -61,21 +74,42 @@ struct MainPageView: View {
                         Image(systemName: "calendar")
                     }
                     .tag(0)
+                    .onAppear {
+                        menuChangePush() // Calls for a push when view loads
+                    }
+                    .onDisappear {
+                        menuChangePull() // Calls for a pull when view closes
+                    }
+                
                 ToDoPage()
                     .tabItem() {
                         Image(systemName: "list.bullet")
                     }
                     .tag(1)
+                    .onAppear {
+                        menuChangePull() // Calls for a pull when view loads
+                    }
+                    .onDisappear {
+                        menuChangePush() // Calls for a push when view closes
+                    }
+                
                 TimerPage()
                     .tabItem() {
                         Image(systemName: "stopwatch")
                     }
                     .tag(2)
+                    .onAppear {
+                        menuChangePull() // Calls for a pull when view loads
+                    }
+                
                 StatsPage()
                     .tabItem() {
                         Image(systemName: "chart.pie")
                     }
                     .tag(3)
+                    .onAppear {
+                        menuChangePull() // Calls for a pull when view loads
+                    }
                 
                 // Also contains the header and other top items of the UI
             } .toolbar {
@@ -117,6 +151,8 @@ struct MainPageView: View {
                         Image(systemName: "person.crop.circle.fill")
                     }
                 }
+            }.onAppear {
+                menuChangePull() // Calls for a pull when main page loads
             }
         }
     }
@@ -166,7 +202,6 @@ struct CourseListPage: View {
     @State private var courses: [Course] = []
     @State private var cancellables = Set<AnyCancellable>()
     @State private var selectedCourses: [Course] = []
-    
     
     var body: some View {
         VStack(){
