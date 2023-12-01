@@ -110,6 +110,9 @@ struct MainPageView: View {
                                 }
                             }
                         }
+                        Button("Pull Data") {
+                            user.pullUserProfile()
+                        }
                     } label: {
                         Image(systemName: "person.crop.circle.fill")
                     }
