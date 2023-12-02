@@ -1,7 +1,7 @@
 import Foundation
 
 // Model for course data
-struct Course: Decodable {
+struct Course: Codable {
     let subj, course_number, title, section: String
     let instructor: String
     let start_time, end_time: String? // nullable fields
@@ -12,7 +12,7 @@ struct Course: Decodable {
 }
 
 // Model for course response
-struct CourseResponse: Decodable {
+struct CourseResponse: Codable {
     let results: [Course]
 }
 

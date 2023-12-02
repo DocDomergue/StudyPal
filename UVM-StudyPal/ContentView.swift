@@ -199,6 +199,7 @@ struct CalendarPage: View {
 struct CourseListPage: View {
     @State private var queryString: String = ""
     @State private var courses: [Course] = []
+    @State private var userCourses: [Course] = []
     @State private var cancellables = Set<AnyCancellable>()
     @State private var selectedCourses: [Course] = []
     @EnvironmentObject var user: User
@@ -226,6 +227,8 @@ struct CourseListPage: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .onChange(of: queryString) { newValue in
                     searchCourses()
+                    userCourses = user.courses
+                    selectedCourses = user.courses
                 }
             
             List(courses, id: \.id) { course in
@@ -289,6 +292,9 @@ struct CourseListPage: View {
     
     // Function that handles the add/added button
     func toggleCourseSelection(course: Course) {
+        
+        selectedCourses = user.courses
+        
         if courseIsSelected(course: course) {
             removeCourse(course: course)
         } else {
@@ -298,12 +304,14 @@ struct CourseListPage: View {
     
     // Function that actually adds the course to internal structures
     func addCourse(course: Course) {
-        
+        user.courses.append(course)
+        selectedCourses.append(course)
     }
     
     // Function that actually removes the course from internal structures
     func removeCourse(course: Course) {
-        
+        user.courses = user.courses.filter { $0.id != course.id }
+        selectedCourses = selectedCourses.filter { $0.id != course.id }
     }
 }
 

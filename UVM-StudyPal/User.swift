@@ -14,7 +14,8 @@ struct TaskItem: Identifiable, Codable {
 }
 
 class User: Codable, ObservableObject {
-    @Published<[CourseItem]> var courses: [CourseItem] // TODO: Course Class
+    @Published<[CourseItem]> var courseItem: [CourseItem] // TODO: Course Class
+    @Published<[Course]> var courses: [Course]
     @Published<[StudyItem]> var study: [StudyItem]
     @Published<[CustomItem]> var custom: [CustomItem]
     @Published<[TaskItem]> var todo: [TaskItem] // Placeholder for now
@@ -23,6 +24,7 @@ class User: Codable, ObservableObject {
     
     // Create a new user
     init() {
+        courseItem = []
         courses = []
         study = []
         custom = []
@@ -32,6 +34,7 @@ class User: Codable, ObservableObject {
     
     // Codable stuff
     enum CodingKeys: String, CodingKey {
+        case courseItem
         case courses
         case study
         case custom
@@ -41,7 +44,8 @@ class User: Codable, ObservableObject {
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.courses = try container.decode([CourseItem].self, forKey: .courses)
+        self.courseItem = try container.decode([CourseItem].self, forKey: .courseItem)
+        self.courses = try container.decode([Course].self, forKey: .courses)
         self.study = try container.decode([StudyItem].self, forKey: .study)
         self.custom = try container.decode([CustomItem].self, forKey: .custom)
         self.todo = try container.decode([TaskItem].self, forKey: .todo)
@@ -50,6 +54,7 @@ class User: Codable, ObservableObject {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(courseItem, forKey: .courseItem)
         try container.encode(courses, forKey: .courses)
         try container.encode(study, forKey: .study)
         try container.encode(custom, forKey: .custom)
@@ -69,7 +74,7 @@ class User: Codable, ObservableObject {
         // TODO: This will need to be changed to accomadate moving to a Course class
         
         // Filter out the dates that do not match a day in the selected week
-        return courses.filter {
+        return courseItem.filter {
             if let dateFromComp = $0.startTime.date {
                 // Check each day of the selected week for a matching day
                 for weekDay in week {
@@ -153,14 +158,16 @@ class User: Codable, ObservableObject {
     
 
     struct EmptyProfile: Codable {
+        var courseItem: [CourseItem]
         var todo: [TaskItem]
-        var study: [String]
-        var custom: [String]
-        var courses: [String]
+        var study: [StudyItem]
+        var custom: [CustomItem]
+        var courses: [Course]
         var studyStat: Int
     }
 
     let emptyProfile = EmptyProfile(
+        courseItem: [],
         todo: [],
         study: [],
         custom: [],
@@ -196,6 +203,7 @@ class User: Codable, ObservableObject {
                     self.studyStat = tempUser.studyStat
                     
                     print("pulling\n")
+                    print(tempUser.courseItem)
                     print(tempUser.courses)
                     print(tempUser.study)
                     print(tempUser.custom)
