@@ -15,7 +15,6 @@ class CustomItem: CalendarItem {
     
     // Constructor
     init(name: String, description: String, startTime: DateComponents, endTime: DateComponents) {
-        // TODO: Make the arg type for start and end String AFTER proper conversion is done in CalendarItems
         self.description = description
         super.init(name: name, startTime: startTime, endTime: endTime)
     }

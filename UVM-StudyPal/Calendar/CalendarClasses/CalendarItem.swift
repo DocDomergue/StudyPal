@@ -20,14 +20,10 @@ class CalendarItem: Identifiable, Codable {
     var startTime: DateComponents // Start time
     var endTime: DateComponents // End time
     
-    // TODO: Start and end times should be DateComponent. Convert in constructor
-    
     // Constructor
     init(name: String, startTime: DateComponents, endTime: DateComponents) {
         self.id = UUID()
         self.name = name
-        // TODO: Construct DateComponents from string
-        // That the DateComponents include calendar = Calendar(identifier: .gregorian) is really important
         self.startTime = startTime
         self.endTime = endTime
     }
@@ -51,22 +47,11 @@ class CalendarItem: Identifiable, Codable {
     Gets the length of this calendar item in minutes (smallest unit of measurement for an item).
      */
     func getMinutes() -> CGFloat {
-        // Number of hours
-        var totalHours = 0
-        if let eHour = self.endTime.hour {
-            if let sHour = self.startTime.hour {
-                totalHours = eHour - sHour
-            }
+        let diffComponents = Calendar.current.dateComponents([.minute], from: startTime, to: endTime)
+        if let minutes = diffComponents.minute {
+            return CGFloat(minutes)
         }
-        // Number of excess minutes
-        var totalMin = 0
-        if let eMin = self.endTime.minute {
-            if let sMin = self.startTime.minute {
-                totalMin = eMin - sMin
-            }
-        }
-        // Calculate the minutes
-        return CGFloat((totalHours * 60) + totalMin)
+        return 0
     }
     
     /**

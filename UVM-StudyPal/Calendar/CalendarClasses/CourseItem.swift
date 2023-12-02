@@ -20,7 +20,6 @@ class CourseItem: CalendarItem {
     // Constructor
     init(name: String, subject: String, number: String, instructor: String, building: String,
          room: String, startTime: DateComponents, endTime: DateComponents) {
-        // TODO: Make the arg type for start and end String AFTER proper conversion is done in CalendarItems
         self.subject = subject
         self.number = Int(number).unsafelyUnwrapped
         self.instructor = instructor

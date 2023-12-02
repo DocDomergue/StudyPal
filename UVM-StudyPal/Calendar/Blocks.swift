@@ -15,13 +15,6 @@ struct Blocks: View {
     var body: some View {
         // Delegates what blocks are shown based on the viewmodel
         // "visibleWeek" in the CalendarManager.
-        
-        /* TODO: Generate CourseItems from user's courses
-                 Change courses list to Course array type in user.
-                 Use that to generate CourseItems BASED ON CURRENT WEEK IN CALENDARMANAGER
-         
-                This should be a function in User that is used in selectItems
-         */
         ForEach(user.selectCourses(inWeek: manager.visibleWeek, manager.DAY_CODES)) { item in
             CourseBlock(item: item)
         }
