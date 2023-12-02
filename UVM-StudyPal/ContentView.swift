@@ -75,10 +75,10 @@ struct MainPageView: View {
                     }
                     .tag(0)
                     .onAppear {
-                        menuChangePush() // Calls for a push when view loads
+                        menuChangePull() // Calls for a pull when view loads
                     }
                     .onDisappear {
-                        menuChangePull() // Calls for a pull when view closes
+                        menuChangePush() // Calls for a push when view closes
                     }
                 
                 ToDoPage()
@@ -112,11 +112,25 @@ struct MainPageView: View {
                     }
                 
                 // Also contains the header and other top items of the UI
-            } .toolbar {
+            } 
+            .onAppear {
+                menuChangePull() // Initial Pull
+            }
+            .toolbar {
                 if openTab == 0 {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        NavigationLink("Course List") {
-                            CourseListPage().navigationTitle("All Courses")
+                        Menu {
+                            NavigationLink("Add Course") {
+                                CourseListPage().navigationTitle("All Courses")
+                            }
+                            NavigationLink("Add Study Block") {
+                                //CourseListPage().navigationTitle("New Study Block")
+                            }
+                            NavigationLink("Add Custom Event") {
+                                //CourseListPage().navigationTitle("New Custom Event")
+                            }
+                        } label: {
+                            Image(systemName: "plus.circle")
                         }
                     }
                 }
@@ -151,8 +165,6 @@ struct MainPageView: View {
                         Image(systemName: "person.crop.circle.fill")
                     }
                 }
-            }.onAppear {
-                menuChangePull() // Calls for a pull when main page loads
             }
         }
     }

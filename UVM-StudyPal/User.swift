@@ -177,17 +177,24 @@ class User: Codable, ObservableObject {
         NetworkManager.shared.fetchUserProfile { result in
             switch result {
             case .success(let data):
+                
                 let decoder = JSONDecoder()
                 do {
                     // Decode the data into a User object
-                    let user = try decoder.decode(User.self, from: data)
+                    let tempUser = try decoder.decode(User.self, from: data)
                     
                     // Update the properties of the current User object with the decoded data
-                    self.courses = user.courses
-                    self.study = user.study
-                    self.custom = user.custom
-                    self.todo = user.todo
-                    self.studyStat = user.studyStat
+                    self.courses = tempUser.courses
+                    self.study = tempUser.study
+                    self.custom = tempUser.custom
+                    self.todo = tempUser.todo
+                    self.studyStat = tempUser.studyStat
+                    
+                    print(tempUser.courses)
+                    print(tempUser.study)
+                    print(tempUser.custom)
+                    print(tempUser.todo)
+                    print(tempUser.studyStat)
                     
                 } catch {
                     print("Error decoding user profile: \(error.localizedDescription)")
