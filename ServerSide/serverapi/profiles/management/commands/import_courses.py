@@ -1,6 +1,6 @@
 import pandas as pd
 from django.core.management import BaseCommand
-from courses.models import Course
+from profiles.models import Course
 import requests
 from io import StringIO
 

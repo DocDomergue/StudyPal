@@ -44,7 +44,7 @@ struct StudyBlock: View {
     init(item: StudyItem) {
         self.item = item
         // Additional text for study time consists of what to study for
-        additionalText += "Study for \(item.course.name)"
+        additionalText += "Study for \(item.course.title)"
     }
     
     var body: some View {

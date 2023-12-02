@@ -33,9 +33,13 @@ class Course(models.Model):
         return self.title
 
 
+def default_user_data():
+    return {"todo": [], "study": [], "custom": [], "courses": [], "studyStat": 0}
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_info = models.JSONField()
+    user_data = models.JSONField(default=default_user_data)
 
     def __str__(self):
         return self.user.username

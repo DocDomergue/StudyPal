@@ -120,10 +120,10 @@ struct MainPageView: View {
                                 CourseListPage(user:  _user).navigationTitle("All Courses").onDisappear { menuChangePush() }
                             }
                             NavigationLink("Add Study Block") {
-                                //StudyBlockPage(user:  _user).navigationTitle("New Study Block").onDisappear { menuChangePush() }
+                                StudyBlockPage(user:  _user).navigationTitle("New Study Block").onDisappear { menuChangePush() }
                             }
                             NavigationLink("Add Custom Event") {
-                                //CustomItemPage(user:  _user).navigationTitle("New Custom Event").onDisappear { menuChangePush() }
+                                CustomItemPage(user:  _user).navigationTitle("New Custom Event").onDisappear { menuChangePush() }
                             }
                         } label: {
                             Image(systemName: "plus.circle")
@@ -355,6 +355,240 @@ struct CourseListPage: View {
     func removeCourse(course: Course) {
         user.courses = user.courses.filter { $0.id != course.id }
         selectedCourses = selectedCourses.filter { $0.id != course.id }
+    }
+}
+
+// When the StudyItem adder list is open, this is the display on screen
+struct StudyBlockPage: View {
+    @State private var nameString: String = ""
+    @State private var startDate = Date()
+    @State private var endDate = Date()
+    @State private var startDateComponents = DateComponents()
+    @State private var endDateComponents = DateComponents()
+    @State private var selectedCourse: Course?
+    @State private var finalCourse: Course = Course(subj: "No ", course_number: "Course", title: "Empty", section: "Empty", instructor: "Empty", start_time: "Empty", end_time: "Empty", days: "Empty", bldg: "Empty", room: "Empty", credits: "Empty", xlistings: "Empty", lec_lab: "Empty", coll_code: "Empty", max_enrollment: 0, current_enrollment: 0, comp_numb: 0, id: 1243657, email: "Empty")
+    @State private var userEvents: [StudyItem] = []
+    @State private var selectedEvents: [StudyItem] = []
+    @EnvironmentObject var user: User
+    
+    func menuChangePull() {
+        user.pullUserProfile()
+    }
+    
+    func menuChangePush() {
+        user.push { success, error in
+            if success {
+                print("User data pushed successfully")
+            } else if let error = error {
+                print("Error pushing user data: \(error)")
+            }
+        }
+    }
+    
+    var body: some View {
+        VStack(){
+            Text("Current Study Blocks:")
+            List(selectedEvents) { StudyItem in
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(StudyItem.name)
+                        Text("\(StudyItem.course.subj) \(StudyItem.course.course_number)").font(.headline)
+                    }
+                    .padding(.vertical, 4)
+                    Spacer()
+                    
+                    Button(action: {
+                        removeStudyItem(studyItem: StudyItem)
+                    }) {
+                        Image(systemName: "trash.circle.fill")
+                            .font(.system(size: 32))
+                            .foregroundColor(.accentColor)
+                    }
+                }
+            }.frame(maxHeight: 200)
+                .onAppear {
+                    selectedEvents = user.study
+                }
+                .onDisappear {
+                    menuChangePush()
+                }
+            
+            TextField("Study Block Name", text: $nameString)
+                .padding(.horizontal)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            Spacer()
+            
+            Text("Associate a course?")
+            
+            Spacer()
+            
+            if user.courses.isEmpty {
+                Text("No courses available")
+            } else {
+                List(user.courses) { course in
+                    Button(action: {
+                        selectedCourse = course
+                    }) {
+                        Text("\(course.subj) \(course.course_number)").foregroundColor(course == selectedCourse ? .accentColor : .primary)
+                    }
+                }
+            }
+            
+            Spacer()
+            
+            DatePicker("Select Date and Start Time", selection: $startDate, displayedComponents: [.date, .hourAndMinute])
+                .datePickerStyle(CompactDatePickerStyle())
+            
+            DatePicker("Select End Time", selection: $endDate, displayedComponents: [.date, .hourAndMinute])
+                .datePickerStyle(CompactDatePickerStyle())
+            Spacer()
+            
+            Button(action: {
+                startDateComponents = Calendar.current.dateComponents([.calendar, .era, .year, .month, .day, .hour, .minute], from: startDate)
+                endDateComponents = Calendar.current.dateComponents([.calendar, .era, .year, .month, .day, .hour, .minute], from: endDate)
+        
+                finalCourse = selectedCourse ?? finalCourse
+                
+                addStudyItem(nameString, finalCourse, startDateComponents, endDateComponents)
+                
+                print(startDateComponents)
+                print(endDateComponents)
+                
+            }) {
+                Text("Add Study Block")
+                    .foregroundColor(.black)
+                        .padding()
+                        .background(Color.accentColor)
+                        .cornerRadius(20)
+            }
+        }
+    }
+        
+        
+    func addStudyItem(_ name: String, _ course: Course, _ startTime: DateComponents, _ endTime: DateComponents) {
+        user.study.append(StudyItem(name: name, course: course, startTime: startTime, endTime: endTime))
+        selectedEvents = user.study
+    }
+
+    
+    // Function that actually removes the course from internal structures
+    func removeStudyItem(studyItem: StudyItem) {
+        user.study = user.study.filter { $0.name != studyItem.name }
+        selectedEvents = selectedEvents.filter { $0.name != studyItem.name }
+    }
+}
+
+// When the CustomItem adder is open, this is the display on screen
+struct CustomItemPage: View {
+    @State private var nameString: String = ""
+    @State private var descString: String = ""
+    @State private var startDate = Date()
+    @State private var endDate = Date()
+    @State private var startDateComponents = DateComponents()
+    @State private var endDateComponents = DateComponents()
+    @State private var userEvents: [CustomItem] = []
+    @State private var selectedEvents: [CustomItem] = []
+    @EnvironmentObject var user: User
+    
+    func menuChangePull() {
+        user.pullUserProfile()
+    }
+    
+    func menuChangePush() {
+        user.push { success, error in
+            if success {
+                print("User data pushed successfully")
+            } else if let error = error {
+                print("Error pushing user data: \(error)")
+            }
+        }
+    }
+    
+    var body: some View {
+        VStack(){
+            Text("Current Custom Events:")
+            List(selectedEvents) { CustomItem in
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(CustomItem.name)
+                        Text("\(CustomItem.description)").font(.headline)
+                    }
+                    .padding(.vertical, 4)
+                    Spacer()
+                    
+                    Button(action: {
+                        removeCustomItem(customItem: CustomItem)
+                    }) {
+                        Image(systemName: "trash.circle.fill")
+                            .font(.system(size: 32))
+                            .foregroundColor(.accentColor)
+                    }
+                }
+            }.frame(maxHeight: 200)
+                .onAppear {
+                    selectedEvents = user.custom
+                }
+                .onDisappear {
+                    menuChangePush()
+                }
+            
+            Spacer()
+            
+            TextField("Custom Event Name", text: $nameString)
+                .padding(.horizontal)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+        
+            
+            TextField("Custom Event Description", text: $descString)
+                .padding(.horizontal)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            Spacer()
+            
+            DatePicker("Select Date and Start Time", selection: $startDate, displayedComponents: [.date, .hourAndMinute])
+                .datePickerStyle(CompactDatePickerStyle())
+            
+            DatePicker("Select End Time", selection: $endDate, displayedComponents: [.date, .hourAndMinute])
+                .datePickerStyle(CompactDatePickerStyle())
+            Spacer()
+            
+            Button(action: {
+                startDateComponents = Calendar.current.dateComponents([.calendar, .era, .year, .month, .day, .hour, .minute], from: startDate)
+                endDateComponents = Calendar.current.dateComponents([.calendar, .era, .year, .month, .day, .hour, .minute], from: endDate)
+                
+                addCustomItem(nameString, descString, startDateComponents, endDateComponents)
+                
+                print(startDateComponents)
+                print(endDateComponents)
+                
+            }) {
+                Text("Add Custom Event")
+                    .foregroundColor(.black)
+                        .padding()
+                        .background(Color.accentColor)
+                        .cornerRadius(20)
+            }
+        }
+    }
+        
+        
+    func addCustomItem(_ name: String, _ description: String, _ startTime: DateComponents, _ endTime: DateComponents) {
+        user.custom.append(CustomItem(name: name, description: description, startTime: startTime, endTime: endTime))
+        selectedEvents = user.custom
+    }
+
+    
+    // Function that actually removes the course from internal structures
+    func removeCustomItem(customItem: CustomItem) {
+        user.custom = user.custom.filter { $0.name != customItem.name }
+        selectedEvents = selectedEvents.filter { $0.name != customItem.name }
     }
 }
 
