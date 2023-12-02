@@ -220,6 +220,37 @@ struct CourseListPage: View {
     
     var body: some View {
         VStack(){
+            
+            List(selectedCourses, id: \.id) { course in
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("\(course.subj) \(course.course_number) \(course.section)").font(.headline)
+                        Text(course.title).font(.subheadline)
+                        Text(course.instructor)
+                        if let startTime = course.start_time, let endTime = course.end_time {
+                            Text("Time: \(startTime) - \(endTime)").font(.footnote)
+                            Text("Days: \(course.days.trimmingCharacters(in: .whitespacesAndNewlines))").font(.footnote)
+                        } else {
+                            Text("Time: N/A").font(.footnote)
+                        }
+                        Text("Credits: \(course.credits)").font(.footnote)
+                    }
+                    .padding(.vertical, 4)
+                    Spacer()
+                    
+                    Button(action: {
+                        toggleCourseSelection(course: course)
+                    }) {
+                        Image(systemName: courseIsSelected(course: course) ? "checkmark.circle.fill" : "plus.circle.fill")
+                            .font(.system(size: 32))
+                            .foregroundColor(courseIsSelected(course: course) ? .green : .blue)
+                    }
+                }
+            }.frame(maxHeight: 200)
+                .onAppear {
+                    selectedCourses = user.courses
+                }
+            
             TextField("Search Courses", text: $queryString)
                 .padding(.horizontal)
                 .disableAutocorrection(true)
@@ -227,6 +258,9 @@ struct CourseListPage: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .onChange(of: queryString) { newValue in
                     searchCourses()
+                    userCourses = user.courses
+                    selectedCourses = user.courses
+                }.onAppear {
                     userCourses = user.courses
                     selectedCourses = user.courses
                 }
