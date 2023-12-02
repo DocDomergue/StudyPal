@@ -21,7 +21,7 @@ struct DayTimeGrid: View {
                 VStack { // Bogus vstack to make header happy (conditional)
                     if manager.isDayView {
                         // Day of week chosen in the manager
-                        Text(manager.DAYS_OF_WEEK[manager.dayOfWeek - 1])
+                        Text(getDayTitle(ofDay: manager.dayOfWeek - 1, inWeek: manager.visibleWeek))
                             .padding([.trailing, .leading], manager.SIDE_PADDING)
                             .padding(.vertical, 15)
                     }
@@ -29,7 +29,7 @@ struct DayTimeGrid: View {
                         // Week day names
                         HStack(spacing: manager.getDayWidth() * 0.15) {
                             ForEach(0..<7) { day in
-                                Text(manager.DAYS_OF_WEEK[day])
+                                Text(getDayTitle(ofDay: day, inWeek: manager.visibleWeek))
                                     .frame(width: manager.getDayWidth() * 0.85)
                             }
                         }
@@ -59,6 +59,36 @@ struct DayTimeGrid: View {
                 }
             }
         }
+    }
+    
+    /**
+     Create the header day titles  ex. Sat. 1
+     */
+    func getDayTitle(ofDay dayIndex: Int, inWeek week: Set<DateComponents>) -> String {
+        // Get the abreviation of the day
+        let dayName = manager.DAYS_OF_WEEK[dayIndex]
+        let upToIndex = dayName.index(dayName.startIndex, offsetBy: 3)
+        let abrvDay = dayName.prefix(upTo: upToIndex)
+        // Search the week for the day with proper weekday
+        var dateDay = 0
+        for weekDay in week {
+            if let dateFromComp = weekDay.date {
+                let weekday = Calendar.current.component(.weekday, from: dateFromComp)
+                if weekday == dayIndex + 1 {
+                    if let day = weekDay.day {
+                        dateDay = day
+                    }
+                }
+            }
+        }
+        
+        
+        var title = ""
+        title += abrvDay
+        title += ". "
+        title += "\(dateDay)"
+        
+        return title
     }
 }
 
