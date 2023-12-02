@@ -1,12 +1,11 @@
 import django_cas_ng.views
-from courses.api import api
+from profiles.api import api
 from django.conf.urls.static import static
 from serverapi.settings import STATIC_ROOT, STATIC_URL
 from django.contrib import admin
-from django.urls import path, include
-from ninja import NinjaAPI
-from ninja.security import django_auth
-from courses import views
+from django.urls import path
+
+from profiles import views
 
 
 urlpatterns = [
