@@ -187,7 +187,7 @@ struct BlockTemplate: View {
             x = Int(manager.getPositionOffset())
         }
         else {
-            x = Int(manager.getPositionOffset()) + (Int(manager.getDayWidth()) * item.getDayOfWeek())
+            x = Int(manager.getPositionOffset()) + (Int(manager.getDayWidth()) * (item.getDayOfWeek() - 1))
         }
         
         // Value of y is determined by start and end time

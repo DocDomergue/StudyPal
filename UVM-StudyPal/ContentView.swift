@@ -387,39 +387,41 @@ struct StudyBlockPage: View {
     
     var body: some View {
         VStack(){
-            Text("Current Study Blocks:")
-            List(selectedEvents) { StudyItem in
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(StudyItem.name)
-                        Text("\(StudyItem.course.subj) \(StudyItem.course.course_number)").font(.headline)
+            VStack(spacing: 0) {
+                Text("Current Study Blocks:")
+                List(selectedEvents) { StudyItem in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(StudyItem.name)
+                            Text("\(StudyItem.course.subj) \(StudyItem.course.course_number)").font(.headline)
+                        }
+                        .padding(.vertical, 4)
+                        Spacer()
+                        
+                        Button(action: {
+                            removeStudyItem(studyItem: StudyItem)
+                        }) {
+                            Image(systemName: "trash.circle.fill")
+                                .font(.system(size: 32))
+                                .foregroundColor(.accentColor)
+                        }
                     }
-                    .padding(.vertical, 4)
-                    Spacer()
-                    
-                    Button(action: {
-                        removeStudyItem(studyItem: StudyItem)
-                    }) {
-                        Image(systemName: "trash.circle.fill")
-                            .font(.system(size: 32))
-                            .foregroundColor(.accentColor)
+                }.frame(maxHeight: 200)
+                    .onAppear {
+                        selectedEvents = user.study
                     }
-                }
-            }.frame(maxHeight: 200)
-                .onAppear {
-                    selectedEvents = user.study
-                }
-                .onDisappear {
-                    menuChangePush()
-                }
-            
-            TextField("Study Block Name", text: $nameString)
-                .padding(.horizontal)
-                .disableAutocorrection(true)
-                .autocapitalization(.none)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Spacer()
+                    .onDisappear {
+                        menuChangePush()
+                    }
+                
+                TextField("Study Block Name", text: $nameString)
+                    .padding(.horizontal)
+                    .disableAutocorrection(true)
+                    .autocapitalization(.none)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Spacer()
+            }
             
             Text("Associate a course?")
             

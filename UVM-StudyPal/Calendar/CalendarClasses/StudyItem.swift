@@ -16,7 +16,6 @@ class StudyItem: CalendarItem {
     
     // Constructor
     init(name: String, course: Course, startTime: DateComponents, endTime: DateComponents) {
-        // TODO: Make the arg type for start and end String AFTER proper conversion is done in CalendarItems
         self.course = course
         super.init(name: name, startTime: startTime, endTime: endTime)
     }
