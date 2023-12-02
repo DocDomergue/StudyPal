@@ -13,9 +13,9 @@ Hi Jason!
 - [X] Create user input calendar event menu - Kevin
 
 ###### Stretch Goals (to the next deliverable)
-- [-] Polish
+- [ ] Polish - Kinda started
 
-- [ ] Notifications
+- [ ] Notifications - abandoned
 
 ## Submission Schedule
 - [X] First Deliverable Oct. 7th - PDF
@@ -24,4 +24,4 @@ Hi Jason!
 
 - [X] Third Deliverable Sometime in Nov. - Something that is mostly functional
 
-- [ ] Final Deliverable Dec. 4nd - Final touches and polish
+- [X] Final Deliverable Dec. 4nd - Final touches and polish
