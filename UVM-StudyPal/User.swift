@@ -7,11 +7,17 @@
 
 import Foundation
 
+struct TaskItem: Identifiable, Codable {
+    var id = UUID()
+    var name: String
+    var isCompleted: Bool = false
+}
+
 class User: Codable, ObservableObject {
     @Published<[CourseItem]> var courses: [CourseItem] // TODO: Course Class
     @Published<[StudyItem]> var study: [StudyItem]
     @Published<[CustomItem]> var custom: [CustomItem]
-    @Published<[String]> var todo: [String] // Placeholder for now
+    @Published<[TaskItem]> var todo: [TaskItem] // Placeholder for now
     @Published<Int> var studyStat: Int
     // TODO: Other info about user
     
@@ -38,7 +44,7 @@ class User: Codable, ObservableObject {
         self.courses = try container.decode([CourseItem].self, forKey: .courses)
         self.study = try container.decode([StudyItem].self, forKey: .study)
         self.custom = try container.decode([CustomItem].self, forKey: .custom)
-        self.todo = try container.decode([String].self, forKey: .todo)
+        self.todo = try container.decode([TaskItem].self, forKey: .todo)
         self.studyStat = try container.decode(Int.self, forKey: .studyStat)
     }
 
@@ -147,7 +153,7 @@ class User: Codable, ObservableObject {
     
 
     struct EmptyProfile: Codable {
-        var todo: [String]
+        var todo: [TaskItem]
         var study: [String]
         var custom: [String]
         var courses: [String]

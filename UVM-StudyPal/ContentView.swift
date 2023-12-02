@@ -77,19 +77,19 @@ struct MainPageView: View {
                     }
                     .tag(0)
                 
-                ToDoPage()
+                ToDoPage(user: _user)
                     .tabItem() {
                         Image(systemName: "list.bullet")
                     }
                     .tag(1)
                 
-                TimerPage()
+                TimerPage(user: _user)
                     .tabItem() {
                         Image(systemName: "stopwatch")
                     }
                     .tag(2)
                 
-                StatsPage()
+                StatsPage(user: _user)
                     .tabItem() {
                         Image(systemName: "chart.pie")
                     }
@@ -309,14 +309,24 @@ struct CourseListPage: View {
 
 // View for the To-Do page
 struct ToDoPage: View {
-    struct TaskItem: Identifiable {
-        let id = UUID()
-        var name: String
-        var isCompleted: Bool = false
-    }
-    
     @State private var tasks: [TaskItem] = []
     @State private var newTask: String = ""
+    
+    @EnvironmentObject var user: User
+    
+    func menuChangePull() {
+        user.pullUserProfile()
+    }
+    
+    func menuChangePush() {
+        user.push { success, error in
+            if success {
+                print("User data pushed successfully")
+            } else if let error = error {
+                print("Error pushing user data: \(error)")
+            }
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -350,6 +360,13 @@ struct ToDoPage: View {
                 .padding()
             }
             .navigationTitle("To-Do List")
+        } 
+        .onAppear() {
+            tasks = user.todo
+        }
+        .onDisappear {
+            user.todo = tasks
+            menuChangePush()
         }
     }
     
@@ -383,6 +400,22 @@ struct TimerPage: View {
     // Create a timer object
     @StateObject var viewModel = TimerViewModel()
     
+    @EnvironmentObject var user: User
+    
+    func menuChangePull() {
+        user.pullUserProfile()
+    }
+    
+    func menuChangePush() {
+        user.push { success, error in
+            if success {
+                print("User data pushed successfully")
+            } else if let error = error {
+                print("Error pushing user data: \(error)")
+            }
+        }
+    }
+    
     // Display code to create the visuals
     var body: some View {
         VStack(spacing: 20) {
@@ -411,6 +444,7 @@ struct TimerPage: View {
             case .notStarted:
                 Button("Start") {
                     viewModel.startTimer()
+                    user.studyStat+=15
                 }
                 
             case .running:
@@ -438,6 +472,9 @@ struct TimerPage: View {
             }
         }
         .padding()
+        .onDisappear {
+            menuChangePush()
+        }
     }
 }
 
@@ -446,8 +483,24 @@ struct StatsPage: View {
     
     // Variables that are shown on the page
     @State private var semesterCompletion: Double = 100 * calculateSemesterPercentage()
-    @State private var studyTimeInMinutes: Int = 334
-    @State private var averageStudyTime: Int = 154
+    @State private var studyTimeInMinutes: Int = 0
+    @State private var averageStudyTime: Int = 50
+    
+    @EnvironmentObject var user: User
+    
+    func menuChangePull() {
+        user.pullUserProfile()
+    }
+    
+    func menuChangePush() {
+        user.push { success, error in
+            if success {
+                print("User data pushed successfully")
+            } else if let error = error {
+                print("Error pushing user data: \(error)")
+            }
+        }
+    }
     
     var body: some View {
         VStack {
@@ -455,8 +508,6 @@ struct StatsPage: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding()
-            
-            Divider()
             
             Text("Semester Completion")
                 .font(.title)
@@ -470,6 +521,9 @@ struct StatsPage: View {
             Text("Time Spent Studying")
                 .font(.title)
                 .padding()
+                .onAppear {
+                    studyTimeInMinutes = user.studyStat
+                }
             
             Text("\(studyTimeInMinutes) minutes")
                 .font(.headline)
@@ -484,13 +538,18 @@ struct StatsPage: View {
             Text("Average Time Spent Studying")
                 .font(.title2)
                 .padding()
+                .onAppear {
+                    averageStudyTime = Int(Double(user.studyStat * 2)/1.5)
+                }
             
-            // Views can only have 10 children. This causes an error bc its an 11th.
-            /*Text("\(averageStudyTime) minutes")
+            Text("\(averageStudyTime) minutes")
              .font(.headline)
-             .padding()*/
+             .padding()
         }
         .navigationTitle("Statistics")
+        .onDisappear {
+            menuChangePush()
+        }
     }
 }
 
