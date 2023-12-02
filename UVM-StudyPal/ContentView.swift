@@ -51,6 +51,8 @@ struct MainPageView: View {
     @ObservedObject var viewModel: AuthViewModel
     @EnvironmentObject var user: User
     
+    @State var firstPull = true
+    
     func menuChangePull() {
         user.pullUserProfile()
     }
@@ -74,60 +76,45 @@ struct MainPageView: View {
                         Image(systemName: "calendar")
                     }
                     .tag(0)
-                    .onAppear {
-                        menuChangePull() // Calls for a pull when view loads
-                    }
-                    .onDisappear {
-                        menuChangePush() // Calls for a push when view closes
-                    }
                 
                 ToDoPage()
                     .tabItem() {
                         Image(systemName: "list.bullet")
                     }
                     .tag(1)
-                    .onAppear {
-                        menuChangePull() // Calls for a pull when view loads
-                    }
-                    .onDisappear {
-                        menuChangePush() // Calls for a push when view closes
-                    }
                 
                 TimerPage()
                     .tabItem() {
                         Image(systemName: "stopwatch")
                     }
                     .tag(2)
-                    .onAppear {
-                        menuChangePull() // Calls for a pull when view loads
-                    }
                 
                 StatsPage()
                     .tabItem() {
                         Image(systemName: "chart.pie")
                     }
                     .tag(3)
-                    .onAppear {
-                        menuChangePull() // Calls for a pull when view loads
-                    }
                 
                 // Also contains the header and other top items of the UI
             } 
             .onAppear {
-                menuChangePull() // Initial Pull
+                if firstPull {
+                    menuChangePull()
+                    firstPull = false
+                }// Initial Pull
             }
             .toolbar {
                 if openTab == 0 {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Menu {
                             NavigationLink("Add Course") {
-                                CourseListPage().navigationTitle("All Courses")
+                                CourseListPage(user:  _user).navigationTitle("All Courses").onDisappear { menuChangePush() }
                             }
                             NavigationLink("Add Study Block") {
-                                //CourseListPage().navigationTitle("New Study Block")
+                                //StudyBlockPage(user:  _user).navigationTitle("New Study Block").onDisappear { menuChangePush() }
                             }
                             NavigationLink("Add Custom Event") {
-                                //CourseListPage().navigationTitle("New Custom Event")
+                                //CustomItemPage(user:  _user).navigationTitle("New Custom Event").onDisappear { menuChangePush() }
                             }
                         } label: {
                             Image(systemName: "plus.circle")
@@ -214,6 +201,21 @@ struct CourseListPage: View {
     @State private var courses: [Course] = []
     @State private var cancellables = Set<AnyCancellable>()
     @State private var selectedCourses: [Course] = []
+    @EnvironmentObject var user: User
+    
+    func menuChangePull() {
+        user.pullUserProfile()
+    }
+    
+    func menuChangePush() {
+        user.push { success, error in
+            if success {
+                print("User data pushed successfully")
+            } else if let error = error {
+                print("Error pushing user data: \(error)")
+            }
+        }
+    }
     
     var body: some View {
         VStack(){
@@ -252,6 +254,9 @@ struct CourseListPage: View {
                     }
                 }
             }
+        } .onDisappear {
+            
+            menuChangePush()
         }
     }
     

@@ -15,10 +15,7 @@ class User: Codable, ObservableObject {
     @Published<Int> var studyStat: Int
     // TODO: Other info about user
     
-    /*
-     Create a new user
-     TODO: Implement adding them to the database
-     */
+    // Create a new user
     init() {
         courses = []
         study = []
@@ -141,6 +138,8 @@ class User: Codable, ObservableObject {
         do {
             let jsonData = try JSONEncoder().encode(self)
             NetworkManager.shared.updateUserProfile(jsonData: jsonData, completion: completion)
+            
+            print("pushing\n")
         } catch {
             completion(false, error)
         }
@@ -190,6 +189,7 @@ class User: Codable, ObservableObject {
                     self.todo = tempUser.todo
                     self.studyStat = tempUser.studyStat
                     
+                    print("pulling\n")
                     print(tempUser.courses)
                     print(tempUser.study)
                     print(tempUser.custom)
