@@ -2,15 +2,15 @@
 Hi Jason!
 
 ### To-Do Lists till next Deliverable
-- [ ] Get JSON User Profile Working - Evan
+- [X] Get JSON User Profile Working - Evan
 
 - [ ] Plug the calendar tab into JSON user profile - Zach
 
 - [ ] Finish graphic calendar items - Zach
 
-- [ ] Plug in the other tabs into JSON user profile - Kevin
+- [X] Plug in the other tabs into JSON user profile - Kevin
 
-- [ ] Create user input calendar event menu - Kevin
+- [X] Create user input calendar event menu - Kevin
 
 ###### Stretch Goals (to the next deliverable)
 - [ ] Polish
