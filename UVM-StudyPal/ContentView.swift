@@ -6,6 +6,15 @@
 import SwiftUI
 import Combine
 
+// Global Constants
+let CURRENT_DATE = Date()
+let CALENDAR = Calendar.current
+let FALL_SEMESTER_START = Calendar.current.date(from: DateComponents(year: CALENDAR.component(.year, from: CURRENT_DATE), month: 8, day: 28))!
+let FALL_SEMESTER_END = Calendar.current.date(from: DateComponents(year: CALENDAR.component(.year, from: CURRENT_DATE), month: 12, day: 15))!
+let SPRING_SEMESTER_START = Calendar.current.date(from: DateComponents(year: CALENDAR.component(.year, from: CURRENT_DATE), month: 1, day: 15))!
+let SPRING_SEMESTER_END = Calendar.current.date(from: DateComponents(year: CALENDAR.component(.year, from: CURRENT_DATE), month: 5, day: 10))!
+
+
 // Holds some functions for using the CAS webauth on login
 class AuthViewModel: ObservableObject {
     @Published var loggedIn: Bool = false
@@ -566,24 +575,13 @@ func calculateSemesterPercentage() -> Double {
     
     let percentage: Double
     
-    // Get the current date
-    let currentDate = Date()
-    let calendar = Calendar.current
-    
-    // Semester Date Ranges Approximated
-    let range1Start = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 8, day: 25))!
-    let range1End = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 12, day: 15))!
-    
-    let range2Start = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 1, day: 15))!
-    let range2End = Calendar.current.date(from: DateComponents(year: calendar.component(.year, from: currentDate), month: 5, day: 15))!
-    
-    if currentDate >= range1Start && currentDate <= range1End {
-        let daysInRange = currentDate.daysBetweenDate(range1Start, andDate: range1End)
-        let daysPassed = currentDate.daysBetweenDate(range1Start, andDate: currentDate)
+    if CURRENT_DATE >= FALL_SEMESTER_START && CURRENT_DATE <= FALL_SEMESTER_END {
+        let daysInRange = CURRENT_DATE.daysBetweenDate(FALL_SEMESTER_START, andDate: FALL_SEMESTER_END)
+        let daysPassed = CURRENT_DATE.daysBetweenDate(FALL_SEMESTER_START, andDate: CURRENT_DATE)
         percentage = Double(daysPassed) / Double(daysInRange)
-    } else if currentDate >= range2Start && currentDate <= range2End {
-        let daysInRange = currentDate.daysBetweenDate(range2Start, andDate: range2End)
-        let daysPassed = currentDate.daysBetweenDate(range2Start, andDate: currentDate)
+    } else if CURRENT_DATE >= SPRING_SEMESTER_START && CURRENT_DATE <= SPRING_SEMESTER_END {
+        let daysInRange = CURRENT_DATE.daysBetweenDate(SPRING_SEMESTER_END, andDate: SPRING_SEMESTER_END)
+        let daysPassed = CURRENT_DATE.daysBetweenDate(SPRING_SEMESTER_END, andDate: CURRENT_DATE)
         percentage = Double(daysPassed) / Double(daysInRange)
     } else {
         percentage = 100.0

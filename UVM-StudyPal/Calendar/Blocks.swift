@@ -22,7 +22,7 @@ struct Blocks: View {
          
                 This should be a function in User that is used in selectItems
          */
-        ForEach(user.selectCourses(inWeek: manager.visibleWeek)) { item in
+        ForEach(user.selectCourses(inWeek: manager.visibleWeek, manager.DAY_CODES)) { item in
             CourseBlock(item: item)
         }
         ForEach(user.selectStudy(inWeek: manager.visibleWeek)) { item in

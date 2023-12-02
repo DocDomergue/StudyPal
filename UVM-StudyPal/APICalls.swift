@@ -1,16 +1,5 @@
 import Foundation
 
-// Model for course data
-struct Course: Codable {
-    let subj, course_number, title, section: String
-    let instructor: String
-    let start_time, end_time: String? // nullable fields
-    let days, bldg, room, credits: String
-    let xlistings, lec_lab, coll_code: String
-    let max_enrollment, current_enrollment, comp_numb, id: Int
-    let email: String
-}
-
 // Model for course response
 struct CourseResponse: Codable {
     let results: [Course]

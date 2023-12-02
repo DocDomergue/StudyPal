@@ -10,6 +10,7 @@
 		2066B1072AEFF74A00599861 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2066B1062AEFF74A00599861 /* TimerViewModel.swift */; };
 		209007FE2B0D404E0050FE70 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209007FD2B0D404E0050FE70 /* WebView.swift */; };
 		3306BBD12AFD5757005FEEC1 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3306BBD02AFD5757005FEEC1 /* WeekView.swift */; };
+		3311FB7F2B1B968E00BD3551 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3311FB7E2B1B968E00BD3551 /* Course.swift */; };
 		33229BBA2B10433000431FEF /* DayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33229BB92B10433000431FEF /* DayPicker.swift */; };
 		3339BBBB2AFD808000FAD38A /* CalendarBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3339BBBA2AFD808000FAD38A /* CalendarBlock.swift */; };
 		33C920FA2AFD585900FEF91C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C920F92AFD585900FEF91C /* User.swift */; };
@@ -69,6 +70,7 @@
 		2066B1062AEFF74A00599861 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		209007FD2B0D404E0050FE70 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		3306BBD02AFD5757005FEEC1 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
+		3311FB7E2B1B968E00BD3551 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		33229BB92B10433000431FEF /* DayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPicker.swift; sourceTree = "<group>"; };
 		3339BBBA2AFD808000FAD38A /* CalendarBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarBlock.swift; sourceTree = "<group>"; };
 		33C920F92AFD585900FEF91C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				E42776892ACF1CA600265C6E /* Preview Content */,
 				33C920F92AFD585900FEF91C /* User.swift */,
 				209007FD2B0D404E0050FE70 /* WebView.swift */,
+				3311FB7E2B1B968E00BD3551 /* Course.swift */,
 			);
 			path = "UVM-StudyPal";
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				33C921002AFD70BB00FEF91C /* WeekPicker.swift in Sources */,
 				E49FB7992AE45D3A00BDC017 /* APICalls.swift in Sources */,
 				3306BBD12AFD5757005FEEC1 /* WeekView.swift in Sources */,
+				3311FB7F2B1B968E00BD3551 /* Course.swift in Sources */,
 				E49FB79F2AE46AB500BDC017 /* CustomItem.swift in Sources */,
 				33C920FA2AFD585900FEF91C /* User.swift in Sources */,
 				33C920FC2AFD5F9D00FEF91C /* DayTimeGrid.swift in Sources */,
