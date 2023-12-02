@@ -14,7 +14,7 @@ struct TaskItem: Identifiable, Codable {
 }
 
 class User: Codable, ObservableObject {
-    @Published<[CourseItem]> var courseItem: [CourseItem] // TODO: Course Class
+    @Published<[CourseItem]> var courseItem: [CourseItem] // ******************************
     @Published<[Course]> var courses: [Course]
     @Published<[StudyItem]> var study: [StudyItem]
     @Published<[CustomItem]> var custom: [CustomItem]
@@ -24,7 +24,7 @@ class User: Codable, ObservableObject {
     
     // Create a new user
     init() {
-        courseItem = []
+        courseItem = [] /******************************/
         courses = []
         study = []
         custom = []
@@ -34,7 +34,7 @@ class User: Codable, ObservableObject {
     
     // Codable stuff
     enum CodingKeys: String, CodingKey {
-        case courseItem
+        case courseItem                 /****************************/
         case courses
         case study
         case custom
@@ -44,7 +44,7 @@ class User: Codable, ObservableObject {
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.courseItem = try container.decode([CourseItem].self, forKey: .courseItem)
+        self.courseItem = try container.decode([CourseItem].self, forKey: .courseItem) /*****************************/
         self.courses = try container.decode([Course].self, forKey: .courses)
         self.study = try container.decode([StudyItem].self, forKey: .study)
         self.custom = try container.decode([CustomItem].self, forKey: .custom)
@@ -54,7 +54,7 @@ class User: Codable, ObservableObject {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(courseItem, forKey: .courseItem)
+        try container.encode(courseItem, forKey: .courseItem)  /*************************************/
         try container.encode(courses, forKey: .courses)
         try container.encode(study, forKey: .study)
         try container.encode(custom, forKey: .custom)
@@ -158,7 +158,7 @@ class User: Codable, ObservableObject {
     
 
     struct EmptyProfile: Codable {
-        var courseItem: [CourseItem]
+        var courseItem: [CourseItem]  /******************************/
         var todo: [TaskItem]
         var study: [StudyItem]
         var custom: [CustomItem]
@@ -167,7 +167,7 @@ class User: Codable, ObservableObject {
     }
 
     let emptyProfile = EmptyProfile(
-        courseItem: [],
+        courseItem: [],          /***************************/
         todo: [],
         study: [],
         custom: [],
@@ -203,7 +203,6 @@ class User: Codable, ObservableObject {
                     self.studyStat = tempUser.studyStat
                     
                     print("pulling\n")
-                    print(tempUser.courseItem)
                     print(tempUser.courses)
                     print(tempUser.study)
                     print(tempUser.custom)
