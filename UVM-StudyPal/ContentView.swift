@@ -120,10 +120,10 @@ struct MainPageView: View {
                                 CourseListPage(user:  _user).navigationTitle("All Courses").onDisappear { menuChangePush() }
                             }
                             NavigationLink("Add Study Block") {
-                                //StudyBlockPage(user:  _user).navigationTitle("New Study Block").onDisappear { menuChangePush() }
+                                StudyBlockPage(user:  _user).navigationTitle("New Study Block").onDisappear { menuChangePush() }
                             }
                             NavigationLink("Add Custom Event") {
-                                //CustomItemPage(user:  _user).navigationTitle("New Custom Event").onDisappear { menuChangePush() }
+                                CustomItemPage(user:  _user).navigationTitle("New Custom Event").onDisappear { menuChangePush() }
                             }
                         } label: {
                             Image(systemName: "plus.circle")
@@ -357,6 +357,294 @@ struct CourseListPage: View {
         selectedCourses = selectedCourses.filter { $0.id != course.id }
     }
 }
+
+
+
+
+
+
+// When the course list is open, this is the display on screen
+struct StudyBlockPage: View {
+    @State private var nameString: String = ""
+    @State private var startDate = Date()
+    @State private var endDate = Date()
+    @State private var startDateComponents = DateComponents()
+    @State private var endDateComponents = DateComponents()
+    @State private var selectedCourse: Course?
+    @State private var finalCourse: Course = Course(subj: "No ", course_number: "Course", title: "Empty", section: "Empty", instructor: "Empty", start_time: "Empty", end_time: "Empty", days: "Empty", bldg: "Empty", room: "Empty", credits: "Empty", xlistings: "Empty", lec_lab: "Empty", coll_code: "Empty", max_enrollment: 0, current_enrollment: 0, comp_numb: 0, id: 1243657, email: "Empty")
+    @State private var userEvents: [StudyItem] = []
+    @State private var selectedEvents: [StudyItem] = []
+    @EnvironmentObject var user: User
+    
+    func menuChangePull() {
+        user.pullUserProfile()
+    }
+    
+    func menuChangePush() {
+        user.push { success, error in
+            if success {
+                print("User data pushed successfully")
+            } else if let error = error {
+                print("Error pushing user data: \(error)")
+            }
+        }
+    }
+    
+    var body: some View {
+        VStack(){
+            Text("Current Study Blocks:")
+            List(selectedEvents) { StudyItem in
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(StudyItem.name)
+                        Text("\(StudyItem.course.subj) \(StudyItem.course.course_number)").font(.headline)
+                    }
+                    .padding(.vertical, 4)
+                    Spacer()
+                    
+                    Button(action: {
+                        removeStudyItem(studyItem: StudyItem)
+                    }) {
+                        Image(systemName: "trash.circle.fill")
+                            .font(.system(size: 32))
+                            .foregroundColor(.accentColor)
+                    }
+                }
+            }.frame(maxHeight: 200)
+                .onAppear {
+                    selectedEvents = user.study
+                }
+                .onDisappear {
+                    menuChangePush()
+                }
+            
+            TextField("Study Block Name", text: $nameString)
+                .padding(.horizontal)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            
+            Spacer()
+            
+            Text("Associate a course?")
+            
+            Spacer()
+            
+            if user.courses.isEmpty {
+                Text("No courses available")
+            } else {
+                List(user.courses) { course in
+                    Button(action: {
+                        selectedCourse = course
+                    }) {
+                        Text("\(course.subj) \(course.course_number)").foregroundColor(course == selectedCourse ? .accentColor : .primary)
+                    }
+                }
+            }
+            
+            Spacer()
+            
+            DatePicker("Select Date and Start Time", selection: $startDate, displayedComponents: [.date, .hourAndMinute])
+                .datePickerStyle(CompactDatePickerStyle())
+            
+            DatePicker("Select End Time", selection: $endDate, displayedComponents: [.date, .hourAndMinute])
+                .datePickerStyle(CompactDatePickerStyle())
+            Spacer()
+            
+            Button(action: {
+                startDateComponents = Calendar.current.dateComponents([.calendar, .era, .year, .month, .day], from: startDate)
+                endDateComponents = Calendar.current.dateComponents([.calendar, .era, .year, .month, .day], from: startDate)
+        
+                finalCourse = selectedCourse ?? finalCourse
+                
+                addStudyItem(nameString, finalCourse, startDateComponents, endDateComponents)
+            }) {
+                Text("Add Study Block")
+                    .foregroundColor(.black)
+                        .padding()
+                        .background(Color.accentColor)
+                        .cornerRadius(20)
+            }
+        }
+    }
+        
+        
+    func addStudyItem(_ name: String, _ course: Course, _ startTime: DateComponents, _ endTime: DateComponents) {
+        user.study.append(StudyItem(name: name, course: course, startTime: startTime, endTime: endTime))
+        selectedEvents = user.study
+    }
+
+    
+    // Function that actually removes the course from internal structures
+    func removeStudyItem(studyItem: StudyItem) {
+        user.study = user.study.filter { $0.name != studyItem.name }
+        selectedEvents = selectedEvents.filter { $0.name != studyItem.name }
+    }
+}
+
+
+
+
+// When the course list is open, this is the display on screen
+struct CustomItemPage: View {
+    @State private var queryString: String = ""
+    @State private var courses: [Course] = []
+    @State private var userCourses: [Course] = []
+    @State private var cancellables = Set<AnyCancellable>()
+    @State private var selectedCourses: [Course] = []
+    @EnvironmentObject var user: User
+    
+    func menuChangePull() {
+        user.pullUserProfile()
+    }
+    
+    func menuChangePush() {
+        user.push { success, error in
+            if success {
+                print("User data pushed successfully")
+            } else if let error = error {
+                print("Error pushing user data: \(error)")
+            }
+        }
+    }
+    
+    var body: some View {
+        VStack(){
+            
+            List(selectedCourses, id: \.id) { course in
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("\(course.subj) \(course.course_number) \(course.section)").font(.headline)
+                        Text(course.title).font(.subheadline)
+                        Text(course.instructor)
+                        if let startTime = course.start_time, let endTime = course.end_time {
+                            Text("Time: \(startTime) - \(endTime)").font(.footnote)
+                            Text("Days: \(course.days.trimmingCharacters(in: .whitespacesAndNewlines))").font(.footnote)
+                        } else {
+                            Text("Time: N/A").font(.footnote)
+                        }
+                        Text("Credits: \(course.credits)").font(.footnote)
+                    }
+                    .padding(.vertical, 4)
+                    Spacer()
+                    
+                    Button(action: {
+                        toggleCourseSelection(course: course)
+                    }) {
+                        Image(systemName: courseIsSelected(course: course) ? "checkmark.circle.fill" : "plus.circle.fill")
+                            .font(.system(size: 32))
+                            .foregroundColor(courseIsSelected(course: course) ? .green : .blue)
+                    }
+                }
+            }.frame(maxHeight: 200)
+                .onAppear {
+                    selectedCourses = user.courses
+                }
+            
+            TextField("Search Courses", text: $queryString)
+                .padding(.horizontal)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .onChange(of: queryString) { newValue in
+                    searchCourses()
+                    userCourses = user.courses
+                    selectedCourses = user.courses
+                }.onAppear {
+                    userCourses = user.courses
+                    selectedCourses = user.courses
+                }
+            
+            List(courses, id: \.id) { course in
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("\(course.subj) \(course.course_number) \(course.section)").font(.headline)
+                        Text(course.title).font(.subheadline)
+                        Text(course.instructor)
+                        if let startTime = course.start_time, let endTime = course.end_time {
+                            Text("Time: \(startTime) - \(endTime)").font(.footnote)
+                            Text("Days: \(course.days.trimmingCharacters(in: .whitespacesAndNewlines))").font(.footnote)
+                        } else {
+                            Text("Time: N/A").font(.footnote)
+                        }
+                        Text("Credits: \(course.credits)").font(.footnote)
+                    }
+                    .padding(.vertical, 4)
+                    Spacer()
+                    
+                    Button(action: {
+                        toggleCourseSelection(course: course)
+                    }) {
+                        Image(systemName: courseIsSelected(course: course) ? "checkmark.circle.fill" : "plus.circle.fill")
+                            .font(.system(size: 32))
+                            .foregroundColor(courseIsSelected(course: course) ? .green : .blue)
+                    }
+                }
+            }
+        } .onDisappear {
+            
+            menuChangePush()
+        }
+    }
+    
+    // Function behind the search bar, works with our scraped SOC
+    func searchCourses() {
+        if queryString.isEmpty {
+            self.courses = []
+            return
+        }
+        
+        if queryString.count == 1 {
+            return
+        }
+        
+        NetworkManager.shared.fetchCourses(query: queryString) { courses, error in
+            DispatchQueue.main.async {
+                if let courses = courses {
+                    self.courses = courses
+                } else if let error = error {
+                    print("Error fetching courses: \(error)")
+                }
+            }
+        }
+    }
+    
+    // Function to add a course to your profile
+    func courseIsSelected(course: Course) -> Bool {
+        return selectedCourses.contains(where: { $0.id == course.id })
+    }
+    
+    // Function that handles the add/added button
+    func toggleCourseSelection(course: Course) {
+        
+        selectedCourses = user.courses
+        
+        if courseIsSelected(course: course) {
+            removeCourse(course: course)
+        } else {
+            addCourse(course: course)
+        }
+    }
+    
+    // Function that actually adds the course to internal structures
+    func addCourse(course: Course) {
+        user.courses.append(course)
+        selectedCourses.append(course)
+    }
+    
+    // Function that actually removes the course from internal structures
+    func removeCourse(course: Course) {
+        user.courses = user.courses.filter { $0.id != course.id }
+        selectedCourses = selectedCourses.filter { $0.id != course.id }
+    }
+}
+
+
+
+
+
+
+
 
 // View for the To-Do page
 struct ToDoPage: View {

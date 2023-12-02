@@ -12,17 +12,17 @@ import SwiftUI
 class StudyItem: CalendarItem {
     
     // TODO: Course class
-    var course: CourseItem // Course the studying is for
+    var course: Course // Course the studying is for
     
     // Constructor
-    init(name: String, course: CourseItem, startTime: DateComponents, endTime: DateComponents) {
+    init(name: String, course: Course, startTime: DateComponents, endTime: DateComponents) {
         // TODO: Make the arg type for start and end String AFTER proper conversion is done in CalendarItems
         self.course = course
         super.init(name: name, startTime: startTime, endTime: endTime)
     }
     
     // Getter for course
-    var getRoom: CourseItem {
+    var getCourse: Course {
         return course
     }
     
@@ -33,7 +33,7 @@ class StudyItem: CalendarItem {
         
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.course = try container.decode(CourseItem.self, forKey: .course)
+        self.course = try container.decode(Course.self, forKey: .course)
         try super.init(from: decoder)
     }
         

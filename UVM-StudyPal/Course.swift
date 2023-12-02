@@ -9,7 +9,7 @@ import Foundation
 
 
 // Model for course data
-struct Course: Codable {
+struct Course: Codable, Identifiable, Equatable {
     let subj, course_number, title, section: String
     let instructor: String
     let start_time, end_time: String? // nullable fields
