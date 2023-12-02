@@ -1,12 +1,12 @@
-from typing import List
+import json
 
-from django.contrib.auth import authenticate, login
 from django.db.models import Q
-from django.shortcuts import get_object_or_404
-from ninja import NinjaAPI, Schema, Form, Schema, Router
+from django.http import JsonResponse
+from ninja import NinjaAPI, Schema
+from ninja.errors import HttpError
 from ninja.security import django_auth
 
-from .models import UserProfile, Course, User
+from .models import UserProfile, Course
 
 api = NinjaAPI(csrf=True)
 
@@ -65,26 +65,38 @@ def search_courses(request, query: str):
         for course in courses]}
 
 
-@api.get("/add_course/", auth=django_auth)
-def add_course_to_user(request, course_id):
-    user_profile = get_object_or_404(UserProfile, user_id=request.auth.id)
-    course = get_object_or_404(Course, id=course_id)
-    user_profile.courses.add(course)
-
-    return api.create_response(request, data={"success": "Course added successfully."}, status=200)
-
-
-@api.get("/remove_course/", auth=django_auth)
-def remove_course_to_user(request, course_id):
-    user_profile = get_object_or_404(UserProfile, user_id=request.auth.id)
-    course = get_object_or_404(Course, id=course_id)
-    user_profile.courses.remove(course)
-
-    return api.create_response(request, data={"success": "Course removed successfully."}, status=200)
+@api.get("/userprofile/", auth=django_auth)
+def get_user_profile(request):
+    try:
+        profile = UserProfile.objects.get(user_id=request.auth.id)
+        return profile.user_data
+    except UserProfile.DoesNotExist:
+        raise HttpError(404, message="UserProfile not found")
 
 
-@api.get("/list_courses/", auth=django_auth, response=List[CourseSchema])
-def list_courses(request):
-    user_profile = get_object_or_404(UserProfile, user_id=request.auth.id)
-    
-    return user_profile.courses.all()
+class UserProfileSchema(Schema):
+    user_data: str
+
+
+@api.post("/userprofile/", response={200: None, 404: None}, auth=django_auth)
+def update_user_profile(request):
+    try:
+        data = json.loads(request.body)
+        profile = UserProfile.objects.get(user_id=request.auth.id)
+        profile.user_data = data
+        profile.save()
+        return 200
+    except json.JSONDecodeError:
+        return JsonResponse({'error': 'Invalid JSON'}, status=400)
+
+
+@api.get("/total_study", auth=django_auth)
+def get_total_study_stat(request):
+    total = 0
+    user_profiles = UserProfile.objects.all()
+    for profile in user_profiles:
+        total += profile.user_data.get('studyStat', 0)
+    return {"total_study": total}
+
+# with open('./log.log', 'w') as file:
+#     file.write(total_study_stat)

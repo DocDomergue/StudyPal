@@ -7,10 +7,7 @@ SECRET_KEY = 'django-insecure-+!)td_+uxkfzt=d0m3t8d#pcr8-blpp^3-*@a#c!k37s(b@09n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-
-ALLOWED_HOSTS = ["one.ehinchli.w3.uvm.edu", ".uvm.edu", "uvm.edu"]
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -21,7 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_cas_ng',
     'ninja',
-    'courses',
+    'profiles',
 ]
 
 MIDDLEWARE = [
