@@ -15,6 +15,9 @@ class CalendarManager: ObservableObject {
     
     // Week/Day defined Constants
     @Published var HOUR_HEIGHT: CGFloat = 50
+    @Published var HOUR_TEXT_WIDTH: CGFloat = 50
+    @Published var HOUR_TEXT_HEIGHT: CGFloat = 10
+    @Published var HOUR_MARK_PADDING: CGFloat = 5
     @Published var SIDE_PADDING: CGFloat = 100
     @Published var DAYS_OF_WEEK = ["Sunday", "Monday", "Tuesday",
                       "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -48,6 +51,18 @@ class CalendarManager: ObservableObject {
         else {
             return 115
         }
+    }
+    
+    func getPositionOffset() -> CGFloat {
+        var offset = HOUR_TEXT_WIDTH + getDayWidth()/2 + HOUR_MARK_PADDING
+        if isDayView {
+            offset += 12
+        }
+        else {
+            // Adjusting for header titles not reaching all the way over
+            offset += SIDE_PADDING/2 - 13
+        }
+        return offset
     }
     
     /* ******************************** */

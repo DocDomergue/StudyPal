@@ -9,7 +9,6 @@ import SwiftUI
 
 // Code used for determining locations/sizes and drawing the grids
 
-let timeTextHeight: CGFloat = 10
 let headerColor = Color(hue: 0.131, saturation: 0.982, brightness: 0.822).opacity(0.4)
 
 struct DayTimeGrid: View {
@@ -22,7 +21,7 @@ struct DayTimeGrid: View {
                     if manager.isDayView {
                         // Day of week chosen in the manager
                         Text(getDayTitle(ofDay: manager.dayOfWeek - 1, inWeek: manager.visibleWeek))
-                            .padding([.trailing, .leading], manager.SIDE_PADDING)
+                            .padding(.horizontal, manager.SIDE_PADDING)
                             .padding(.vertical, 15)
                     }
                     else {
@@ -33,7 +32,7 @@ struct DayTimeGrid: View {
                                     .frame(width: manager.getDayWidth() * 0.85)
                             }
                         }
-                        .padding([.trailing, .leading], manager.SIDE_PADDING)
+                        .padding(.horizontal, manager.SIDE_PADDING)
                         .padding(.vertical, 15)
                     }
                 }
@@ -49,7 +48,7 @@ struct DayTimeGrid: View {
                         DayHighlight()
                     }
                     // Horizontal times
-                    VStack(spacing: manager.HOUR_HEIGHT - timeTextHeight) {
+                    VStack(spacing: manager.HOUR_HEIGHT - manager.HOUR_TEXT_HEIGHT) {
                         ForEach(0..<25) { hour in
                             HourMark(hour: hour)
                         }
@@ -82,13 +81,7 @@ struct DayTimeGrid: View {
             }
         }
         
-        
-        var title = ""
-        title += abrvDay
-        title += ". "
-        title += "\(dateDay)"
-        
-        return title
+        return "\(abrvDay). \(dateDay)"
     }
 }
 
@@ -98,7 +91,7 @@ struct HourMark: View {
     var body: some View {
         HStack {
             Text(hourToTwelveHour(hour))
-                .frame(width: 50)
+                .frame(width: manager.HOUR_TEXT_WIDTH)
             VStack {
                 Divider()
             }
@@ -106,15 +99,14 @@ struct HourMark: View {
                 Text(hourToTwelveHour(hour))
             }
         }
-        .padding(.horizontal, 5)
-        .frame(height: timeTextHeight)
+        .padding(.horizontal, manager.HOUR_MARK_PADDING)
+        .frame(height: manager.HOUR_TEXT_HEIGHT)
     }
 }
 
 
 struct DayHighlight: View {
     @EnvironmentObject var manager: CalendarManager
-    
     
     var body: some View {
         HStack(spacing: 0) {
@@ -130,7 +122,7 @@ struct DayHighlight: View {
     }
     
     func offsetHighlight(_ dayNum: Int) -> CGFloat {
-        return CGFloat(35 + (Int(manager.getDayWidth()) * dayNum))
+        return CGFloat(Int(manager.getPositionOffset()) + (Int(manager.getDayWidth()) * dayNum))
     }
 }
 

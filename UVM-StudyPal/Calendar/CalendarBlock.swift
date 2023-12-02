@@ -184,11 +184,10 @@ struct BlockTemplate: View {
         // Value of x is determined by day
         var x = 0
         if manager.isDayView {
-            // WTF?
-            x = 210
+            x = Int(manager.getPositionOffset())
         }
         else {
-            x = 34 + (Int(manager.getDayWidth()) * item.getDayOfWeek())
+            x = Int(manager.getPositionOffset()) + (Int(manager.getDayWidth()) * item.getDayOfWeek())
         }
         
         // Value of y is determined by start and end time

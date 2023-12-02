@@ -71,30 +71,6 @@ class User: Codable, ObservableObject {
             let items = course.generateCourseItems(week, dayCodes)
             courseItems += items
         }
-        courseItems.append(CourseItem(
-            name: "Test",
-            subject: "Test",
-            number: "4444",
-            instructor: "Test",
-            building: "Test",
-            room: "32",
-            startTime: DateComponents(
-                calendar: Calendar(identifier: .gregorian),
-                year: 2023,
-                month: 12,
-                day: 1,
-                hour: 23,
-                minute: 00
-            ),
-            endTime: DateComponents(
-                calendar: Calendar(identifier: .gregorian),
-                year: 2023,
-                month: 12,
-                day: 2,
-                hour: 01,
-                minute: 00
-            )
-        ))
         return courseItems
     }
     
