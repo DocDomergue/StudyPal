@@ -105,7 +105,7 @@ struct MainPageView: View {
                     .tag(3)
                 
                 // Also contains the header and other top items of the UI
-            } 
+            }
             .onAppear {
                 if firstPull {
                     menuChangePull()
@@ -451,7 +451,7 @@ struct StudyBlockPage: View {
             Button(action: {
                 startDateComponents = Calendar.current.dateComponents([.calendar, .era, .year, .month, .day, .hour, .minute], from: startDate)
                 endDateComponents = Calendar.current.dateComponents([.calendar, .era, .year, .month, .day, .hour, .minute], from: endDate)
-        
+                
                 finalCourse = selectedCourse ?? finalCourse
                 
                 addStudyItem(nameString, finalCourse, startDateComponents, endDateComponents)
@@ -462,19 +462,19 @@ struct StudyBlockPage: View {
             }) {
                 Text("Add Study Block")
                     .foregroundColor(.black)
-                        .padding()
-                        .background(Color.accentColor)
-                        .cornerRadius(20)
+                    .padding()
+                    .background(Color.accentColor)
+                    .cornerRadius(20)
             }
         }
     }
-        
-        
+    
+    
     func addStudyItem(_ name: String, _ course: Course, _ startTime: DateComponents, _ endTime: DateComponents) {
         user.study.append(StudyItem(name: name, course: course, startTime: startTime, endTime: endTime))
         selectedEvents = user.study
     }
-
+    
     
     // Function that actually removes the course from internal structures
     func removeStudyItem(studyItem: StudyItem) {
@@ -544,7 +544,7 @@ struct CustomItemPage: View {
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-        
+            
             
             TextField("Custom Event Description", text: $descString)
                 .padding(.horizontal)
@@ -573,19 +573,19 @@ struct CustomItemPage: View {
             }) {
                 Text("Add Custom Event")
                     .foregroundColor(.black)
-                        .padding()
-                        .background(Color.accentColor)
-                        .cornerRadius(20)
+                    .padding()
+                    .background(Color.accentColor)
+                    .cornerRadius(20)
             }
         }
     }
-        
-        
+    
+    
     func addCustomItem(_ name: String, _ description: String, _ startTime: DateComponents, _ endTime: DateComponents) {
         user.custom.append(CustomItem(name: name, description: description, startTime: startTime, endTime: endTime))
         selectedEvents = user.custom
     }
-
+    
     
     // Function that actually removes the course from internal structures
     func removeCustomItem(customItem: CustomItem) {
@@ -647,7 +647,7 @@ struct ToDoPage: View {
                 .padding()
             }
             .navigationTitle("To-Do List")
-        } 
+        }
         .onAppear() {
             tasks = user.todo
         }
@@ -772,6 +772,8 @@ struct StatsPage: View {
     @State private var semesterCompletion: Double = 100 * calculateSemesterPercentage()
     @State private var studyTimeInMinutes: Int = 0
     @State private var averageStudyTime: Int = 50
+    @State private var totalStudyTime: Int = 0
+    
     
     @EnvironmentObject var user: User
     
@@ -785,6 +787,15 @@ struct StatsPage: View {
                 print("User data pushed successfully")
             } else if let error = error {
                 print("Error pushing user data: \(error)")
+            }
+        }
+    }
+    func fetchTotalStudyTime() {
+        NetworkManager.shared.fetchTotalStudyTime { totalStudy, error in
+            if let totalStudy = totalStudy {
+                self.totalStudyTime = totalStudy
+            } else if let error = error {
+                print("Error fetching total study time: \(error)")
             }
         }
     }
@@ -818,20 +829,17 @@ struct StatsPage: View {
             
             Divider()
             
-            Text("Global Stats")
+            Text("Total Study Time")
                 .font(.title)
-                .padding()
-            
-            Text("Average Time Spent Studying")
-                .font(.title2)
-                .padding()
+                
                 .onAppear {
-                    averageStudyTime = Int(Double(user.studyStat * 2)/1.5)
+                    fetchTotalStudyTime()
                 }
+            Text("Of All Users:")
             
-            Text("\(averageStudyTime) minutes")
-             .font(.headline)
-             .padding()
+            Text("\(totalStudyTime) minutes")
+                .font(.headline)
+                .padding()
         }
         .navigationTitle("Statistics")
         .onDisappear {

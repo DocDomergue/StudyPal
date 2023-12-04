@@ -118,5 +118,34 @@ class NetworkManager {
             }
         }
     }
-    
+    func fetchTotalStudyTime(completion: @escaping (Int?, Error?) -> Void) {
+            guard let url = URL(string: "\(baseURL)/total_study") else {
+                completion(nil, NSError(domain: "", code: -1, userInfo: nil))
+                return
+            }
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            if let csrfToken = csrfToken, let sessionId = sessionId {
+                let cookieHeader = "csrftoken=\(csrfToken); sessionid=\(sessionId)"
+                request.addValue(cookieHeader, forHTTPHeaderField: "Cookie")
+            }
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        completion(nil, error)
+                    } else if let data = data {
+                        do {
+                            if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Int],
+                               let totalStudyTime = jsonResponse["total_study"] {
+                                completion(totalStudyTime, nil)
+                            }
+                        } catch {
+                            completion(nil, error)
+                        }
+                    }
+                }
+            }.resume()
+        }
 }
